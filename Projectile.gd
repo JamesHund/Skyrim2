@@ -26,10 +26,10 @@ func _on_DecayTimer_timeout():
 
 func _on_Projectile_body_entered( body ):
 	if body.get_instance_id() != source.get_instance_id():
-		if body.is_in_group("walls"):
+		if body.is_in_group("enemies"):
 			body.queue_free()
-			print(body.get_instance_id())
-			#make a kill method in enemies
+			print("enemy")
+			#find out how groups work
 		else:
 			hide()
 			queue_free()

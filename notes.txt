@@ -1,0 +1,2 @@
+player collision -4;3
+extents 11;22

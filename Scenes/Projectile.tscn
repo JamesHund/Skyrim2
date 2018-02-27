@@ -21,7 +21,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 7.77998
 
-[node name="Projectile" type="Area2D" index="0"]
+[node name="Projectile" type="Area2D"]
 
 z_index = 1
 input_pickable = false
