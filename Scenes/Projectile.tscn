@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Projectile.gd" type="Script" id=1]
+
+[sub_resource type="StreamTexture" id=2]
+
+flags = 4
+load_path = "res://.import/energy_projectile.png-35064e505d26e6e84c60555157197899.stex"
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ SubResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 7.77998
+
+[node name="Projectile" type="Area2D" index="0"]
+
+z_index = 1
+input_pickable = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+_sections_unfolded = [ "Transform", "Z Index" ]
+SPEED = 700
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
+
+frames = SubResource( 3 )
+animation = "default"
+
+[node name="DecayTimer" type="Timer" parent="." index="1"]
+
+process_mode = 0
+wait_time = 3.0
+one_shot = false
+autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
+
+[connection signal="timeout" from="DecayTimer" to="." method="_on_DecayTimer_timeout"]
+
+

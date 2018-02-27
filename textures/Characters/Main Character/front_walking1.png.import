@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/front_walking1.png-d9228aba9a133779802e78feb07a7585.stex"
+
+[deps]
+
+source_file="res://textures/Characters/Main Character/front_walking1.png"
+source_md5="dd817b22a72c98ea772d01a162bae408"
+
+dest_files=[ "res://.import/front_walking1.png-d9228aba9a133779802e78feb07a7585.stex" ]
+dest_md5="30ea9e78946855155d013b3888acef0e"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

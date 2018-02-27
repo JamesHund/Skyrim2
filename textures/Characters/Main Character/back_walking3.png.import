@@ -1,0 +1,32 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/back_walking3.png-91363d25990f8ca1e589c7fa22f4f4dd.stex"
+
+[deps]
+
+source_file="res://textures/Characters/Main Character/back_walking3.png"
+source_md5="fc9551f1cea3ee5702dbf8c0f739472b"
+
+dest_files=[ "res://.import/back_walking3.png-91363d25990f8ca1e589c7fa22f4f4dd.stex" ]
+dest_md5="2f5bfb54b62324dd83aea21365ac44fb"
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
