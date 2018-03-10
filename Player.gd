@@ -2,15 +2,23 @@ extends KinematicBody2D
 
 export(int) var SPEED
 export(float) var FIRERATE
+export(float) var MAXHP
+
+signal shoot
+signal playerdeath
+
 var velocity = Vector2()
 var direction = "front"
-signal shoot
 var fireready = true
+var type = "player"
+var health
+var resistance
 
 func _ready():
+	health = MAXHP
+	resistance = 100
 	$FireRateTimer.set_wait_time(0.1)
 	#fix firerate
-	pass
 
 func _process(delta):
 	#input
@@ -46,15 +54,17 @@ func _process(delta):
 	#change in position
 	move_and_collide(velocity*delta)
 	
+func damage(var hit):
+	health -= hit * resistance/100
+	if health <= 0:
+		emit_signal("playerdeath")
+		hide()
+		queue_free()
 	
 
-
-	
 func start(pos):
 	position = pos
 	show()
 	
-
-
 func _on_FireRateTimer_timeout():
 	fireready = true

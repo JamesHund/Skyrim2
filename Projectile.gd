@@ -2,6 +2,7 @@ extends Area2D
 
 var direction
 var source
+var group
 export (int) var SPEED
 
 func _ready():
@@ -10,9 +11,12 @@ func _ready():
 func _initialize(dir, src):
 	position = src.position
 	source = src
+	if src.is_in_group("players"):
+		group = "players"
+	else:
+		group = "enemies"
 	direction = dir
 	$DecayTimer.start()
-	print("woohoo")
 	
 
 func _process(delta):
@@ -25,11 +29,12 @@ func _on_DecayTimer_timeout():
 
 
 func _on_Projectile_body_entered( body ):
-	if body.get_instance_id() != source.get_instance_id():
-		if body.is_in_group("enemies"):
-			body.queue_free()
-			print("enemy")
-			#find out how groups work
-		else:
+	if body.is_in_group("characters"):
+		if !body.is_in_group(group):
+			body.damage(1)
+			print(group+" shot someone")
 			hide()
 			queue_free()
+	else:
+		hide()
+		queue_free()

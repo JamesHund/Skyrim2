@@ -1,2 +1,7 @@
-player collision -4;3
-extents 11;22
+enemy shoots when player in range
+enemy shoots with degree of inaccuracy
+enemy spawn areas
+enemies spawned by enemy spawn when spawn area in contact with player "spawning radius"
+enemies despawned when distance from player
+enemy idle movement
+enemy attack movement - basic follow (delayed)(slower)(stops when in "shooting range")

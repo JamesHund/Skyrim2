@@ -2,21 +2,21 @@
 
 [ext_resource path="res://Projectile.gd" type="Script" id=1]
 
-[sub_resource type="StreamTexture" id=2]
+[sub_resource type="StreamTexture" id=1]
 
 flags = 4
 load_path = "res://.import/energy_projectile.png-35064e505d26e6e84c60555157197899.stex"
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ SubResource( 2 ) ],
+"frames": [ SubResource( 1 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
+[sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
 radius = 7.77998
@@ -37,7 +37,7 @@ SPEED = 700
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 
-frames = SubResource( 3 )
+frames = SubResource( 2 )
 animation = "default"
 
 [node name="DecayTimer" type="Timer" parent="." index="1"]
@@ -49,7 +49,7 @@ autostart = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
 
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [connection signal="body_entered" from="." to="." method="_on_Projectile_body_entered"]
 
