@@ -15,7 +15,9 @@ z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Player" parent="." index="0" groups=[
+"main",
+] instance=ExtResource( 2 )]
 
 position = Vector2( 538, 320 )
 
@@ -24,16 +26,25 @@ position = Vector2( 538, 320 )
 position = Vector2( 764.44, 431.281 )
 MAXHP = null
 
-[node name="RespawnTimer" type="Timer" parent="." index="2"]
+[node name="Level" parent="." index="2" instance=ExtResource( 4 )]
+
+[node name="TestWorld" parent="Level" index="0" instance=ExtResource( 5 )]
+
+[node name="RespawnTimer" type="Timer" parent="." index="3" groups=[
+"main",
+]]
 
 process_mode = 1
 wait_time = 5.0
 one_shot = true
 autostart = false
 
-[node name="Level" parent="." index="3" instance=ExtResource( 4 )]
+[node name="TeleportTimer" type="Timer" parent="." index="4"]
 
-[node name="TestWorld" parent="Level" index="0" instance=ExtResource( 5 )]
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
 
 [connection signal="playerdeath" from="Player" to="." method="_on_Player_playerdeath"]
 
@@ -42,5 +53,7 @@ autostart = false
 [connection signal="shoot" from="Enemy" to="." method="_on_Enemy_shoot"]
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
+
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
 
 

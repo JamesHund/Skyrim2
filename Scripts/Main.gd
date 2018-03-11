@@ -1,7 +1,6 @@
 extends Node2D
 
 onready var projectile = preload("res://Scenes//Projectile.tscn")
-onready var secondworld = preload("res://Scenes//Levels//SecondWorld.tscn")
 onready var level = preload("res://Scenes//Level.tscn")
 onready var enemy = preload("res://Scenes//Enemy.tscn")
 onready var player = preload("res://Scenes//Player.tscn")
@@ -12,7 +11,11 @@ var enemy_list
 func _ready():
 	$Player.start(Vector2(538, 320))
 	player_is_alive = true
-	$Level/TestWorld/Door.connect("teleport",self,"_on_door_teleport")
+	var teleporters = get_tree().get_nodes_in_group("teleport")
+	for door in teleporters:
+		door.connect("teleport",self,"_on_door_teleport")
+		
+		
 	
 func _process(delta):
 #	if player_is_alive:
@@ -53,10 +56,18 @@ func respawn():
 func _on_RespawnTimer_timeout():
 	respawn()
 
-func _on_door_teleport():
+func _on_door_teleport(level, pos):
 	for i in get_children():
-		if is_in_group("enemies"):
+		if !i.is_in_group("main"):
 			i.queue_free()
-	$Player.queue_free()
-	#$Level/TestWorld.queue_free()
-	$Level.add_child(secondworld)
+	for i in $Level.get_children():
+		i.queue_free()
+	var lvl = load (level)
+	add_child(lvl.instance())
+	$Player.position = pos
+	$TeleportTimer.start()
+
+func _on_TeleportTimer_timeout():
+	var teleporters = get_tree().get_nodes_in_group("teleport")
+	for door in teleporters:
+		door.connect("teleport",self,"_on_door_teleport")

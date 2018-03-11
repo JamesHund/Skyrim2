@@ -39,5 +39,6 @@ scale = Vector2( 3.77861, 4.5458 )
 
 position = Vector2( 1217.17, 628.563 )
 scale = Vector2( 1.85533, 2.29355 )
+level = "res://Scenes//Levels//SecondWorld.tscn"
 
 

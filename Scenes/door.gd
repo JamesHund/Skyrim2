@@ -1,8 +1,10 @@
 extends Node2D
-signal teleport
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+signal teleport(level, pos)
+
+export(String) var level
+export(Vector2) var pos
+
+var enterable = true
 
 func _ready():
 	pass
@@ -12,6 +14,13 @@ func _ready():
 #	# Update game logic here.
 #	pass
 
-func _on_Area2D_area_entered(area):
-	emit_signal("teleport")
-	print("entered")
+func _on_Area2D_body_entered( body ):
+	if enterable && (body.is_in_group("players")):
+		emit_signal("teleport", level, pos)
+		print("entered door")
+		enterable = false
+		$EnteredTimer.start()
+
+
+func _on_EnteredTimer_timeout():
+	enterable = true
