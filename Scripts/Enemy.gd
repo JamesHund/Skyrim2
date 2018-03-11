@@ -7,8 +7,9 @@ var resistance = 100
 var fireready
 var movement
 
-func _initialize(pos):
+func start(pos):
 	position = pos
+	show()
 
 func _ready():
 	$FireRateTimer.set_wait_time(0.3)

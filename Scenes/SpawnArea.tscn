@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/SpawnArea.gd" type="Script" id=1]
 
-[node name="SpawnArea" type="Area2D" index="0"]
+[node name="SpawnArea" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -14,11 +14,13 @@ audio_bus_name = "Master"
 script = ExtResource( 1 )
 rate = 0.1
 limit = null
+type = null
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
 
 build_mode = 0
 polygon = PoolVector2Array( -32, -32, -32, 32, 32, 32, 32, -32 )
+_sections_unfolded = [ "Transform" ]
 
 [node name="SpawnRateTimer" type="Timer" parent="." index="1"]
 

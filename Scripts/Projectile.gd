@@ -32,7 +32,6 @@ func _on_Projectile_body_entered( body ):
 	if body.is_in_group("characters"):
 		if !body.is_in_group(group):
 			body.damage(5)
-			print(group+" shot someone")
 			hide()
 			queue_free()
 	else:

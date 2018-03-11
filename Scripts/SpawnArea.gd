@@ -1,15 +1,17 @@
 extends Area2D
-var is_in_range = false
+var is_in_range = true
 export (float) var rate
 export (int) var limit
-signal spawn
+export(int) var type
+signal spawn(id,type)
 
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
 
 func _ready():
-	$SpawnRateTimer.set_wait_time(0.1)
+	$SpawnRateTimer.start()
+	type = 1
 
 func _process(delta):
 	pass
@@ -21,8 +23,9 @@ func _on_SpawnArea_body_entered( body ):
 
 
 func _on_SpawnRateTimer_timeout():
+	
 	if is_in_range:
-		emit_signal("spawn")
+		emit_signal("spawn",shape_owner_get_transform(0),type)
 		$SpawnRateTimer.start()
 		
 

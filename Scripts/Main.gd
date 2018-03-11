@@ -10,6 +10,7 @@ var enemy_list
 func _ready():
 	$Player.start(Vector2(64, 64))
 	player_is_alive = true
+	get_node("Level").connect("spawn_entity",self,"_on_Level_spawn_entity")
 	
 func _process(delta):
 #	if player_is_alive:
@@ -49,3 +50,14 @@ func respawn():
 
 func _on_RespawnTimer_timeout():
 	respawn()
+
+func _on_Level_spawn_entity(type,pos):
+	print(type)
+	if type==1:
+		var new = enemy.instance()
+		new.set_name("Enemy")
+		add_child(new)
+		$Enemy.start(pos)
+		$Enemy.connect( "shoot", self, "_on_Enemy_shoot")
+		print("Enemy Spawned")
+		print(pos)
