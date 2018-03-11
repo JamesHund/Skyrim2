@@ -55,6 +55,8 @@ func _on_RespawnTimer_timeout():
 
 func _on_door_teleport():
 	for i in get_children():
-    	i.queue_free()
-	self.add_child(level)
+		if is_in_group("enemies"):
+			i.queue_free()
+	$Player.queue_free()
+	#$Level/TestWorld.queue_free()
 	$Level.add_child(secondworld)
