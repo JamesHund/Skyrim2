@@ -2,7 +2,6 @@
 
 [ext_resource path="res://Scripts/Projectile.gd" type="Script" id=1]
 
-
 [sub_resource type="StreamTexture" id=1]
 
 flags = 4
