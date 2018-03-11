@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/SpawnArea.gd" type="Script" id=1]
+
+[node name="SpawnArea" type="Area2D" index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+script = ExtResource( 1 )
+rate = 0.1
+limit = null
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -32, -32, -32, 32, 32, 32, 32, -32 )
+
+[node name="SpawnRateTimer" type="Timer" parent="." index="1"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = false
+
+[connection signal="body_entered" from="." to="." method="_on_SpawnArea_body_entered"]
+
+[connection signal="body_exited" from="." to="." method="_on_SpawnArea_body_exited"]
+
+[connection signal="timeout" from="SpawnRateTimer" to="." method="_on_SpawnRateTimer_timeout"]
+
+

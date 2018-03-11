@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://landscapetiles.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/SpawnArea.tscn" type="PackedScene" id=2]
 
 [node name="Node" type="Node"]
 
@@ -27,5 +28,10 @@ _sections_unfolded = [ "Cell", "Collision", "Material", "Occluder", "Visibility"
 __meta__ = {
 "_edit_lock_": true
 }
+
+[node name="SpawnArea" parent="." index="1" instance=ExtResource( 2 )]
+
+position = Vector2( 1096.67, 269.982 )
+scale = Vector2( 3.77861, 4.5458 )
 
 

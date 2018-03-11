@@ -18,6 +18,7 @@ func _ready():
 	health = MAXHP
 	resistance = 100
 	$FireRateTimer.set_wait_time(0.1)
+	$Camera2D.make_current()
 	#fix firerate
 
 func _process(delta):
@@ -60,6 +61,7 @@ func damage(var hit):
 		emit_signal("playerdeath")
 		hide()
 		queue_free()
+	$Label.text = str(health)
 	
 
 func start(pos):
