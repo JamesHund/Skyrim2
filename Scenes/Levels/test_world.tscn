@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://landscapetiles.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/landscapetiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/SpawnArea.tscn" type="PackedScene" id=2]
+
 
 [node name="Node" type="Node"]
 
