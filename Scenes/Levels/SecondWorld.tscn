@@ -33,6 +33,6 @@ __meta__ = {
 
 position = Vector2( 1217.17, 628.563 )
 scale = Vector2( 1.85533, 2.29355 )
-level = "res://Scenes/Levels/test_world.tscn"
+level = "res://Scenes/Levels/testworld.tscn"
 
 
