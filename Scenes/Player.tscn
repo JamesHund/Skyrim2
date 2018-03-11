@@ -1,67 +1,67 @@
 [gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
-[ext_resource path="res://textures/Characters/Main Character/left.png" type="Texture" id=2]
-[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=3]
-[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=4]
-[ext_resource path="res://textures/Characters/Main Character/front_walking1.png" type="Texture" id=5]
-[ext_resource path="res://textures/Characters/Main Character/front_walking2.png" type="Texture" id=6]
-[ext_resource path="res://textures/Characters/Main Character/front_walking3.png" type="Texture" id=7]
-[ext_resource path="res://textures/Characters/Main Character/front_walking4.png" type="Texture" id=8]
-[ext_resource path="res://textures/Characters/Main Character/front_walking5.png" type="Texture" id=9]
-[ext_resource path="res://textures/Characters/Main Character/front_walking6.png" type="Texture" id=10]
-[ext_resource path="res://textures/Characters/Main Character/front_walking7.png" type="Texture" id=11]
-[ext_resource path="res://textures/Characters/Main Character/front_walking8.png" type="Texture" id=12]
-[ext_resource path="res://textures/Characters/Main Character/left_walking1.png" type="Texture" id=13]
-[ext_resource path="res://textures/Characters/Main Character/left_walking2.png" type="Texture" id=14]
-[ext_resource path="res://textures/Characters/Main Character/left_walking3.png" type="Texture" id=15]
-[ext_resource path="res://textures/Characters/Main Character/left_walking4.png" type="Texture" id=16]
-[ext_resource path="res://textures/Characters/Main Character/left_walking5.png" type="Texture" id=17]
-[ext_resource path="res://textures/Characters/Main Character/left_walking6.png" type="Texture" id=18]
-[ext_resource path="res://textures/Characters/Main Character/left_walking7.png" type="Texture" id=19]
-[ext_resource path="res://textures/Characters/Main Character/left_walking8.png" type="Texture" id=20]
-[ext_resource path="res://textures/Characters/Main Character/back_walking1.png" type="Texture" id=21]
-[ext_resource path="res://textures/Characters/Main Character/back_walking2.png" type="Texture" id=22]
-[ext_resource path="res://textures/Characters/Main Character/back_walking3.png" type="Texture" id=23]
-[ext_resource path="res://textures/Characters/Main Character/back_walking4.png" type="Texture" id=24]
-[ext_resource path="res://textures/Characters/Main Character/back_walking5.png" type="Texture" id=25]
-[ext_resource path="res://textures/Characters/Main Character/back_walking6.png" type="Texture" id=26]
-[ext_resource path="res://textures/Characters/Main Character/back_walking7.png" type="Texture" id=27]
-[ext_resource path="res://textures/Characters/Main Character/back_walking8.png" type="Texture" id=28]
+[ext_resource path="res://textures/Characters/Main Character/back_walking1.png" type="Texture" id=2]
+[ext_resource path="res://textures/Characters/Main Character/back_walking2.png" type="Texture" id=3]
+[ext_resource path="res://textures/Characters/Main Character/back_walking3.png" type="Texture" id=4]
+[ext_resource path="res://textures/Characters/Main Character/back_walking4.png" type="Texture" id=5]
+[ext_resource path="res://textures/Characters/Main Character/back_walking5.png" type="Texture" id=6]
+[ext_resource path="res://textures/Characters/Main Character/back_walking6.png" type="Texture" id=7]
+[ext_resource path="res://textures/Characters/Main Character/back_walking7.png" type="Texture" id=8]
+[ext_resource path="res://textures/Characters/Main Character/back_walking8.png" type="Texture" id=9]
+[ext_resource path="res://textures/Characters/Main Character/front_walking1.png" type="Texture" id=10]
+[ext_resource path="res://textures/Characters/Main Character/front_walking2.png" type="Texture" id=11]
+[ext_resource path="res://textures/Characters/Main Character/front_walking3.png" type="Texture" id=12]
+[ext_resource path="res://textures/Characters/Main Character/front_walking4.png" type="Texture" id=13]
+[ext_resource path="res://textures/Characters/Main Character/front_walking5.png" type="Texture" id=14]
+[ext_resource path="res://textures/Characters/Main Character/front_walking6.png" type="Texture" id=15]
+[ext_resource path="res://textures/Characters/Main Character/front_walking7.png" type="Texture" id=16]
+[ext_resource path="res://textures/Characters/Main Character/front_walking8.png" type="Texture" id=17]
+[ext_resource path="res://textures/Characters/Main Character/left_walking1.png" type="Texture" id=18]
+[ext_resource path="res://textures/Characters/Main Character/left_walking2.png" type="Texture" id=19]
+[ext_resource path="res://textures/Characters/Main Character/left_walking3.png" type="Texture" id=20]
+[ext_resource path="res://textures/Characters/Main Character/left_walking4.png" type="Texture" id=21]
+[ext_resource path="res://textures/Characters/Main Character/left_walking5.png" type="Texture" id=22]
+[ext_resource path="res://textures/Characters/Main Character/left_walking6.png" type="Texture" id=23]
+[ext_resource path="res://textures/Characters/Main Character/left_walking7.png" type="Texture" id=24]
+[ext_resource path="res://textures/Characters/Main Character/left_walking8.png" type="Texture" id=25]
+[ext_resource path="res://textures/Characters/Main Character/left.png" type="Texture" id=26]
+[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=27]
+[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=28]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=29]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
-"name": "left",
-"speed": 5.0
+"name": "back_walking",
+"speed": 10.0
 }, {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "back",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
-"loop": true,
-"name": "front",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
 "loop": true,
 "name": "front_walking",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
+"frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ) ],
 "loop": true,
 "name": "left_walking",
 "speed": 10.0
 }, {
-"frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
+"frames": [ ExtResource( 26 ) ],
 "loop": true,
-"name": "back_walking",
-"speed": 10.0
+"name": "left",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 27 ) ],
+"loop": true,
+"name": "front",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 28 ) ],
+"loop": true,
+"name": "back",
+"speed": 5.0
 } ]
 
 [sub_resource type="DynamicFont" id=2]
@@ -142,6 +142,7 @@ margin_top = 324.0
 margin_right = -574.0
 margin_bottom = 361.0
 rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
