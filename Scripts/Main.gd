@@ -1,6 +1,8 @@
 extends Node2D
 
 onready var projectile = preload("res://Scenes//Projectile.tscn")
+onready var secondworld = preload("res://Scenes//Levels//SecondWorld.tscn")
+onready var level = preload("res://Scenes//Level.tscn")
 onready var enemy = preload("res://Scenes//Enemy.tscn")
 onready var player = preload("res://Scenes//Player.tscn")
 
@@ -8,8 +10,9 @@ var player_is_alive
 var enemy_list
 
 func _ready():
-	$Player.start(Vector2(64, 64))
+	$Player.start(Vector2(538, 320))
 	player_is_alive = true
+	$Level/TestWorld/Door.connect("teleport",self,"_on_door_teleport")
 	
 func _process(delta):
 #	if player_is_alive:
@@ -49,3 +52,9 @@ func respawn():
 
 func _on_RespawnTimer_timeout():
 	respawn()
+
+func _on_door_teleport():
+	for i in get_children():
+    	i.queue_free()
+	self.add_child(level)
+	$Level.add_child(secondworld)

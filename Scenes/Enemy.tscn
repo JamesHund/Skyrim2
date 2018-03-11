@@ -3,8 +3,6 @@
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Enemies/evil.png" type="Texture" id=2]
 
-
-
 [node name="Enemy" type="KinematicBody2D" groups=[
 "enemies",
 "characters",
