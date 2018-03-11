@@ -1,5 +1,5 @@
 extends KinematicBody2D
-signal shoot
+signal shoot(instance) #in process of changing enemy shoot method to work with all enemies (eliminate $Enemy in main basically)
 var type = "enemy"
 export(float)var MAXHP
 var health
@@ -22,7 +22,7 @@ func _process(delta):
 	velocity.x = 0
 	move_and_collide(velocity*delta*300)
 	if fireready:
-		emit_signal("shoot")
+		emit_signal("shoot", self)
 		$FireRateTimer.start()
 		fireready = false
 

@@ -3,7 +3,7 @@ var is_in_range = true
 export (float) var rate
 export (int) var limit
 export(int) var type
-signal spawn(id,type)
+signal spawn(pos, extents, type)
 
 # class member variables go here, for example:
 # var a = 2
@@ -25,7 +25,7 @@ func _on_SpawnArea_body_entered( body ):
 func _on_SpawnRateTimer_timeout():
 	
 	if is_in_range:
-		emit_signal("spawn",shape_owner_get_transform(0),type)
+		emit_signal("spawn", position , $CollisionShape2D.get_shape().extents, type)
 		$SpawnRateTimer.start()
 		
 

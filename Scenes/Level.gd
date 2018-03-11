@@ -7,7 +7,10 @@ signal spawn_entity(type,pos)
 # var b = "textvar"
 
 func _ready():
-	get_node("World/SpawnArea").connect("spawn",self,"_on_SpawnArea_spawn")
+	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
+	for SpawnArea in spawnareas:
+		SpawnArea.connect("spawn",self,"_on_SpawnArea_spawn")
+	#get_node("World/SpawnArea").connect("spawn",self,"_on_SpawnArea_spawn")
 
 #func _process(delta):
 #	# Called every frame. Delta is time since last frame.
@@ -15,10 +18,10 @@ func _ready():
 #	pass
 
 
-func _on_SpawnArea_spawn(spawn_area_shape,type):
+func _on_SpawnArea_spawn(pos, extents,type):
 	
-	var x = rand_range(spawn_area_shape.x.y,spawn_area_shape.x.x)
-	var y = rand_range(spawn_area_shape.y.y,spawn_area_shape.y.x)
-	var pos = Vector2(spawn_area_shape.origin.x+x,spawn_area_shape.origin.y+y)
-	emit_signal("spawn_entity",type,pos)
+	var x = rand_range(0, extents.x)
+	var y = rand_range(0, extents.y)
+	var spawnpos = Vector2(pos.x + x, pos.y + y)
+	emit_signal("spawn_entity",type,spawnpos)
 	

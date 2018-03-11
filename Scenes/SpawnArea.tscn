@@ -1,8 +1,15 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/SpawnArea.gd" type="Script" id=1]
 
-[node name="SpawnArea" type="Area2D"]
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 32, 32 )
+
+[node name="SpawnArea" type="Area2D" index="0" groups=[
+"spawnarea",
+]]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -16,18 +23,17 @@ rate = 0.1
 limit = null
 type = null
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="0"]
-
-build_mode = 0
-polygon = PoolVector2Array( -32, -32, -32, 32, 32, 32, 32, -32 )
-_sections_unfolded = [ "Transform" ]
-
-[node name="SpawnRateTimer" type="Timer" parent="." index="1"]
+[node name="SpawnRateTimer" type="Timer" parent="." index="0"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
 
 [connection signal="body_entered" from="." to="." method="_on_SpawnArea_body_entered"]
 
