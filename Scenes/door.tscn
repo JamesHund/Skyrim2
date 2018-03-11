@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/door.gd" type="Script" id=1]
+[ext_resource path="res://textures/Tiles/door.png" type="Texture" id=2]
+
+[node name="Door" type="Node2D" groups=[
+"teleport",
+]]
+
+script = ExtResource( 1 )
+level = "\"s"
+pos = Vector2( 64, 64 )
+
+[node name="Area2D" type="Area2D" parent="." index="0"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" index="0"]
+
+build_mode = 0
+polygon = PoolVector2Array( -16, -32, 16, -32, 16, 32, -16, 32 )
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 2 )
+
+[node name="EnteredTimer" type="Timer" parent="." index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="timeout" from="EnteredTimer" to="." method="_on_EnteredTimer_timeout"]
+
+

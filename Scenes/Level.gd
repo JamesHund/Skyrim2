@@ -1,22 +1,17 @@
 extends Node
+
 onready var spawnarea = preload("res://Scenes//SpawnArea.tscn")
 signal spawn_entity(type,pos)
-
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+signal next_level
 
 func _ready():
-	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
+  var spawnareas = get_tree().get_nodes_in_group("spawnarea")
 	for SpawnArea in spawnareas:
 		SpawnArea.connect("spawn",self,"_on_SpawnArea_spawn")
 	#get_node("World/SpawnArea").connect("spawn",self,"_on_SpawnArea_spawn")
-
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
-
+	
+func _on_area2d_area_entered():
+	emit_signal("next_level")
 
 func _on_SpawnArea_spawn(pos, extents,type):
 	
@@ -25,3 +20,4 @@ func _on_SpawnArea_spawn(pos, extents,type):
 	var spawnpos = Vector2(pos.x + x, pos.y + y)
 	emit_signal("spawn_entity",type,spawnpos)
 	
+

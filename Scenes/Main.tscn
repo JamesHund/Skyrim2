@@ -1,36 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Levels/test_world.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Levels/test_world.tscn" type="PackedScene" id=5]
 
-[node name="Main" type="Node2D" index="0"]
-
+[node name="Main" type="Node2D" index="0" groups=[
+"main",
+]]
 position = Vector2( 1.85059, 0 )
 z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
+[node name="Player" parent="." index="0" groups=[
+"main",
+] instance=ExtResource( 2 )]
 
-position = Vector2( 643.681, 350.491 )
+position = Vector2( 538, 320 )
 
-[node name="Level" parent="." index="1" instance=ExtResource( 3 )]
+[node name="Level" parent="." index="1" instance=ExtResource( 4 )]
 
-[node name="World" parent="Level" index="0" instance=ExtResource( 4 )]
+[node name="World" parent="Level" index="0" instance=ExtResource( 5 )]
 
-[node name="RespawnTimer" type="Timer" parent="." index="2"]
+[node name="RespawnTimer" type="Timer" parent="." index="3" groups=[
+"main",
+]]
 
 process_mode = 1
 wait_time = 5.0
 one_shot = true
 autostart = false
 
+[node name="TeleportTimer" type="Timer" parent="." index="4"]
+
 [connection signal="playerdeath" from="Player" to="." method="_on_Player_playerdeath"]
 
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
+
+[connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
 
 
