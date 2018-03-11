@@ -1,7 +1,25 @@
+Enemy Changes To Do:
+
 enemy shoots when player in range
-enemy shoots with degree of inaccuracy
-enemy spawn areas
-enemies spawned by enemy spawn when spawn area in contact with player "spawning radius"
-enemies despawned when distance from player
-enemy idle movement
-enemy attack movement - basic follow (delayed)(slower)(stops when in "shooting range")
+	enemy shoots with degree of inaccuracy
+	enemy spawn areas
+	enemies spawned by enemy spawn when spawn area in contact with player "spawning radius"
+	enemies despawned when distance from player
+	enemy idle movement
+	enemy attack movement - basic follow (delayed)(slower)(stops when in "shooting range")
+
+Useful Snippets to Integrate:
+
+	SceneTree.call_group(String group, String method):
+	Basically executes a method on all nodes of a particular group. Use get_tree() instead of SceneTree if unsure
+		func _on_discovered(): # this is a purely illustrative function
+			get_tree().call_group("enemies", "player_was_discovered")
+		The above code calls the function player_was_discovered on every member of the group enemies.
+  
+	SceneTree.get_nodes_in_group(String group):
+		Gets a full list of all nodes of a particular group. Use get_tree() instead of SceneTree if unsure
+			var enemies = get_tree().get_nodes_in_group("enemies")
+		Above code gets the full list of enemies nodes
+
+  func _exit_tree():
+		Last method called before a node leaves the scene tree. Maybe useful for something idk.
