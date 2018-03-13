@@ -5,11 +5,7 @@
 [ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Levels/testworld.tscn" type="PackedScene" id=4]
 
-
-
-
-
-[node name="Main" type="Node2D" groups=[
+[node name="Main" type="Node2D" index="0" groups=[
 "main",
 ]]
 
@@ -37,7 +33,9 @@ wait_time = 5.0
 one_shot = true
 autostart = false
 
-[node name="TeleportTimer" type="Timer" parent="." index="3"]
+[node name="TeleportTimer" type="Timer" parent="." index="3" groups=[
+"main",
+]]
 
 process_mode = 1
 wait_time = 5.0

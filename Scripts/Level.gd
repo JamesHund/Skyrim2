@@ -5,9 +5,13 @@ signal spawn_entity(type,pos)
 signal next_level
 
 func _ready():
+	_initialize()
+		
+func _initialize():
 	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
 	for SpawnArea in spawnareas:
 		SpawnArea.connect("spawn",self,"_on_SpawnArea_spawn")
+	
 	
 func _on_area2d_area_entered():
 	emit_signal("next_level")
