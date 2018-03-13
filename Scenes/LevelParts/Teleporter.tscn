@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scenes/door.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/door.gd" type="Script" id=1]
 [ext_resource path="res://textures/Tiles/door.png" type="Texture" id=2]
+
+
 
 [node name="Door" type="Node2D" groups=[
 "teleport",

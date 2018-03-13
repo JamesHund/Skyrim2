@@ -1,9 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://tilesets/landscapetiles.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/door.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=2]
 
-[node name="World" type="Node" index="0"]
+
+
+
+[node name="World" type="Node"]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 
@@ -33,6 +36,6 @@ __meta__ = {
 
 position = Vector2( 1217.17, 628.563 )
 scale = Vector2( 1.85533, 2.29355 )
-level = "res://Scenes/Levels/test_world.tscn"
+level = "testworld"
 
 

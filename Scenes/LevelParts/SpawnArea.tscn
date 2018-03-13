@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="SpawnArea" type="Area2D" index="0" groups=[
+[node name="SpawnArea" type="Area2D" groups=[
 "spawnarea",
 ]]
 
@@ -26,7 +26,7 @@ type = null
 [node name="SpawnRateTimer" type="Timer" parent="." index="0"]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 5.0
 one_shot = false
 autostart = false
 

@@ -1,9 +1,9 @@
 extends Node2D
 
-onready var projectile = preload("res://Scenes//Projectile.tscn")
+onready var projectile = preload("res://Scenes//Entities//Projectiles//Projectile.tscn")
 onready var level = preload("res://Scenes//Level.tscn")
-onready var enemy = preload("res://Scenes//Enemy.tscn")
-onready var player = preload("res://Scenes//Player.tscn")
+onready var enemy = preload("res://Scenes//Entities//Characters//Enemy.tscn")
+onready var player = preload("res://Scenes//Entities//Characters//Player.tscn")
 
 var player_is_alive
 var enemy_list = []
@@ -60,7 +60,7 @@ func _on_door_teleport(level, pos):
 			i.queue_free()
 	for i in $Level.get_children():
 		i.queue_free()
-	var lvl = load (level)
+	var lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	add_child(lvl.instance())
 	$Player.position = pos
 	$TeleportTimer.start()

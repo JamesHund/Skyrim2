@@ -10,6 +10,7 @@ signal spawn(pos, extents, type)
 # var b = "textvar"
 
 func _ready():
+	_on_SpawnRateTimer_timeout()
 	$SpawnRateTimer.start()
 	type = 1
 
@@ -23,9 +24,8 @@ func _on_SpawnArea_body_entered( body ):
 
 
 func _on_SpawnRateTimer_timeout():
-	
 	if is_in_range:
-		emit_signal("spawn", position , $CollisionShape2D.get_shape().extents, type)
+		emit_signal("spawn", position , Vector2($CollisionShape2D.get_shape().extents.x*scale.x,$CollisionShape2D.get_shape().extents.y*scale.y) , type)
 		$SpawnRateTimer.start()
 		
 

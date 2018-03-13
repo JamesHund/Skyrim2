@@ -6,6 +6,8 @@ var health
 var resistance = 100
 var fireready
 var movement
+var processintervals
+var velocity
 
 func start(pos):
 	position = pos
@@ -13,14 +15,17 @@ func start(pos):
 
 func _ready():
 	$FireRateTimer.set_wait_time(0.3)
-	health = 3
+	health = 10
 	fireready = true
+	processintervals = 0.0
+	velocity = Vector2(randi()%3-1, randi()%3-1)
 
 func _process(delta):
-	var velocity = Vector2()
-	velocity.y = 1
-	velocity.x = 0
-	move_and_collide(velocity*delta*300)
+	processintervals += delta
+	if(processintervals >= 4):
+		velocity = Vector2(randi()%3+1, randi()%3+1)
+		processintervals -= 4
+		move_and_collide(velocity.normalized()*delta*100)
 	if fireready:
 		emit_signal("shoot", self)
 		$FireRateTimer.start()
