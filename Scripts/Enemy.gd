@@ -19,13 +19,15 @@ func _ready():
 	fireready = true
 	processintervals = 0.0
 	velocity = Vector2(randi()%3-1, randi()%3-1)
+	print(velocity)
 
 func _process(delta):
 	processintervals += delta
 	if(processintervals >= 4):
 		velocity = Vector2(randi()%3+1, randi()%3+1)
 		processintervals -= 4
-		move_and_collide(velocity.normalized()*delta*100)
+		print(velocity)
+	move_and_collide(velocity.normalized()*delta*100)
 	if fireready:
 		emit_signal("shoot", self)
 		$FireRateTimer.start()

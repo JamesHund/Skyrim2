@@ -15,6 +15,7 @@ func _ready():
 	$Player.start(Vector2(538, 320))
 	player_is_alive = true
 	$Level.connect("spawn_entity",self,"_on_Level_spawn_entity")
+	_initialize_teleporters()
 	
 func _process(delta):
 		pass
