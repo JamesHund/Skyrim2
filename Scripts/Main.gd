@@ -64,7 +64,8 @@ func _on_Teleporter_teleport(level, pos):
 	for i in $Level.get_children():
 		i.queue_free()
 	var lvl = load ("res://Scenes/Levels/" + level + ".tscn")
-	add_child(lvl.instance())
+	$Level.add_child(lvl.instance())
+	$Level._initialize()
 	$Player.position = pos
 	$TeleportTimer.start()
 
