@@ -20,7 +20,7 @@ func _ready():
 func _process(delta):
 		pass
 
-func respawn():
+func _respawn():
 	var new_player = player.instance()
 	new_player.set_name("Player")
 	add_child(new_player)
@@ -76,7 +76,7 @@ func _on_Player_playerdeath():
 
 #Timers
 func _on_RespawnTimer_timeout():
-	respawn()
+	_respawn()
 
 
 func _on_TeleportTimer_timeout():
