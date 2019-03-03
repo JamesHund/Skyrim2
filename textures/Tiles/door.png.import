@@ -7,10 +7,7 @@ path="res://.import/door.png-f20346294d388f2002cfe0376b7728d9.stex"
 [deps]
 
 source_file="res://textures/Tiles/door.png"
-source_md5="afab03ecc9c903fdf39ab1b908ffebea"
-
 dest_files=[ "res://.import/door.png-f20346294d388f2002cfe0376b7728d9.stex" ]
-dest_md5="84e9aa677c8725dc5fd562dd089eed34"
 
 [params]
 

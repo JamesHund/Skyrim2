@@ -7,10 +7,7 @@ path="res://.import/black.png-121fcb7c48f0ed0114a77b83fd9f7c1b.stex"
 [deps]
 
 source_file="res://textures/UI/black.png"
-source_md5="26f7ea407353ce2ff2c4fba06a2a5a7f"
-
 dest_files=[ "res://.import/black.png-121fcb7c48f0ed0114a77b83fd9f7c1b.stex" ]
-dest_md5="925b1871e9e1810f66fe4db4db22afb8"
 
 [params]
 

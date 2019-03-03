@@ -7,10 +7,7 @@ path="res://.import/left.png-8cffedefa1523fed6bc53960f440bb2b.stex"
 [deps]
 
 source_file="res://textures/Characters/Main Character/left.png"
-source_md5="ef8447799f48ca165ff5facbf201483a"
-
 dest_files=[ "res://.import/left.png-8cffedefa1523fed6bc53960f440bb2b.stex" ]
-dest_md5="c41b8164abc9074afdbc1578b1410557"
 
 [params]
 

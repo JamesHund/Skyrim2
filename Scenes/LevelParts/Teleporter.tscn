@@ -3,9 +3,7 @@
 [ext_resource path="res://Scripts/door.gd" type="Script" id=1]
 [ext_resource path="res://textures/Tiles/door.png" type="Texture" id=2]
 
-
-
-[node name="Door" type="Node2D" groups=[
+[node name="Door" type="Node2D" index="0" groups=[
 "teleport",
 ]]
 
@@ -36,7 +34,7 @@ texture = ExtResource( 2 )
 
 process_mode = 1
 wait_time = 1.0
-one_shot = true
+one_shot = false
 autostart = false
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

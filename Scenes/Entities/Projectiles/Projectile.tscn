@@ -21,7 +21,7 @@ animations = [ {
 custom_solver_bias = 0.0
 radius = 7.77998
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" index="0"]
 
 z_index = 1
 input_pickable = false
@@ -33,7 +33,7 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform", "Z Index" ]
-SPEED = 700
+SPEED = 1000
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
 

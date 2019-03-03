@@ -7,10 +7,7 @@ path="res://.import/mage walking poses sheet copy.png-15f165006351dcccfa008bc751
 [deps]
 
 source_file="res://textures/Characters/Main Character/mage walking poses sheet copy.png"
-source_md5="c5b6acc13c15a7b4d15860353f179a49"
-
 dest_files=[ "res://.import/mage walking poses sheet copy.png-15f165006351dcccfa008bc7513e0368.stex" ]
-dest_md5="24e89830afdd8d03e41a0a63ee7e87a2"
 
 [params]
 

@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Entities/Characters/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Level.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Levels/testworld.tscn" type="PackedScene" id=4]
 
-[node name="Main" type="Node2D" groups=[
+[node name="Main" type="Node2D" index="0" groups=[
 "main",
 ]]
 
@@ -14,17 +12,11 @@ z_index = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
-[node name="Player" parent="." index="0" groups=[
-"main",
-] instance=ExtResource( 2 )]
+[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 538, 320 )
 
-[node name="Level" parent="." index="1" instance=ExtResource( 3 )]
-
-[node name="World" parent="Level" index="0" instance=ExtResource( 4 )]
-
-[node name="RespawnTimer" type="Timer" parent="." index="2" groups=[
+[node name="RespawnTimer" type="Timer" parent="." index="1" groups=[
 "main",
 ]]
 
@@ -33,7 +25,7 @@ wait_time = 5.0
 one_shot = true
 autostart = false
 
-[node name="TeleportTimer" type="Timer" parent="." index="3" groups=[
+[node name="TeleportTimer" type="Timer" parent="." index="2" groups=[
 "main",
 ]]
 

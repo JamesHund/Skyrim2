@@ -7,7 +7,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="SpawnArea" type="Area2D" index="0" groups=[
+[node name="SpawnArea" type="Area2D" groups=[
 "spawnarea",
 ]]
 
@@ -35,9 +35,9 @@ autostart = false
 shape = SubResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
-[connection signal="body_entered" from="." to="." method="_on_SpawnArea_body_entered"]
+[connection signal="area_entered" from="." to="." method="_on_SpawnArea_area_entered"]
 
-[connection signal="body_exited" from="." to="." method="_on_SpawnArea_body_exited"]
+[connection signal="area_exited" from="." to="." method="_on_SpawnArea_area_exited"]
 
 [connection signal="timeout" from="SpawnRateTimer" to="." method="_on_SpawnRateTimer_timeout"]
 

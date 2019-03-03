@@ -7,10 +7,7 @@ path="res://.import/front_walking7.png-9a419e30edad83d2107da3e60701d184.stex"
 [deps]
 
 source_file="res://textures/Characters/Main Character/front_walking7.png"
-source_md5="73bb7d51d8416871f3d5e7a146843a78"
-
 dest_files=[ "res://.import/front_walking7.png-9a419e30edad83d2107da3e60701d184.stex" ]
-dest_md5="28b875683466381821356d95815d4b85"
 
 [params]
 

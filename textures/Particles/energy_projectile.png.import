@@ -7,10 +7,7 @@ path="res://.import/energy_projectile.png-35064e505d26e6e84c60555157197899.stex"
 [deps]
 
 source_file="res://textures/Particles/energy_projectile.png"
-source_md5="9040791cc13f0d8d3429c7c6ff964227"
-
 dest_files=[ "res://.import/energy_projectile.png-35064e505d26e6e84c60555157197899.stex" ]
-dest_md5="a07e61fa747174c28612d10c72df70f1"
 
 [params]
 

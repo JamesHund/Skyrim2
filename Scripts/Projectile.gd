@@ -4,6 +4,7 @@ var direction
 var source
 var group
 export (int) var SPEED
+var speedtest
 
 func _ready():
 	pass
@@ -17,10 +18,16 @@ func _initialize(dir, src):
 		group = "enemies"
 	direction = dir
 	$DecayTimer.start()
+	speedtest = 0
 	
 
 func _process(delta):
 	position += direction.normalized()*SPEED*delta
+	speedtest+= delta
+	if speedtest >= 1:
+		print(SPEED*delta)
+		speedtest -= 1
+		
 
 
 func _on_DecayTimer_timeout():

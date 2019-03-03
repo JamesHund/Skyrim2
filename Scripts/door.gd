@@ -16,9 +16,9 @@ func _ready():
 
 func _on_Area2D_body_entered( body ):
 	if enterable && (body.is_in_group("players")):
-		emit_signal("teleport", level, pos)
-		print("entered door")
 		enterable = false
+		emit_signal("teleport", level, pos)
+		print("teleporting 2")
 		$EnteredTimer.start()
 
 

@@ -7,10 +7,7 @@ path="res://.import/back.png-94244d934917c64f1530667b6868ab6d.stex"
 [deps]
 
 source_file="res://textures/Characters/Main Character/back.png"
-source_md5="ed0554bbdc08976c60c67f78f9ee72fb"
-
 dest_files=[ "res://.import/back.png-94244d934917c64f1530667b6868ab6d.stex" ]
-dest_md5="ba3f5791fc06d3c9e3df7bc69750cb45"
 
 [params]
 

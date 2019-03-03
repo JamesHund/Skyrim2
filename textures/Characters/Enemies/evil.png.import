@@ -7,10 +7,7 @@ path="res://.import/evil.png-65722edb29b3f5c787e896ffc061a371.stex"
 [deps]
 
 source_file="res://textures/Characters/Enemies/evil.png"
-source_md5="01c0c8f15735deb320fe22d428e86715"
-
 dest_files=[ "res://.import/evil.png-65722edb29b3f5c787e896ffc061a371.stex" ]
-dest_md5="b50e01019d2b13f75dc1a35c5f52eac9"
 
 [params]
 

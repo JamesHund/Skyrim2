@@ -7,10 +7,7 @@ path="res://.import/wall.png-9eae2dcf40010a3c7a35d14b90c8331e.stex"
 [deps]
 
 source_file="res://textures/Tiles/wall.png"
-source_md5="a0129369fdd5029e08a4cdafa2923e62"
-
 dest_files=[ "res://.import/wall.png-9eae2dcf40010a3c7a35d14b90c8331e.stex" ]
-dest_md5="0cad2cd6e841a84a1b3acbbde46bce8c"
 
 [params]
 
