@@ -29,15 +29,6 @@ func createTimer(_time,_oneshot,_name): #creates a timer
 	self.add_child(t)
 	t.start()
 	return t
-	
-func wait(_time): #creates a temporary timer
-	var t = Timer.new()
-	t.set_wait_time(_time)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	return t
-	
 
 #-------Level swapping and player death--------------
 func _ready():
@@ -64,11 +55,8 @@ func _load_level(level, pos):
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	$Level.add_child(lvl.instance())
 	$Player.position = pos
-	#TEMPORARY - Creates a small delay to allow for nodes to be deleted
-	#Ideally move to a seperate function
-	var timer = wait(0.01)
-	yield(timer, "timeout")
-	#------------
+	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
+	yield(get_tree().create_timer(0.0001), "timeout")
 	print("initializing spawn areas and NPC pointers")
 	_initializeSpawnAreas()
 	_initialize_NPCpointers()
