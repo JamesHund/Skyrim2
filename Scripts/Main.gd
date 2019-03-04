@@ -21,22 +21,35 @@ func free_all_subnodes(node, group): #obsolete
 		elif !n.is_in_group(group):
 			n.queue_free()
 			
-func wait(time): #obsolete - creates a timer and waits until timeout before proceeding
+func createTimer(_time,_oneshot,_name): #creates a timer
 	var t = Timer.new()
-	t.set_wait_time(time)
+	t.set_wait_time(_time)
+	t.set_one_shot(_oneshot)
+	t.set_name(_name)
+	self.add_child(t)
+	t.start()
+	return t
+	
+func wait(_time): #creates a temporary timer
+	var t = Timer.new()
+	t.set_wait_time(_time)
 	t.set_one_shot(true)
 	self.add_child(t)
 	t.start()
-	yield(t, "timeout")
-	t.queue_free()
+	return t
 	
 
 #-------Level swapping and player death--------------
 func _ready():
 	_iniitialize_level()
-	$Player.start(Vector2(538, 320))
+#	createTimer(5,true,"RespawnTimer")
+#	$RespawnTimer.connect("timeout", self, "_on_RespawnTimer_timeout")
+#	createTimer(5,true,"TeleportTimer")
+#	$RespawnTimer.add
+#	$TeleportTimer.connect("timeout", self, "_on_TeleportTimer_timeout")
 	player_is_alive = true
 	_load_level("testworld", $Player.position)
+	$Player.start(Vector2(538, 320))
 	_initialize_teleporters()
 	
 func _process(delta):
@@ -53,13 +66,8 @@ func _load_level(level, pos):
 	$Player.position = pos
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted
 	#Ideally move to a seperate function
-	var t = Timer.new()
-	t.set_wait_time(0.01)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	yield(t, "timeout")
-	t.queue_free()
+	var timer = wait(0.01)
+	yield(timer, "timeout")
 	#------------
 	print("initializing spawn areas and NPC pointers")
 	_initializeSpawnAreas()

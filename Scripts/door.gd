@@ -18,7 +18,7 @@ func _on_Area2D_body_entered( body ):
 	if enterable && (body.is_in_group("players")):
 		enterable = false
 		emit_signal("teleport", level, pos)
-		print("teleporting 2")
+		print("teleporting")
 		$EnteredTimer.start()
 
 

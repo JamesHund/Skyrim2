@@ -1,5 +1,5 @@
 extends KinematicBody2D
-signal shoot(instance) #in process of changing enemy shoot method to work with all enemies (eliminate $Enemy in main basically)
+signal shoot(instance)
 var type = "enemy"
 export(float)var MAXHP
 var health

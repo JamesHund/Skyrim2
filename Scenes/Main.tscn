@@ -8,7 +8,7 @@
 ]]
 
 position = Vector2( 1.85059, 0 )
-z_index = 1
+z_index = 5
 script = ExtResource( 1 )
 _sections_unfolded = [ "Z Index" ]
 
