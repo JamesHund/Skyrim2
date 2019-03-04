@@ -12,6 +12,24 @@ onready var NPC = preload("res://Scenes//Entities//Characters//NPC.tscn")
 var player_is_alive
 var enemy_list = []
 var NPC_list = []
+var lvl
+
+func free_all_subnodes(node, group): #obsolete
+	for n in node.get_children():
+		if n.get_child_count() > 0:
+			free_all_subnodes(n, group)
+		elif !n.is_in_group(group):
+			n.queue_free()
+			
+func wait(time): #obsolete - creates a timer and waits until timeout before proceeding
+	var t = Timer.new()
+	t.set_wait_time(time)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	
 
 #-------Level swapping and player death--------------
 func _ready():
@@ -30,11 +48,23 @@ func _load_level(level, pos):
 			i.queue_free()
 	for i in $Level.get_children():
 		i.queue_free()
-	var lvl = load ("res://Scenes/Levels/" + level + ".tscn")
+	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	$Level.add_child(lvl.instance())
+	$Player.position = pos
+	#TEMPORARY - Creates a small delay to allow for nodes to be deleted
+	#Ideally move to a seperate function
+	var t = Timer.new()
+	t.set_wait_time(0.01)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	yield(t, "timeout")
+	t.queue_free()
+	#------------
+	print("initializing spawn areas and NPC pointers")
 	_initializeSpawnAreas()
 	_initialize_NPCpointers()
-	$Player.position = pos
+	
 
 func _respawn():
 	var new_player = player.instance()
@@ -60,6 +90,7 @@ func _initialize_NPCpointers():
 	var pointers = get_tree().get_nodes_in_group("NPCpointer")
 	for NPCpointer in pointers:
 		_spawn_character(NPCpointer.type, NPCpointer.position)
+		
 	
 func _initializeSpawnAreas():
 	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
@@ -80,12 +111,12 @@ func _on_Enemy_shoot(instance):
 		
 #-------------Initializing characters---------------
 func _spawn_character(type,pos):
-	if type==-1: #Enemy
+	if type==9: #Enemy
 		enemy_list.append(enemy.instance())
 		$Level.add_child(enemy_list[enemy_list.size()-1])
 		enemy_list[enemy_list.size()-1].connect( "shoot", self, "_on_Enemy_shoot")
 		enemy_list[enemy_list.size()-1].start(pos)
-	elif type>-1:
+	elif type<9:
 		NPC_list.append(NPC.instance())
 		$Level.add_child(NPC_list[NPC_list.size()-1])
 		NPC_list[NPC_list.size()-1].start(type,pos)
@@ -114,6 +145,7 @@ func _on_RespawnTimer_timeout():
 
 func _on_TeleportTimer_timeout():
 	_initialize_teleporters()
+	
 	
 
 

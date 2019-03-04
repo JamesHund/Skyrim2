@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Main Character/left.png" type="Texture" id=2]
@@ -75,12 +75,18 @@ _sections_unfolded = [ "Font", "Resource", "Settings" ]
 [sub_resource type="CircleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 111.717
+radius = 98.3555
 
-[node name="Player" type="KinematicBody2D" groups=[
-"main",
+[sub_resource type="CapsuleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 10.0
+height = 20.95
+
+[node name="Player" type="KinematicBody2D" index="0" groups=[
 "characters",
 "players",
+"main",
 ]]
 
 z_index = 2
@@ -107,12 +113,7 @@ wait_time = 3.0
 one_shot = false
 autostart = false
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
-
-build_mode = 0
-polygon = PoolVector2Array( -10, -10, 10, -10, 10, 30, -10, 30 )
-
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
 
 anchor_mode = 1
 rotating = false
@@ -137,7 +138,7 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="Label" type="Label" parent="." index="4"]
+[node name="Label" type="Label" parent="." index="3"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -160,7 +161,7 @@ lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
 
-[node name="Area2D" type="Area2D" parent="." index="5" groups=[
+[node name="Area2D" type="Area2D" parent="." index="4" groups=[
 "radius",
 ]]
 
@@ -176,9 +177,14 @@ audio_bus_name = "Master"
 "radius",
 ]]
 
-position = Vector2( -0.562306, -0.977486 )
-scale = Vector2( 1.655, 1.655 )
+position = Vector2( 0.081615, -0.946039 )
+scale = Vector2( 1.655, 1.68455 )
 shape = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+
+position = Vector2( 0, 9.18613 )
+shape = SubResource( 4 )
 
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
 

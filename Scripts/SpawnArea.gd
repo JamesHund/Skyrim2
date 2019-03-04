@@ -13,7 +13,7 @@ signal spawn(pos, extents, type)
 func _ready():
 	_on_SpawnRateTimer_timeout()
 	$SpawnRateTimer.start()
-	type = -1
+	type = 9
 
 func _process(delta):
 	if is_in_range && spawn_ready:

@@ -10,8 +10,8 @@ var processintervals
 var velocity
 
 func _ready():
-	processintervals = 0
-	velocity = Vector2()
+	processintervals = 0.0
+	velocity = Vector2(randi()%3-1, randi()%3-1)
 	hide()
 	
 func start(var _id, var pos):
@@ -19,13 +19,16 @@ func start(var _id, var pos):
 	Name = arr[ID]
 	$Sprites.animation = str(ID)
 	position = pos
+	print("NPC " + Name + " has been initialized")
 	show()
 
 func _process(delta):
 	processintervals += delta
-	if processintervals >= 2 and processintervals < 4:
+	if(processintervals >= 4):
 		velocity = Vector2(randi()%3+1, randi()%3+1)
-	if processintervals >= 4:
-		velocity = Vector2()
 		processintervals -= 4
 	move_and_collide(velocity.normalized()*delta*100)
+	
+func _exit_tree():
+	print(Name + " has been deleted")
+	

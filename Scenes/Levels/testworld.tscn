@@ -37,7 +37,7 @@ level = "SecondWorld"
 [node name="SpawnArea" parent="." index="2" instance=ExtResource( 3 )]
 
 light_mask = 16385
-position = Vector2( 1024.27, 496.73 )
+position = Vector2( 819.783, 496.73 )
 scale = Vector2( 6.74337, 6.32191 )
 _sections_unfolded = [ "Transform", "Visibility" ]
 
