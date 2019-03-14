@@ -3,7 +3,9 @@
 [ext_resource path="res://tilesets/landscapetiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=2]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0" groups=[
+"world",
+]]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 

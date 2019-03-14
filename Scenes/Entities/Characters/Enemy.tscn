@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Enemies/evil2.png" type="Texture" id=2]
 
-[node name="Enemy" type="KinematicBody2D" groups=[
+[node name="Enemy" type="KinematicBody2D" index="0" groups=[
 "characters",
 "enemies",
 ]]
@@ -29,8 +29,17 @@ polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
 process_mode = 1
 wait_time = 1.0
 one_shot = false
-autostart = false
+autostart = true
+
+[node name="RecalculateNode" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = false
+autostart = true
 
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
+
+[connection signal="timeout" from="RecalculateNode" to="." method="_on_RecalculateNode_timeout"]
 
 

@@ -4,7 +4,9 @@
 [ext_resource path="res://Scenes/LevelParts/SpawnArea.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=3]
 
-[node name="World" type="Node"]
+[node name="World" type="Node" index="0" groups=[
+"world",
+]]
 
 [node name="TileMap" type="TileMap" parent="." index="0"]
 

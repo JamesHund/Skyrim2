@@ -32,3 +32,4 @@ func _process(delta):
 func _exit_tree():
 	print(Name + " has been deleted")
 	
+	

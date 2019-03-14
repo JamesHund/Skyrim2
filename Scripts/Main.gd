@@ -13,6 +13,9 @@ var player_is_alive
 var enemy_list = []
 var NPC_list = []
 var lvl
+var world_ref
+var tilemap_ref
+var player_ref #weak reference that can be used to check for the player's existence
 
 func free_all_subnodes(node, group): #obsolete
 	for n in node.get_children():
@@ -32,13 +35,9 @@ func createTimer(_time,_oneshot,_name): #creates a timer
 
 #-------Level swapping and player death--------------
 func _ready():
-	_iniitialize_level()
-#	createTimer(5,true,"RespawnTimer")
-#	$RespawnTimer.connect("timeout", self, "_on_RespawnTimer_timeout")
-#	createTimer(5,true,"TeleportTimer")
-#	$RespawnTimer.add
-#	$TeleportTimer.connect("timeout", self, "_on_TeleportTimer_timeout")
+	_initialize_level()
 	player_is_alive = true
+	player_ref = weakref($Player)
 	_load_level("testworld", $Player.position)
 	$Player.start(Vector2(538, 320))
 	_initialize_teleporters()
@@ -53,7 +52,11 @@ func _load_level(level, pos):
 	for i in $Level.get_children():
 		i.queue_free()
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
-	$Level.add_child(lvl.instance())
+	level = lvl.instance()
+	$Level.add_child(level)
+	world_ref = level
+	tilemap_ref = get_node(world_ref.get_name() + "/TileMap")
+	print(world_ref.get_name())
 	$Player.position = pos
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0001), "timeout")
@@ -65,14 +68,15 @@ func _load_level(level, pos):
 func _respawn():
 	var new_player = player.instance()
 	new_player.set_name("Player")
+	player_is_alive = true
+	player_ref = weakref($Player)
 	add_child(new_player)
 	$Player.start(Vector2(64, 64))
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
 	$Player.connect( "shoot", self, "_on_Player_shoot")
-	player_is_alive = true
 	
 #----------Initializing Level Parts-------------
-func _iniitialize_level():
+func _initialize_level():
 	var Level = mainnode.instance()
 	Level.set_name("Level")
 	add_child(Level)
@@ -142,6 +146,15 @@ func _on_RespawnTimer_timeout():
 func _on_TeleportTimer_timeout():
 	_initialize_teleporters()
 	
-	
+#-----------Covenience---------------
+
+func _get_Player_position():
+	if player_is_alive:
+		return $Player.position
+	else:
+		return null
 
 
+func _on_debugger_timeout():
+	#print(player_ref.get_ref())
+	pass

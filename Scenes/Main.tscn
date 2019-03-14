@@ -34,6 +34,15 @@ wait_time = 5.0
 one_shot = true
 autostart = false
 
+[node name="debugger" type="Timer" parent="." index="3" groups=[
+"main",
+]]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = false
+autostart = true
+
 [connection signal="playerdeath" from="Player" to="." method="_on_Player_playerdeath"]
 
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
@@ -41,5 +50,7 @@ autostart = false
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
+
+[connection signal="timeout" from="debugger" to="." method="_on_debugger_timeout"]
 
 
