@@ -1,56 +1,41 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Entities/Characters/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/GridGenerator.gd" type="Script" id=3]
 
-[node name="Main" type="Node2D" index="0" groups=[
+[node name="Main" type="Node2D" groups=[
 "main",
 ]]
-
 position = Vector2( 1.85059, 0 )
 z_index = 5
 script = ExtResource( 1 )
-_sections_unfolded = [ "Z Index" ]
 
-[node name="Player" parent="." index="0" instance=ExtResource( 2 )]
-
+[node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 538, 320 )
 
-[node name="RespawnTimer" type="Timer" parent="." index="1" groups=[
+[node name="RespawnTimer" type="Timer" parent="." groups=[
 "main",
 ]]
-
-process_mode = 1
 wait_time = 5.0
 one_shot = true
-autostart = false
 
-[node name="TeleportTimer" type="Timer" parent="." index="2" groups=[
+[node name="TeleportTimer" type="Timer" parent="." groups=[
 "main",
 ]]
-
-process_mode = 1
 wait_time = 5.0
 one_shot = true
-autostart = false
 
-[node name="debugger" type="Timer" parent="." index="3" groups=[
+[node name="debugger" type="Timer" parent="." groups=[
 "main",
 ]]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = false
 autostart = true
 
+[node name="GridGenerator" type="Node" parent="."]
+script = ExtResource( 3 )
+
 [connection signal="playerdeath" from="Player" to="." method="_on_Player_playerdeath"]
-
 [connection signal="shoot" from="Player" to="." method="_on_Player_shoot"]
-
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
-
 [connection signal="timeout" from="TeleportTimer" to="." method="_on_TeleportTimer_timeout"]
-
 [connection signal="timeout" from="debugger" to="." method="_on_debugger_timeout"]
-
-

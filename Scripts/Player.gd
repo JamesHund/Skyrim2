@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export(int) var SPEED
-export(float) var FIRERATE
+#export(float) var FIRERATE
 export(float) var MAXHP
 
 signal shoot

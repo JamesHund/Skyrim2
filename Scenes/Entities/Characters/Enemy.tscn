@@ -3,43 +3,25 @@
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Enemies/evil2.png" type="Texture" id=2]
 
-[node name="Enemy" type="KinematicBody2D" index="0" groups=[
+[node name="Enemy" type="KinematicBody2D" groups=[
 "characters",
 "enemies",
 ]]
-
-input_pickable = false
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-MAXHP = 3.0
+MAXHP = 10.0
 
-[node name="Sprite" type="Sprite" parent="." index="0"]
-
+[node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="1"]
-
-build_mode = 0
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
 
-[node name="FireRateTimer" type="Timer" parent="." index="2"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = false
+[node name="FireRateTimer" type="Timer" parent="."]
 autostart = true
 
-[node name="RecalculateNode" type="Timer" parent="." index="3"]
-
-process_mode = 1
+[node name="RecalculateNode" type="Timer" parent="."]
 wait_time = 3.0
-one_shot = false
 autostart = true
 
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
-
 [connection signal="timeout" from="RecalculateNode" to="." method="_on_RecalculateNode_timeout"]
-
-

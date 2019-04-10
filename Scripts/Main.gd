@@ -13,8 +13,8 @@ var player_is_alive
 var enemy_list = []
 var NPC_list = []
 var lvl
-var world_ref
-var tilemap_ref
+var default_grid #stores grid of tilemap
+var tilemap_path
 var player_ref #weak reference that can be used to check for the player's existence
 
 func free_all_subnodes(node, group): #obsolete
@@ -39,8 +39,8 @@ func _ready():
 	player_is_alive = true
 	player_ref = weakref($Player)
 	_load_level("testworld", $Player.position)
-	$Player.start(Vector2(538, 320))
-	_initialize_teleporters()
+	$Player.start(Vector2(1504, 512))
+	$TeleportTimer.start();
 	
 func _process(delta):
 		pass
@@ -52,11 +52,11 @@ func _load_level(level, pos):
 	for i in $Level.get_children():
 		i.queue_free()
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
-	level = lvl.instance()
-	$Level.add_child(level)
-	world_ref = level
-	tilemap_ref = get_node(world_ref.get_name() + "/TileMap")
-	print(world_ref.get_name())
+	var new_level = lvl.instance()
+	$Level.call_deferred("add_child",new_level)
+	default_grid = $GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
+	tilemap_path = new_level.get_node("TileMap")
+	#tilemap_ref = get_node("Level/" + level.get_name() + "/TileMap")
 	$Player.position = pos
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0001), "timeout")
@@ -90,6 +90,7 @@ func _initialize_NPCpointers():
 	var pointers = get_tree().get_nodes_in_group("NPCpointer")
 	for NPCpointer in pointers:
 		_spawn_character(NPCpointer.type, NPCpointer.position)
+		NPCpointer.queue_free()
 		
 	
 func _initializeSpawnAreas():
@@ -124,6 +125,7 @@ func _spawn_character(type,pos):
 #----------------Signals-------------------
 		
 func _on_Teleporter_teleport(level, pos):
+	print("yyee")
 	_load_level(level,pos)
 	$TeleportTimer.start()
 
