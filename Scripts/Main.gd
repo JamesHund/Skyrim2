@@ -7,40 +7,22 @@ onready var player = preload("res://Scenes//Entities//Characters//Player.tscn")
 onready var spawnarea = preload("res://Scenes//LevelParts//SpawnArea.tscn")
 onready var mainnode = preload("res://Scenes//MainNode.tscn")
 onready var NPC = preload("res://Scenes//Entities//Characters//NPC.tscn")
+onready var worlditem = preload("res://Scenes/Entities/WorldItem.tscn")
 
 #Fields
 var player_is_alive
-var enemy_list = []
-var NPC_list = []
-var lvl
+onready var enemy_list = []
+onready var NPC_list = []
+var lvl #stores level resource to be loaded
 var default_grid #stores grid of tilemap
 var tilemap_path
-var player_ref #weak reference that can be used to check for the player's existence
-
-func free_all_subnodes(node, group): #obsolete
-	for n in node.get_children():
-		if n.get_child_count() > 0:
-			free_all_subnodes(n, group)
-		elif !n.is_in_group(group):
-			n.queue_free()
-			
-func createTimer(_time,_oneshot,_name): #creates a timer
-	var t = Timer.new()
-	t.set_wait_time(_time)
-	t.set_one_shot(_oneshot)
-	t.set_name(_name)
-	self.add_child(t)
-	t.start()
-	return t
 
 #-------Level swapping and player death--------------
 func _ready():
 	_initialize_level()
 	player_is_alive = true
-	player_ref = weakref($Player)
+	_respawn()
 	_load_level("testworld", $Player.position)
-	$Player.start(Vector2(1504, 512))
-	$TeleportTimer.start();
 	
 func _process(delta):
 		pass
@@ -54,26 +36,28 @@ func _load_level(level, pos):
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	var new_level = lvl.instance()
 	$Level.call_deferred("add_child",new_level)
-	default_grid = $GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
+	default_grid = GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
 	tilemap_path = new_level.get_node("TileMap")
-	#tilemap_ref = get_node("Level/" + level.get_name() + "/TileMap")
 	$Player.position = pos
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0001), "timeout")
-	print("initializing spawn areas and NPC pointers")
 	_initializeSpawnAreas()
 	_initialize_NPCpointers()
+	_initialize_teleporters()
 	
 
 func _respawn():
 	var new_player = player.instance()
 	new_player.set_name("Player")
 	player_is_alive = true
-	player_ref = weakref($Player)
 	add_child(new_player)
-	$Player.start(Vector2(64, 64))
+	$Player.start(Vector2(1504, 512))
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
 	$Player.connect( "shoot", self, "_on_Player_shoot")
+	$Player.connect( "health_update", $GUI/PlayerInfo, "_set_health")
+	$Player._respawn_init()
+	$Player.connect("pickupitem", $Inventory, "_add_world_item")
+	$GUI/DevTools.connect("godmode", $Player, "_toggle_godmode")
 	
 #----------Initializing Level Parts-------------
 func _initialize_level():
@@ -125,9 +109,7 @@ func _spawn_character(type,pos):
 #----------------Signals-------------------
 		
 func _on_Teleporter_teleport(level, pos):
-	print("yyee")
 	_load_level(level,pos)
-	$TeleportTimer.start()
 
 func _on_SpawnArea_spawn(pos, extents,type):
 	
@@ -144,9 +126,6 @@ func _on_Player_playerdeath():
 func _on_RespawnTimer_timeout():
 	_respawn()
 
-
-func _on_TeleportTimer_timeout():
-	_initialize_teleporters()
 	
 #-----------Covenience---------------
 
@@ -160,3 +139,4 @@ func _get_Player_position():
 func _on_debugger_timeout():
 	#print(player_ref.get_ref())
 	pass
+	

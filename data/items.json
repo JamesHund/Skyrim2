@@ -1,0 +1,148 @@
+{
+"Items": {
+
+	"Armour":[
+		{"id" : 0, "item_name" : "Clothes", "protection" : 0},
+		{"id" : 1, "item_name" : "Wooden Planks", "protection" : 10},
+		{"id" : 2, "item_name" : "Scrap Metal", "protection" : 25},
+		{"id" : 3, "item_name" : "Civilian Kevlar", "protection" : 35},
+		{"id" : 4, "item_name" : "Police Kevlar", "protection" : 50},
+		{"id" : 5, "item_name" : "Military Kevlar", "protection" : 70}
+	],
+
+	"Weapons" : [
+		{"id" : 6,
+		"item_name" : "Pistol",
+		"base_damage" : 25,
+		"fire_mode" : false,
+		"fire_rate" : 300,
+		"projectile_count" :  1,
+		"spread" : 5,
+		"projectile_speed" : 700,
+		"base_capacity" : 20
+		},
+		{"id" : 7,
+		"item_name" : "Shotgun",
+		"base_damage" :	35,
+		"fire_mode" : false,
+		"fire_rate" : 55,
+		"projectile_count" : 5,
+		"spread" : 27,
+		"projectile_speed" : 600,
+		"base_capacity" : 6
+		},
+		{"id" : 8,
+		"item_name" : "Machine Gun",
+		"base_damage" : 20 ,
+		"fire_mode" : true,
+		"fire_rate" : 600,
+		"projectile_count" : 1,
+		"spread" : 11,
+		"projectile_speed" : 900,
+		"base_capacity" : 30
+		},
+		{"id" : 9,
+		"item_name" : "Sniper",
+		"base_damage" : 100,
+		"fire_mode" : false,
+		"fire_rate" : 35,
+		"projectile_count" : 1,
+		"spread" : 0,
+		"projectile_speed" : 2000,
+		"base_capacity" : 5
+		}
+		
+	],
+	
+	"TieredWeapons" : [
+		{"id" : 10,
+		"base_id" : 6,
+		"tier" : 2
+		},
+		{"id" : 11,
+		"base_id" : 7,
+		"tier" : 2
+		},
+		{"id" : 12,
+		"base_id" : 8,
+		"tier" : 2
+		},
+		{"id" : 13,
+		"base_id" : 9,
+		"tier" : 2
+		},
+		{"id" : 14,
+		"base_id" : 6,
+		"tier" : 3
+		},
+		{"id" : 15,
+		"base_id" : 7,
+		"tier" : 3
+		},
+		{"id" : 16,
+		"base_id" : 8,
+		"tier" : 3
+		},
+		{"id" : 17,
+		"base_id" : 9,
+		"tier" : 3
+		}
+	
+	],
+
+	"Health" : [
+		{"id" : 18,
+		"item_name" : "Bandage",
+		"stack_size" : 1,
+		"max_stack_size" : 10,
+		"hp" : 10,
+		"heal_time" : 3
+		},
+		{"id" : 19,
+		"item_name" : "Syringe",
+		"stack_size" : 1,
+		"max_stack_size" : 5,
+		"hp" : 40,
+		"heal_time" : 1
+		},
+		{"id" : 20,
+		"item_name" : "First-aid Kit",
+		"stack_size" : 1,
+		"max_stack_size" : 2,
+		"hp" : 100,
+		"heal_time" : 6
+		}
+	],
+
+	"Quest" : [
+		{"id" : 21,
+		"item_name" : "Hoe",
+		"quest_id" : 1
+		},
+		{"id" : 22,
+		"item_name" : "Flour",
+		"quest_id" : 2
+		},
+		{"id" : 23,
+		"item_name" : "Awl",
+		"quest_id" : 3
+		},
+		{"id" : 24,
+		"item_name" : "Embalming Fluid",
+		"quest_id" : 4
+		},
+		{"id" : 25,
+		"item_name" : "Handcuffs",
+		"quest_id" : 5
+		}
+	],
+	"Money" : 
+		{ "id" : 26,
+		"item_name" : "Gold",
+		"type" : 2,
+		"stack_size" : 1,
+		"max_stack_size" : 999999
+		}
+	}
+
+}

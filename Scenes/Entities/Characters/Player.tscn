@@ -1,9 +1,9 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Main Character/left.png" type="Texture" id=2]
-[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=3]
-[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=4]
+[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=3]
+[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=4]
 [ext_resource path="res://textures/Characters/Main Character/front_walking1.png" type="Texture" id=5]
 [ext_resource path="res://textures/Characters/Main Character/front_walking2.png" type="Texture" id=6]
 [ext_resource path="res://textures/Characters/Main Character/front_walking3.png" type="Texture" id=7]
@@ -12,26 +12,24 @@
 [ext_resource path="res://textures/Characters/Main Character/front_walking6.png" type="Texture" id=10]
 [ext_resource path="res://textures/Characters/Main Character/front_walking7.png" type="Texture" id=11]
 [ext_resource path="res://textures/Characters/Main Character/front_walking8.png" type="Texture" id=12]
-[ext_resource path="res://textures/Characters/Main Character/left_walking1.png" type="Texture" id=13]
-[ext_resource path="res://textures/Characters/Main Character/left_walking2.png" type="Texture" id=14]
-[ext_resource path="res://textures/Characters/Main Character/left_walking3.png" type="Texture" id=15]
-[ext_resource path="res://textures/Characters/Main Character/left_walking4.png" type="Texture" id=16]
-[ext_resource path="res://textures/Characters/Main Character/left_walking5.png" type="Texture" id=17]
-[ext_resource path="res://textures/Characters/Main Character/left_walking6.png" type="Texture" id=18]
-[ext_resource path="res://textures/Characters/Main Character/left_walking7.png" type="Texture" id=19]
-[ext_resource path="res://textures/Characters/Main Character/left_walking8.png" type="Texture" id=20]
-[ext_resource path="res://textures/Characters/Main Character/back_walking1.png" type="Texture" id=21]
-[ext_resource path="res://textures/Characters/Main Character/back_walking2.png" type="Texture" id=22]
-[ext_resource path="res://textures/Characters/Main Character/back_walking3.png" type="Texture" id=23]
-[ext_resource path="res://textures/Characters/Main Character/back_walking4.png" type="Texture" id=24]
-[ext_resource path="res://textures/Characters/Main Character/back_walking5.png" type="Texture" id=25]
-[ext_resource path="res://textures/Characters/Main Character/back_walking6.png" type="Texture" id=26]
-[ext_resource path="res://textures/Characters/Main Character/back_walking7.png" type="Texture" id=27]
-[ext_resource path="res://textures/Characters/Main Character/back_walking8.png" type="Texture" id=28]
-[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=29]
+[ext_resource path="res://textures/Characters/Main Character/back_walking1.png" type="Texture" id=13]
+[ext_resource path="res://textures/Characters/Main Character/back_walking2.png" type="Texture" id=14]
+[ext_resource path="res://textures/Characters/Main Character/back_walking3.png" type="Texture" id=15]
+[ext_resource path="res://textures/Characters/Main Character/back_walking4.png" type="Texture" id=16]
+[ext_resource path="res://textures/Characters/Main Character/back_walking5.png" type="Texture" id=17]
+[ext_resource path="res://textures/Characters/Main Character/back_walking6.png" type="Texture" id=18]
+[ext_resource path="res://textures/Characters/Main Character/back_walking7.png" type="Texture" id=19]
+[ext_resource path="res://textures/Characters/Main Character/back_walking8.png" type="Texture" id=20]
+[ext_resource path="res://textures/Characters/Main Character/left_walking1.png" type="Texture" id=21]
+[ext_resource path="res://textures/Characters/Main Character/left_walking2.png" type="Texture" id=22]
+[ext_resource path="res://textures/Characters/Main Character/left_walking3.png" type="Texture" id=23]
+[ext_resource path="res://textures/Characters/Main Character/left_walking4.png" type="Texture" id=24]
+[ext_resource path="res://textures/Characters/Main Character/left_walking5.png" type="Texture" id=25]
+[ext_resource path="res://textures/Characters/Main Character/left_walking6.png" type="Texture" id=26]
+[ext_resource path="res://textures/Characters/Main Character/left_walking7.png" type="Texture" id=27]
+[ext_resource path="res://textures/Characters/Main Character/left_walking8.png" type="Texture" id=28]
 
 [sub_resource type="SpriteFrames" id=1]
-
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -40,12 +38,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "back",
+"name": "front",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "front",
+"name": "back",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
@@ -55,137 +53,67 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ) ],
 "loop": true,
-"name": "left_walking",
+"name": "back_walking",
 "speed": 10.0
 }, {
 "frames": [ ExtResource( 21 ), ExtResource( 22 ), ExtResource( 23 ), ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ), ExtResource( 28 ) ],
 "loop": true,
-"name": "back_walking",
+"name": "left_walking",
 "speed": 10.0
 } ]
 
-[sub_resource type="DynamicFont" id=2]
-
-size = 30
-use_mipmaps = false
-use_filter = false
-font_data = ExtResource( 29 )
-_sections_unfolded = [ "Font", "Resource", "Settings" ]
-
-[sub_resource type="CircleShape2D" id=3]
-
-custom_solver_bias = 0.0
+[sub_resource type="CircleShape2D" id=2]
 radius = 98.3555
 
-[sub_resource type="CapsuleShape2D" id=4]
-
-custom_solver_bias = 0.0
-radius = 10.0
+[sub_resource type="CapsuleShape2D" id=3]
 height = 20.95
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 49.1424
 
 [node name="Player" type="KinematicBody2D" groups=[
 "characters",
-"main",
 "players",
+"main",
 ]]
-
 z_index = 2
 input_pickable = true
-collision_layer = 1
-collision_mask = 1
-collision/safe_margin = 0.08
 script = ExtResource( 1 )
-_sections_unfolded = [ "Collision", "Pickable", "Transform", "Z Index", "collision" ]
 SPEED = 300
-FIRERATE = 0.1
 MAXHP = 100.0
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="." index="0"]
-
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -9 )
 frames = SubResource( 1 )
 animation = "front"
-_sections_unfolded = [ "Transform", "Visibility" ]
 
-[node name="FireRateTimer" type="Timer" parent="." index="1"]
-
-process_mode = 1
+[node name="FireRateTimer" type="Timer" parent="."]
 wait_time = 3.0
-one_shot = false
-autostart = false
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
-
-anchor_mode = 1
-rotating = false
-current = false
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
+[node name="Camera2D" type="Camera2D" parent="."]
 drag_margin_h_enabled = false
 drag_margin_v_enabled = false
-smoothing_enabled = false
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
 
-[node name="Label" type="Label" parent="." index="3"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = -637.0
-margin_top = 324.0
-margin_right = -574.0
-margin_bottom = 361.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 2
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 4
-custom_fonts/font = SubResource( 2 )
-text = "100"
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-_sections_unfolded = [ "Focus", "Grow Direction", "Hint", "Material", "Mouse", "Rect", "Size Flags", "Theme", "Visibility", "custom_colors", "custom_constants", "custom_fonts", "custom_styles" ]
-
-[node name="Area2D" type="Area2D" parent="." index="4" groups=[
+[node name="Area2D" type="Area2D" parent="." groups=[
 "radius",
 ]]
+visible = false
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0" groups=[
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=[
 "radius",
 ]]
-
 position = Vector2( 0.081615, -0.946039 )
 scale = Vector2( 1.655, 1.68455 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.186131 )
 shape = SubResource( 3 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="5"]
+[node name="ItemRadius" type="Area2D" parent="."]
 
-position = Vector2( 0, 9.18613 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRadius"]
 shape = SubResource( 4 )
 
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
-
-
+[connection signal="body_entered" from="ItemRadius" to="." method="_on_ItemRadius_body_entered"]

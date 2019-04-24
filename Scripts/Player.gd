@@ -1,25 +1,31 @@
 extends KinematicBody2D
 
 export(int) var SPEED
-#export(float) var FIRERATE
 export(float) var MAXHP
 
 signal shoot
+signal health_update(new_health)
 signal playerdeath
+signal pickupitem(item)
 
-var velocity = Vector2()
-var direction = "front"
-var fireready = true
-var type = "player"
-var health
-var resistance
+onready var velocity = Vector2()
+onready var direction = "front"
+onready var fireready = true
+onready var type = "player"
+onready var health = MAXHP
+onready var resistance = 100
+onready var godmode  = false
+var weapon
+var armor
 
 func _ready():
-	health = MAXHP
-	resistance = 100
 	$FireRateTimer.set_wait_time(0.1)
 	$Camera2D.make_current()
 	#fix firerate
+
+func _respawn_init():
+	emit_signal("health_update",health)
+		
 
 func _process(delta):
 	#input
@@ -51,22 +57,28 @@ func _process(delta):
 	else:
 		$AnimatedSprite.animation = direction
 		$AnimatedSprite.stop()
-		
-	#change in position
-	move_and_collide(velocity*delta)
+	move_and_slide(velocity)
+
 	
 func damage(var hit):
-	health -= hit * resistance/100
-	if health <= 0:
-		emit_signal("playerdeath")
-		hide()
-		queue_free()
-	$Label.text = str(health)
+	if !godmode:
+		health -= hit * resistance/100
+		if health <= 0:
+			emit_signal("playerdeath")
+			hide()
+			queue_free()
+		emit_signal("health_update",health)
 	
-
 func start(pos):
 	position = pos
 	show()
 	
 func _on_FireRateTimer_timeout():
 	fireready = true
+	
+func _toggle_godmode(var mode):
+	godmode = mode
+
+func _on_ItemRadius_body_entered(body):
+	if body.is_in_group("worlditem"):
+		emit_signal("pickupitem",body)

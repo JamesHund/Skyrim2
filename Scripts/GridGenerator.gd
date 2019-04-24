@@ -1,21 +1,19 @@
 extends Node
-onready var pNode = preload("res://Scenes//Pathfinding//pNode.tscn")
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
+class_name GridGenerator, "res://Scripts/GridGenerator.gd"
+#Utility Class - Generates a grid of Pathfinding-Nodes (pNodes) from a Tilemap
 
-func _gen_array_from_tilemap(var tilemap):
+static func _gen_array_from_tilemap(var tilemap):
 	var used_cells = tilemap.get_used_cells()
 	
 	var grid = []
+	for x in range(128): #max area 128*128, can change
+		grid.append([])
+		grid[x].resize(128)
+		
 	var k = 0
 	for cell in used_cells:
-		var node = pNode.instance()
-		node.init(cell.x,cell.y, tilemap.get_cellv(cell))
+		var node = pNode.new(cell.x,cell.y, tilemap.get_cellv(cell))
 		grid[cell.x][cell.y] =  node
 		k += 1
 			

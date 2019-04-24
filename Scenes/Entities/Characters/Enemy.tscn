@@ -8,7 +8,6 @@
 "enemies",
 ]]
 script = ExtResource( 1 )
-MAXHP = 10.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -17,11 +16,18 @@ texture = ExtResource( 2 )
 polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
 
 [node name="FireRateTimer" type="Timer" parent="."]
+process_mode = 0
 autostart = true
 
 [node name="RecalculateNode" type="Timer" parent="."]
+process_mode = 0
 wait_time = 3.0
 autostart = true
 
+[node name="KnockbackTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
-[connection signal="timeout" from="RecalculateNode" to="." method="_on_RecalculateNode_timeout"]
+[connection signal="timeout" from="KnockbackTimer" to="." method="_on_KnockbackTimer_timeout"]

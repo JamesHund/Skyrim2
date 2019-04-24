@@ -25,11 +25,12 @@ func start(var _id, var pos):
 func _process(delta):
 	processintervals += delta
 	if(processintervals >= 4):
+		randomize()
 		velocity = Vector2(randi()%3+1, randi()%3+1)
 		processintervals -= 4
-	move_and_collide(velocity.normalized()*delta*100)
+	move_and_slide(velocity.normalized()*100) #move_and_slide is a physics process, delta isnt needed
 	
 func _exit_tree():
-	print(Name + " has been deleted")
+	print("NPC " + Name + " has been deleted")
 	
 	

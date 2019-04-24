@@ -1,0 +1,23 @@
+{
+"Loot" : [
+	{"id" : 26, "chance" : 100, "range" : [3,25]},
+	{"id" : 18, "chance" : 10, "range" : [1,5]},
+	{"id" : 1, "chance" : 5},
+	{"id" : 2, "chance" : 4},
+	{"id" : 3, "chance" : 2},
+	{"id" : 4, "chance" : 1},
+	{"id" : 6, "chance" : 5},
+	{"id" : 7, "chance" : 4},
+	{"id" : 8, "chance" : 4},
+	{"id" : 9, "chance" : 4},
+	{"id" : 10, "chance" : 2},
+	{"id" : 11, "chance" : 1},
+	{"id" : 12, "chance" : 1},
+	{"id" : 13, "chance" : 1},
+	{"id": 19, "chance" : 5},
+	{"id" : 20, "chance" : 2.5}
+	
+]
+
+
+}

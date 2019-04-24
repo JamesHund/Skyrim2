@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tilesets/landscapetiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelParts/SpawnArea.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/LevelParts/NPCpointer.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/LootChest.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node" groups=[
 "world",
@@ -37,4 +38,8 @@ type = 1
 [node name="NPCpointer" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1332.67, 126.934 )
 type = 0
+
+[node name="LootChest" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1635.86, 501.39 )
+z_index = 1
 

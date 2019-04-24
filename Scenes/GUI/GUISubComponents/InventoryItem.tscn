@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/GUI/GUISubComponents/InventoryItem.gd" type="Script" id=1]
+[ext_resource path="res://textures/Items/item_sheet.png" type="Texture" id=2]
+[ext_resource path="res://fonts/Exo2-Medium.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
+
+[node name="InventoryItem" type="RemoteTransform2D" groups=[
+"inventoryitem",
+]]
+position = Vector2( 16, 16 )
+z_index = 4
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, 0, 32, 32 )
+
+[node name="MouseFollowTimer" type="Timer" parent="."]
+wait_time = 0.02
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_right = 80.0
+margin_bottom = 80.0
+
+[node name="StackSize" type="RichTextLabel" parent="."]
+margin_left = 75.0
+margin_top = 75.0
+margin_right = 99.0
+margin_bottom = 99.0
+custom_fonts/normal_font = SubResource( 1 )
+text = "64"
+
+[connection signal="timeout" from="MouseFollowTimer" to="." method="_on_MouseFollowTimer_timeout"]
+[connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
+[connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]

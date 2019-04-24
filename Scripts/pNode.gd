@@ -1,5 +1,6 @@
 extends Node
 
+class_name pNode, "res://Scripts/pNode.gd"
 #contains node information that pertains to pathfinding
 
 var gCost
@@ -10,7 +11,7 @@ var x
 var y
 var tileindex
 
-func init(_x,_y,_i):
+func _init(_x,_y,_i):
 	tileindex = _i
 	pos = Vector2(_x,_y)
 	x = _x

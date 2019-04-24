@@ -17,28 +17,23 @@ func _initialize(dir, src):
 	else:
 		group = "enemies"
 	direction = dir
+	rotation = cartesian2polar(dir.x,dir.y).y
 	$DecayTimer.start()
 	speedtest = 0
-	
 
 func _process(delta):
 	position += direction.normalized()*SPEED*delta
-	speedtest+= delta
-	if speedtest >= 1:
-		print(SPEED*delta)
-		speedtest -= 1
-		
-
 
 func _on_DecayTimer_timeout():
 	hide()
 	queue_free()
 
-
 func _on_Projectile_body_entered( body ):
 	if body.is_in_group("characters"):
 		if !body.is_in_group(group):
 			body.damage(5)
+			if body.is_in_group("enemies"):
+				body._apply_impulse(direction.normalized()*SPEED)
 			hide()
 			queue_free()
 	else:

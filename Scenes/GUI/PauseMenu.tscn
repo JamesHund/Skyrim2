@@ -1,0 +1,209 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Scripts/GUI/PauseMenu.gd" type="Script" id=1]
+[ext_resource path="res://textures/UI/grey3.png" type="Texture" id=2]
+[ext_resource path="res://textures/UI/grey1.png" type="Texture" id=3]
+[ext_resource path="res://fonts/Exo2-BlackItalic.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://textures/UI/grey4.png" type="Texture" id=5]
+[ext_resource path="res://fonts/Exo2-SemiBold.otf" type="DynamicFontData" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 40
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 36
+font_data = ExtResource( 6 )
+
+[node name="PauseMenu" type="MarginContainer" groups=[
+"main",
+]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -215.0
+margin_top = -280.0
+margin_right = 215.0
+margin_bottom = 280.0
+script = ExtResource( 1 )
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 430.0
+margin_bottom = 560.0
+texture = ExtResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 430.0
+margin_bottom = 560.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="VBoxContainer"]
+margin_right = 430.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 0, 100 )
+texture = ExtResource( 3 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/NinePatchRect"]
+editor/display_folded = true
+margin_top = 2.0
+margin_right = 430.0
+margin_bottom = 102.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/NinePatchRect/CenterContainer"]
+margin_left = 125.0
+margin_top = 20.0
+margin_right = 305.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 180, 60 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "  Paused"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_top = 104.0
+margin_right = 430.0
+margin_bottom = 560.0
+size_flags_vertical = 3
+custom_constants/margin_right = 60
+custom_constants/margin_top = 30
+custom_constants/margin_left = 60
+custom_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+margin_left = 60.0
+margin_top = 30.0
+margin_right = 370.0
+margin_bottom = 426.0
+custom_constants/separation = 20
+
+[node name="Resume" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+editor/display_folded = true
+margin_right = 310.0
+margin_bottom = 63.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/Resume"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Resume/CenterContainer"]
+margin_left = 85.0
+margin_top = 6.0
+margin_right = 225.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 140, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Resume"
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Resume"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="Save" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 83.0
+margin_right = 310.0
+margin_bottom = 146.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/Save"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Save/CenterContainer"]
+margin_left = 112.0
+margin_top = 6.0
+margin_right = 197.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 85, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Save"
+
+[node name="Controls" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 166.0
+margin_right = 310.0
+margin_bottom = 229.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/Controls"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Controls/CenterContainer"]
+margin_left = 82.0
+margin_top = 6.0
+margin_right = 228.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 146, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Controls"
+
+[node name="Help" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 249.0
+margin_right = 310.0
+margin_bottom = 312.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/Help"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Help/CenterContainer"]
+margin_left = 114.0
+margin_top = 6.0
+margin_right = 195.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 81, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Help"
+
+[node name="Exit" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+editor/display_folded = true
+margin_top = 332.0
+margin_right = 310.0
+margin_bottom = 396.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 5 )
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer/MarginContainer/VBoxContainer/Exit"]
+margin_right = 310.0
+margin_bottom = 63.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer/MarginContainer/VBoxContainer/Exit/CenterContainer"]
+margin_left = 120.0
+margin_top = 6.0
+margin_right = 190.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 70, 50 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 2 )
+text = "Exit"
+
+[node name="Button" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Exit"]
+margin_right = 310.0
+margin_bottom = 64.0
+
+[connection signal="visibility_changed" from="." to="." method="_on_PauseMenu_visibility_changed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Resume/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Exit/Button" to="." method="_on_Exit_pressed"]

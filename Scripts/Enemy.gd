@@ -1,40 +1,43 @@
 extends KinematicBody2D
 
-onready var pNode = preload("res://Scenes//Pathfinding//pNode.tscn")
 signal shoot(instance)
 #var type = "enemy"
 #export(float)var MAXHP
-var health
-var resistance = 100
-var fireready
-var processintervals
+onready var health = 15
+onready var resistance = 100
+onready var fireready = true
+onready var processintervals = 0.0
 var velocity
+onready var knockback = false
+var knockback_vector
 
 #to do with pathfinding
-var tilemap_ref #reference to tilemap node
+onready var tilemap_ref = get_tree().get_root().get_node("Main").tilemap_path#reference to tilemap node
+onready var grid = get_tree().get_root().get_node("Main").default_grid.duplicate(true)
+onready var gridsize = 128
 var current_path
-var grid
-var gridsize = 128
 
 func start(pos):
 	position = pos
 	show()
 
 func _ready():
+	randomize()
 	$FireRateTimer.set_wait_time(0.3)
-	health = 10
-	fireready = true
-	processintervals = 0.0
 	velocity = Vector2(randi()%3-1, randi()%3-1)
-	grid = get_tree().get_root().get_node("Main").grid.duplicate(true)
-	tilemap_ref = get_tree().get_root().get_node("Main").tilemap_path
 
 func _process(delta):
 	processintervals += delta
-	if(processintervals >= 1):
-		_update_path()
-		processintervals -= 1
-	move_and_collide(velocity.normalized()*delta*100)
+	if(processintervals >= 2):
+		randomize()
+		#_update_path()
+		processintervals -= 2
+		velocity = Vector2(randi()%3-1, randi()%3-1)
+	if !knockback:
+		move_and_slide(velocity.normalized()*100*delta)
+	else:
+		move_and_slide((knockback_vector)+velocity.normalized()*1000*delta)
+		knockback_vector *= 0.9*delta
 	if fireready:
 		emit_signal("shoot", self)
 		$FireRateTimer.start()
@@ -64,10 +67,13 @@ func _update_path():
 	
 	while !openSet.empty():
 		var current_node = openSet[0]
-		for node in openSet:
-			if node.get_fCost() < current_node.get_fCost() || node.get_fCost() == current_node.get_fCost() && node.hCost < current_node.hCost:
-				current_node = node
-				
+		
+		var j = 1
+		while j< openSet.size():
+			if openSet[j].get_fCost() < current_node.get_fCost() || openSet[j].get_fCost() == current_node.get_fCost() && openSet[j].hCost < current_node.hCost:
+				current_node = openSet[j]
+			j += 1
+		
 		openSet.erase(current_node) #this may not work since vectors pass by value - may have use find() to delete
 		closedSet.append(current_node)
 		
@@ -78,7 +84,7 @@ func _update_path():
 		for neighbour in get_neighbours(current_node):
 			if(!neighbour.tileindex == 1 || closedSet.find(neighbour) != -1):
 				continue
-			
+			print(current_node.gCost)
 			var new_movement_cost_to_neighbour = current_node.gCost + _get_distance(current_node,neighbour)
 			if new_movement_cost_to_neighbour < neighbour.gCost || openSet.find(neighbour) == -1:
 				neighbour.gCost = new_movement_cost_to_neighbour
@@ -87,6 +93,7 @@ func _update_path():
 				
 				if openSet.find(neighbour) == -1:
 					openSet.append(neighbour)
+			
 		
 func _get_distance(var nodeA, var nodeB) -> int:
 	var distX = abs(nodeA.x - nodeB.x)
@@ -117,7 +124,17 @@ func get_neighbours(var node) -> Array:
 			var checkY = node.y + y
 			if checkX >= 0 && checkX < gridsize && checkY >= 0 && checkY < gridsize:
 				neighbours.append(grid[checkX][checkY])
-			
+	#print(str(node.x) + "," + str(node.y))
+	#print(neighbours.size())
 	return neighbours
 	
+func _apply_impulse(var vector):
+	knockback = true
+	knockback_vector = vector
+	$KnockbackTimer.start()
+	
+	
+
+func _on_KnockbackTimer_timeout():
+	knockback = false
 

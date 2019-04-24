@@ -18,7 +18,10 @@ polygon = PoolVector2Array( -16, -32, 16, -32, 16, 32, -16, 32 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="EnteredTimer" type="Timer" parent="."]
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="timeout" from="EnteredTimer" to="." method="_on_EnteredTimer_timeout"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_EnteredTimer_timeout"]
