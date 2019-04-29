@@ -89,6 +89,8 @@ func _remove_item(var grid_pos): #input a Vector2
 	_update_gui(grid_pos)
 	
 func _move_item(var source_slot, var dest_slot): #takes vector2s
+
+	
 	if dest_slot.x ==5:
 		if (dest_slot.y == 0 || dest_slot.y == 1):
 			if grid[source_slot.x][source_slot.y].type != TYPE_WEAPON:
@@ -98,6 +100,16 @@ func _move_item(var source_slot, var dest_slot): #takes vector2s
 				return
 		elif grid[source_slot.x][source_slot.y].type != TYPE_MONEY:
 			return
+	elif source_slot.x == 5:
+		if grid[dest_slot.x][dest_slot.y] != null:
+			if (source_slot.y == 0 || source_slot.y == 1):
+				if grid[dest_slot.x][dest_slot.y].type != TYPE_WEAPON:
+					return
+			elif source_slot.y == 2:
+				if grid[dest_slot.x][dest_slot.y].type != TYPE_ARMOUR:
+					return
+			elif grid[dest_slot.x][dest_slot.y].type != TYPE_MONEY:
+				return
 
 	if source_slot != dest_slot:
 		var sx = source_slot.x
@@ -107,12 +119,17 @@ func _move_item(var source_slot, var dest_slot): #takes vector2s
 		if grid[dx][dy] == null:
 			grid[dx][dy] = grid[sx][sy]
 			grid[sx][sy] = null
+		if grid[sx][sy] == null:
+			_update_gui(source_slot)
 		elif grid[dx][dy].id != grid[sx][sy].id:
 			var temp_item = grid[dx][dy]
 			grid[dx][dy] = grid[sx][sy]
 			grid[sx][sy] = temp_item
 		else:
 			_stack(grid[sx][sy],grid[dx][dy])
+		if source_slot.x == 5 || dest_slot.x == 5:
+			_update_player_gear()
+		
 		_update_gui(source_slot)
 		_update_gui(dest_slot)
 	
@@ -134,6 +151,9 @@ func _update_gui(var slot): #takes in a Vector2 grid position
 	else:
 		inventory_screen._change_sprite(slot, -1, 1)
 		
+		
+func _update_player_gear():
+	pass
 func _add_world_item(var worlditem):
 	if _add_item(worlditem.item):
 		worlditem.hide()

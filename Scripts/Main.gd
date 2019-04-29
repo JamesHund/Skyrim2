@@ -52,6 +52,8 @@ func _respawn():
 	new_player.set_name("Player")
 	player_is_alive = true
 	add_child(new_player)
+	GlobalVariables.player = $Player
+	$GUI._enable()
 	$Player.start(Vector2(1504, 512))
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
 	$Player.connect( "shoot", self, "_on_Player_shoot")
@@ -152,6 +154,7 @@ func _on_Teleporter_teleport(level, pos):
 	_load_level(level,pos)
 
 func _on_Player_playerdeath():
+	$GUI._disable()
 	player_is_alive = false
 	$RespawnTimer.start()
 	

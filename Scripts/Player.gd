@@ -16,8 +16,9 @@ onready var health = MAXHP
 onready var resistance = 100
 onready var godmode  = false
 onready var interactables = []
-var weapon
-var armor
+var weapon1
+var weapon2
+var armour
 
 
 func _ready():
@@ -86,7 +87,23 @@ func _interact():
 	if closest_object.is_in_group("lootchest"):
 		closest_object._interact()
 	
-	
+func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
+	if slot == 0:
+		if id != -1:
+			weapon1 = ItemData.items[id]
+		else:
+			weapon1 = null
+	elif slot == 1:
+		if id != -1:
+			weapon2 = ItemData.items[id]
+		else:
+			weapon2= null
+		
+func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
+	if id != -1:
+		armour = ItemData.items[id]
+	else:
+		armour = null
 func start(pos):
 	position = pos
 	show()

@@ -82,6 +82,7 @@ config/icon="res://icon.png"
 
 ItemData="*res://Scripts/Items/ItemData.gd"
 Pathfinder="*res://Scenes/Pathfinding/Pathfinder.tscn"
+GlobalVariables="*res://Scripts/GlobalVariables.gd"
 
 [debug]
 

@@ -27,6 +27,16 @@ func _process(delta): #handles input
 		else:
 			$DevTools.show()
 			
+			
+func _disable():
+	set_process(false)
+	if active_screen != null:
+			active_screen.hide()
+			active_screen=null
+	
+func _enable():
+	set_process(true)
+	
 func _on_PauseMenu_resume():
 	active_screen.hide()
 	active_screen = null
