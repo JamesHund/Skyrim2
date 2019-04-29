@@ -5,19 +5,12 @@ onready var grid = []
 var selected #Vector2 that indicates which item is currently being displayed
 onready var inventory_screen = get_parent().get_node("GUI/InventoryScreen")
 
+signal dropitem(item)
+
 func _ready():
 	for x in range(0,6): #max area 128*128, can change
 		grid.append([])
 		grid[x].resize(4)
-	_create_and_add_item(18,10)
-	_create_and_add_item(19,2)
-	_create_and_add_item(20,1)
-	_create_and_add_item(10,1)
-	_create_and_add_item(23,1)
-	_create_and_add_item(14,1)
-	_create_and_add_item(15,1)
-	_create_and_add_item(26,355)
-	
 	
 
 func _set_selected(var grid_pos):
@@ -49,13 +42,20 @@ func _set_selected(var grid_pos):
 		info = "This item has been retrieved from a quest. Return it to its owner to complete the quest"
 	inventory_screen._set_item_info(item.item_name,type,info)
 
+func _clear_selected():
+	selected = null
+	inventory_screen._set_item_info("","","")
+
 func _add_item(var item):
+	if item == null:
+		return false
 	if item.type == TYPE_MONEY:
 		if grid[5][3] == null:
 			grid[5][3] = item
-		else:
-			_stack(item, grid[5][3])
+		elif !_stack(item, grid[5][3]):
+			return false
 		_update_gui(Vector2(5,3))
+		return true
 	else:
 		for y in range(0,4):
 			for x in range(0,5):
@@ -66,14 +66,23 @@ func _add_item(var item):
 				elif grid[x][y].id == item.id:
 					if _stack(item,grid[x][y]):
 						_update_gui(Vector2(x,y))
-						prints("updated gui at",x,y)
 						return true
 					else:
 						_update_gui(Vector2(x,y))
 						
+		return false
 	
 func _create_and_add_item(var id, var stack_size):
 	_add_item(ItemUtils._create_item(id,stack_size))
+	
+func _drop_selected():
+	if selected == null:
+		return
+	var item = grid[selected.x][selected.y]
+	emit_signal("dropitem",item)
+	grid[selected.x][selected.y] = null
+	_update_gui(selected)
+	_clear_selected()
 	
 func _remove_item(var grid_pos): #input a Vector2
 	grid[grid_pos.x][grid_pos.y] = null

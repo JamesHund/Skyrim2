@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/Items/Armour.gd"
 }, {
 "base": "Node",
+"class": "GlobalVariables",
+"language": "GDScript",
+"path": "res://Scripts/GlobalVariables.gd"
+}, {
+"base": "Node",
 "class": "GridGenerator",
 "language": "GDScript",
 "path": "res://Scripts/GridGenerator.gd"
@@ -56,6 +61,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Armour": "res://Scripts/Items/Armour.gd",
+"GlobalVariables": "res://Scripts/GlobalVariables.gd",
 "GridGenerator": "res://Scripts/GridGenerator.gd",
 "Health": "res://Scripts/Items/Health.gd",
 "Item": "res://Scripts/Items/Item.gd",

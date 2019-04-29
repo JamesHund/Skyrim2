@@ -3,42 +3,26 @@
 [ext_resource path="res://Scripts/SpawnArea.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=1]
-
-custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
 [node name="SpawnArea" type="Area2D" groups=[
 "spawnarea",
 ]]
-
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
 script = ExtResource( 1 )
-rate = 0.1
-limit = null
-type = null
+rate = 0.2
 
-[node name="SpawnRateTimer" type="Timer" parent="." index="0"]
-
-process_mode = 1
+[node name="SpawnRateTimer" type="Timer" parent="."]
 wait_time = 2.0
-one_shot = false
-autostart = false
+autostart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
+
+[node name="CoolDownTimer" type="Timer" parent="."]
+wait_time = 300.0
+one_shot = true
 
 [connection signal="area_entered" from="." to="." method="_on_SpawnArea_area_entered"]
-
 [connection signal="area_exited" from="." to="." method="_on_SpawnArea_area_exited"]
-
 [connection signal="timeout" from="SpawnRateTimer" to="." method="_on_SpawnRateTimer_timeout"]
-
-
+[connection signal="timeout" from="CoolDownTimer" to="." method="_on_CoolDownTimer_timeout"]

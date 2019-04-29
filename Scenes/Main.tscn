@@ -58,3 +58,4 @@ script = ExtResource( 8 )
 [connection signal="timeout" from="debugger" to="." method="_on_debugger_timeout"]
 [connection signal="resume" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_resume"]
 [connection signal="printgrid" from="GUI/DevTools" to="Inventory" method="_print_grid"]
+[connection signal="dropitem" from="Inventory" to="." method="_on_Inventory_dropitem"]

@@ -13,20 +13,19 @@ onready var worlditem = preload("res://Scenes/Entities/WorldItem.tscn")
 var player_is_alive
 onready var enemy_list = []
 onready var NPC_list = []
+onready var item_list = []
 var lvl #stores level resource to be loaded
 var default_grid #stores grid of tilemap
 var tilemap_path
 
-#-------Level swapping and player death--------------
 func _ready():
 	_initialize_level()
-	player_is_alive = true
 	_respawn()
 	_load_level("testworld", $Player.position)
 	
 func _process(delta):
 		pass
-		
+#-------Level swapping and player death--------------
 func _load_level(level, pos):
 	for i in get_children():
 		if !i.is_in_group("main"):
@@ -39,11 +38,13 @@ func _load_level(level, pos):
 	default_grid = GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
 	tilemap_path = new_level.get_node("TileMap")
 	$Player.position = pos
+	$Player._clear_interactables()
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0001), "timeout")
 	_initializeSpawnAreas()
 	_initialize_NPCpointers()
 	_initialize_teleporters()
+	_initialize_loot_chests()
 	
 
 func _respawn():
@@ -75,12 +76,17 @@ func _initialize_NPCpointers():
 	for NPCpointer in pointers:
 		_spawn_character(NPCpointer.type, NPCpointer.position)
 		NPCpointer.queue_free()
-		
-	
+
 func _initializeSpawnAreas():
 	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
 	for SpawnArea in spawnareas:
 		SpawnArea.connect("spawn",self,"_on_SpawnArea_spawn")
+		print("connected spawnarea")
+		
+func _initialize_loot_chests():
+	var chests = get_tree().get_nodes_in_group("lootchest")
+	for chest in chests:
+		chest.connect("dropitem",self,"_on_loot_chest_opened")
 
 #----------------Projectiles---------------------
 func _on_Player_shoot():
@@ -94,37 +100,69 @@ func _on_Enemy_shoot(instance):
 		add_child(new_projectile)
 		new_projectile._initialize($Player.position-instance.position, instance)
 		
-#-------------Initializing characters---------------
+#-------------Spawning characters---------------
 func _spawn_character(type,pos):
+	print("spawn character")
 	if type==9: #Enemy
-		enemy_list.append(enemy.instance())
-		$Level.add_child(enemy_list[enemy_list.size()-1])
-		enemy_list[enemy_list.size()-1].connect( "shoot", self, "_on_Enemy_shoot")
-		enemy_list[enemy_list.size()-1].start(pos)
+		print("character is enemy")
+		var new_enemy = enemy.instance()
+		enemy_list.append(new_enemy)
+		$Level.add_child(new_enemy)
+		new_enemy.connect( "shoot", self, "_on_Enemy_shoot")
+		new_enemy.connect("death",self, "_on_Enemy_death")
+		new_enemy.start(pos)
 	elif type<9:
 		NPC_list.append(NPC.instance())
 		$Level.add_child(NPC_list[NPC_list.size()-1])
 		NPC_list[NPC_list.size()-1].start(type,pos)
 		
-#----------------Signals-------------------
-		
-func _on_Teleporter_teleport(level, pos):
-	_load_level(level,pos)
-
 func _on_SpawnArea_spawn(pos, extents,type):
-	
 	var x = rand_range(0, extents.x)
 	var y = rand_range(0, extents.y)
 	var spawnpos = Vector2(pos.x + x, pos.y + y)
 	_spawn_character(type,spawnpos)	
+		
+#-------------Items------------------------
+func _spawn_world_item(var item, var pos):
+	_spawn_world_item_id(item.id,item.stack_size,pos)
+	
+func _spawn_world_item_id(var id, var stacksize, var pos):
+	var new_item = worlditem.instance()
+	$Level.add_child(new_item)
+	new_item._initialize(id,stacksize,pos,0.3)
+	item_list.append(new_item)
+	
+func _spawn_world_item_pickup(var item, var pos, var pickupcooldown): #spawn world item with custom pickupcooldown
+	var new_item = worlditem.instance()
+	$Level.add_child(new_item)
+	new_item._initialize(item.id,item.stack_size,pos,pickupcooldown)
+	item_list.append(new_item)
+	
+func _on_loot_chest_opened(var items, var pos):
+	for item in items:
+		var random_pos = pos + polar2cartesian(rand_range(2, 100), rand_range(0,360))
+		_spawn_world_item(item,random_pos)
+		
+#----------------Signals-------------------
+
+func _on_Enemy_death(var pos):
+	_spawn_world_item_id(26, 1, pos)
+
+func _on_Teleporter_teleport(level, pos):
+	_load_level(level,pos)
 
 func _on_Player_playerdeath():
 	player_is_alive = false
 	$RespawnTimer.start()
+	
+func _on_Inventory_dropitem(var item):
+	_spawn_world_item_pickup(item, _get_Player_position(), 3)
+
 
 #Timers
 func _on_RespawnTimer_timeout():
 	_respawn()
+	
 
 	
 #-----------Covenience---------------
@@ -140,3 +178,5 @@ func _on_debugger_timeout():
 	#print(player_ref.get_ref())
 	pass
 	
+
+

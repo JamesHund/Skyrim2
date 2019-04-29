@@ -7,7 +7,7 @@
 radius = 5.03625
 
 [node name="Projectile" type="Area2D"]
-z_index = 1
+z_index = 2
 input_pickable = false
 collision_layer = 2
 script = ExtResource( 1 )

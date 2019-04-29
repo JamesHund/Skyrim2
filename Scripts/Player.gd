@@ -15,13 +15,14 @@ onready var type = "player"
 onready var health = MAXHP
 onready var resistance = 100
 onready var godmode  = false
+onready var interactables = []
 var weapon
 var armor
+
 
 func _ready():
 	$FireRateTimer.set_wait_time(0.1)
 	$Camera2D.make_current()
-	#fix firerate
 
 func _respawn_init():
 	emit_signal("health_update",health)
@@ -49,6 +50,8 @@ func _process(delta):
 			emit_signal("shoot")
 			$FireRateTimer.start()
 			fireready = false
+	if Input.is_action_pressed("ui_interact"):
+		_interact()
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
@@ -68,6 +71,21 @@ func damage(var hit):
 			hide()
 			queue_free()
 		emit_signal("health_update",health)
+		
+func _interact():
+	var closest_object
+	var closest_object_dist = 10000
+	if interactables.size() == 0:
+		return
+	for object in interactables:
+		var offset = object.global_position-global_position
+		var dist = cartesian2polar(offset.x,offset.y).x
+		if dist < closest_object_dist:
+			closest_object = object
+			closest_object_dist = dist
+	if closest_object.is_in_group("lootchest"):
+		closest_object._interact()
+	
 	
 func start(pos):
 	position = pos
@@ -79,6 +97,19 @@ func _on_FireRateTimer_timeout():
 func _toggle_godmode(var mode):
 	godmode = mode
 
-func _on_ItemRadius_body_entered(body):
-	if body.is_in_group("worlditem"):
-		emit_signal("pickupitem",body)
+func _clear_interactables():
+	interactables = []
+
+func _on_ItemRadius_area_entered(area):
+	if area.is_in_group("worlditem"):
+		emit_signal("pickupitem",area)
+
+func _on_InteractRadius_area_entered(area):
+	if area.is_in_group("interactable"):
+		interactables.append(area)
+		
+func _on_InteractRadius_area_exited(area):
+	if area.is_in_group("interactable"):
+		var index = interactables.find(area)
+		if index != -1:
+			interactables.remove(index)

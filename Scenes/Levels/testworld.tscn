@@ -41,5 +41,19 @@ type = 0
 
 [node name="LootChest" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1635.86, 501.39 )
-z_index = 1
+
+[node name="LootChest3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1429.62, 233.295 )
+
+[node name="LootChest4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1292.49, 242.086 )
+
+[node name="LootChest5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1185.24, 347.571 )
+
+[node name="LootChest6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1350.5, 423.169 )
+
+[node name="LootChest2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1520.75, 314.698 )
 

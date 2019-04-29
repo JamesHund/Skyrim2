@@ -11,6 +11,7 @@ radius = 22.6137
 ]]
 z_index = 1
 monitoring = false
+monitorable = false
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -25,4 +26,9 @@ shape = SubResource( 1 )
 wait_time = 180.0
 one_shot = true
 
+[node name="PickupTimer" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
 [connection signal="timeout" from="DecayTimer" to="." method="_on_DecayTimer_timeout"]
+[connection signal="timeout" from="PickupTimer" to="." method="_on_PickupTimer_timeout"]

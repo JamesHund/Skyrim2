@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/GUI/InventoryScreen.gd" type="Script" id=1]
 [ext_resource path="res://textures/UI/grey3.png" type="Texture" id=2]
 [ext_resource path="res://textures/UI/grey1.png" type="Texture" id=3]
 [ext_resource path="res://fonts/Exo2-Bold.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://fonts/Exo2-Regular.otf" type="DynamicFontData" id=5]
-[ext_resource path="res://fonts/Exo2-Light.otf" type="DynamicFontData" id=6]
-[ext_resource path="res://textures/UI/grey4.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/GUI/GUISubComponents/InventoryItem.tscn" type="PackedScene" id=8]
+[ext_resource path="res://fonts/Exo2-Medium.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://fonts/Exo2-Light.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://textures/UI/grey4.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/GUI/GUISubComponents/InventoryItem.tscn" type="PackedScene" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 40
@@ -18,8 +19,12 @@ size = 29
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 24
+size = 25
 font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 7 )
 
 [node name="Inventory" type="MarginContainer" groups=[
 "main",
@@ -87,10 +92,86 @@ scroll_active = false
 [node name="ItemType" type="RichTextLabel" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer"]
 margin_top = 64.0
 margin_right = 606.0
-margin_bottom = 170.0
+margin_bottom = 115.0
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Item Type"
+
+[node name="SellDropContainer" type="HBoxContainer" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer"]
+margin_top = 119.0
+margin_right = 606.0
+margin_bottom = 170.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="DropContainer" type="MarginContainer" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer"]
+margin_right = 301.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 170
+custom_constants/margin_top = 10
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/DropContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
+size_flags_horizontal = 5
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/DropContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "    Drop"
+scroll_active = false
+
+[node name="DropButton" type="TextureButton" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/DropContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
+
+[node name="SellContainer" type="MarginContainer" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer"]
+margin_left = 305.0
+margin_right = 606.0
+margin_bottom = 51.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 170
+custom_constants/margin_top = 10
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 10
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
+size_flags_horizontal = 5
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
+custom_fonts/normal_font = SubResource( 3 )
+text = "     Sell"
+scroll_active = false
+
+[node name="SellButton" type="TextureButton" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer"]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 131.0
+margin_bottom = 41.0
 
 [node name="StatsContainer" type="MarginContainer" parent="MainContainer/VBoxContainer/ItemInfo/HBoxContainer"]
 margin_left = 610.0
@@ -103,13 +184,14 @@ margin_right = 350.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 4 )
 text = "Damage
 Fire-rate:
 Fire-mode:
 Capacity:
 Projectile-count:
 "
+scroll_active = false
 
 [node name="GridSeperator" type="HBoxContainer" parent="MainContainer/VBoxContainer"]
 margin_top = 185.0
@@ -132,9 +214,9 @@ margin_right = 112.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/00" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/00" instance=ExtResource( 9 )]
 
 [node name="01" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 127.0
@@ -142,9 +224,9 @@ margin_right = 239.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/01" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/01" instance=ExtResource( 9 )]
 
 [node name="02" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 254.0
@@ -152,9 +234,9 @@ margin_right = 366.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/02" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/02" instance=ExtResource( 9 )]
 
 [node name="03" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 381.0
@@ -162,9 +244,9 @@ margin_right = 493.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/03" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/03" instance=ExtResource( 9 )]
 
 [node name="04" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 508.0
@@ -172,9 +254,9 @@ margin_right = 620.0
 margin_bottom = 112.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/04" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/04" instance=ExtResource( 9 )]
 
 [node name="10" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_top = 127.0
@@ -182,9 +264,9 @@ margin_right = 112.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/10" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/10" instance=ExtResource( 9 )]
 
 [node name="11" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 127.0
@@ -193,9 +275,9 @@ margin_right = 239.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/11" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/11" instance=ExtResource( 9 )]
 
 [node name="12" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 254.0
@@ -204,9 +286,9 @@ margin_right = 366.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/12" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/12" instance=ExtResource( 9 )]
 
 [node name="13" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 381.0
@@ -215,9 +297,9 @@ margin_right = 493.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/13" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/13" instance=ExtResource( 9 )]
 
 [node name="14" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 508.0
@@ -226,9 +308,9 @@ margin_right = 620.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/14" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/14" instance=ExtResource( 9 )]
 
 [node name="20" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_top = 254.0
@@ -236,9 +318,9 @@ margin_right = 112.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/20" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/20" instance=ExtResource( 9 )]
 
 [node name="21" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 127.0
@@ -247,9 +329,9 @@ margin_right = 239.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/21" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/21" instance=ExtResource( 9 )]
 
 [node name="22" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 254.0
@@ -258,9 +340,9 @@ margin_right = 366.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/22" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/22" instance=ExtResource( 9 )]
 
 [node name="23" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 381.0
@@ -269,9 +351,9 @@ margin_right = 493.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/23" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/23" instance=ExtResource( 9 )]
 
 [node name="24" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 508.0
@@ -280,9 +362,9 @@ margin_right = 620.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/24" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/24" instance=ExtResource( 9 )]
 
 [node name="30" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_top = 381.0
@@ -290,9 +372,9 @@ margin_right = 112.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/30" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/30" instance=ExtResource( 9 )]
 
 [node name="31" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 127.0
@@ -301,9 +383,9 @@ margin_right = 239.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/31" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/31" instance=ExtResource( 9 )]
 
 [node name="32" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 254.0
@@ -312,9 +394,9 @@ margin_right = 366.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/32" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/32" instance=ExtResource( 9 )]
 
 [node name="33" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 381.0
@@ -323,9 +405,9 @@ margin_right = 493.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/33" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/33" instance=ExtResource( 9 )]
 
 [node name="34" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Items"]
 margin_left = 508.0
@@ -334,9 +416,9 @@ margin_right = 620.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/34" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Items/34" instance=ExtResource( 9 )]
 
 [node name="Gear" type="GridContainer" parent="MainContainer/VBoxContainer/GridSeperator"]
 editor/display_folded = true
@@ -355,9 +437,9 @@ margin_bottom = 112.0
 mouse_filter = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/05" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/05" instance=ExtResource( 9 )]
 
 [node name="15" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Gear"]
 margin_top = 127.0
@@ -365,9 +447,9 @@ margin_right = 112.0
 margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/15" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/15" instance=ExtResource( 9 )]
 
 [node name="25" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Gear"]
 margin_top = 254.0
@@ -375,9 +457,9 @@ margin_right = 112.0
 margin_bottom = 366.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/25" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/25" instance=ExtResource( 9 )]
 
 [node name="35" type="NinePatchRect" parent="MainContainer/VBoxContainer/GridSeperator/Gear"]
 margin_top = 381.0
@@ -385,7 +467,9 @@ margin_right = 112.0
 margin_bottom = 493.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource( 7 )
+texture = ExtResource( 8 )
 
-[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/35" instance=ExtResource( 8 )]
+[node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/35" instance=ExtResource( 9 )]
 
+[connection signal="pressed" from="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/DropContainer/DropButton" to="." method="_on_DropButton_pressed"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer/SellButton" to="." method="_on_SellButton_pressed"]

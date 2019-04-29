@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal shoot(instance)
+signal death(pos)
 #var type = "enemy"
 #export(float)var MAXHP
 onready var health = 15
@@ -53,6 +54,8 @@ func damage(var hit):
 func _on_FireRateTimer_timeout():
 	fireready = true
 	
+func _exit_tree():
+	emit_signal("death",position)
 	
 func _update_path():
 	var enemy_tilemap_location = tilemap_ref.world_to_map(position)

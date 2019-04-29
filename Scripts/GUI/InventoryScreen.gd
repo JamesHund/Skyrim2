@@ -17,6 +17,7 @@ onready var gear_h_seperation = get_node("MainContainer/VBoxContainer/GridSepera
 
 func _ready():
 	hide()
+	_sell_button_set_visible(false)
 	_connect_inventory_items()
 	var items_region_node = $MainContainer/VBoxContainer/GridSeperator/Items
 	var gear_region_node = $MainContainer/VBoxContainer/GridSeperator/Gear
@@ -64,3 +65,19 @@ func _on_InventoryItem_released(pos, grid):
 
 	#Calculate grid pos of destination based on pos
 	#Call inventory move_item with both grid pos
+
+func _sell_button_set_visible(var visibilty):
+	var sell_container = $MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer
+	if visibilty:
+		for child in sell_container.get_children():
+			child.show()
+	else:
+		for child in sell_container.get_children():
+			child.hide()
+
+func _on_DropButton_pressed():
+	inventory._drop_selected()
+
+
+func _on_SellButton_pressed():
+	pass # Replace with function body.

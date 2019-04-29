@@ -75,7 +75,7 @@ func _init():
 	if result.error != OK:
 		printerr("error parsing loot_table.json")
 		return 0
-	loot_table = result
+	loot_table = result.get_result().get("Loot")
 	
 	
 	

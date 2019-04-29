@@ -4,8 +4,8 @@
 [ext_resource path="res://textures/Characters/Enemies/evil2.png" type="Texture" id=2]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
-"characters",
 "enemies",
+"characters",
 ]]
 script = ExtResource( 1 )
 

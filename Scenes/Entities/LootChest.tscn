@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scripts/Items/LootChest.gd" type="Script" id=1]
 [ext_resource path="res://textures/loot_chest.png" type="Texture" id=2]
 [ext_resource path="res://textures/loot_chest_open.png" type="Texture" id=3]
-[ext_resource path="res://fonts/Exo2-Light.otf" type="DynamicFontData" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -14,32 +13,20 @@ animations = [ {
 } ]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 20.1577
+radius = 20.6348
 
-[sub_resource type="DynamicFont" id=3]
-size = 12
-font_data = ExtResource( 4 )
-
-[node name="LootChest" type="Node2D"]
+[node name="LootChest" type="Area2D" groups=[
+"lootchest",
+"interactable",
+]]
 z_index = 1
+monitoring = false
 script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
 frames = SubResource( 1 )
 
-[node name="Area2D" type="Area2D" parent="."]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
-
-[node name="Label" type="RichTextLabel" parent="."]
-margin_left = -21.151
-margin_top = -21.9178
-margin_right = 32.849
-margin_bottom = -5.91779
-custom_fonts/normal_font = SubResource( 3 )
-text = "[E] Open"
-scroll_active = false
 
