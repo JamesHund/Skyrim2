@@ -13,11 +13,10 @@ onready var direction = "front"
 onready var fireready = true
 onready var type = "player"
 onready var health = MAXHP
-onready var resistance = 100
 onready var godmode  = false
 onready var interactables = []
-var weapon1
-var weapon2
+onready var weapons = [null,null]
+onready var selected_weapon = weapon1
 var armour
 
 
@@ -47,12 +46,14 @@ func _process(delta):
 		direction = "left"
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_pressed("mouse_1"):
-		if fireready == true:
+		if fireready == true && selected_weapon != null:
 			emit_signal("shoot")
 			$FireRateTimer.start()
 			fireready = false
 	if Input.is_action_pressed("ui_interact"):
 		_interact()
+	if Input.is_action_pressed("ui_switch_weapon"):
+		selected_weapon = weapons[0]
 	
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
@@ -66,7 +67,7 @@ func _process(delta):
 	
 func damage(var hit):
 	if !godmode:
-		health -= hit * resistance/100
+		health -= hit * (1 - _get_armour_protection()/100)
 		if health <= 0:
 			emit_signal("playerdeath")
 			hide()
@@ -88,16 +89,10 @@ func _interact():
 		closest_object._interact()
 	
 func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
-	if slot == 0:
-		if id != -1:
-			weapon1 = ItemData.items[id]
-		else:
-			weapon1 = null
-	elif slot == 1:
-		if id != -1:
-			weapon2 = ItemData.items[id]
-		else:
-			weapon2= null
+	if id != -1:
+		weapons[slot] = ItemData.items[id]
+	else:
+		weapons[slot] = null
 		
 func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
 	if id != -1:
@@ -107,6 +102,11 @@ func _set_armour(var id): #same as above method except for players armour (-1 = 
 func start(pos):
 	position = pos
 	show()
+	
+func _get_armour_protection():
+	if armour != null:
+		return armour.protection
+	return 0
 	
 func _on_FireRateTimer_timeout():
 	fireready = true
