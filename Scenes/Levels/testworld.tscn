@@ -3,8 +3,8 @@
 [ext_resource path="res://tilesets/landscapetiles.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/LevelParts/SpawnArea.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/LevelParts/NPCpointer.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Entities/LootChest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Entities/LootChest.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Entities/Characters/NPC.tscn" type="PackedScene" id=5]
 
 [node name="World" type="Node" groups=[
 "world",
@@ -24,36 +24,33 @@ level = "SecondWorld"
 light_mask = 16385
 position = Vector2( 260.335, 617.274 )
 scale = Vector2( 6.74337, 6.32191 )
-limit = 0
-type = 0
 
 [node name="Door2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1634.6, 737.122 )
 level = "testworld3"
 
-[node name="NPCpointer2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1568.04, 131.75 )
-type = 1
-
-[node name="NPCpointer" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1332.67, 126.934 )
-type = 0
-
-[node name="LootChest" parent="." instance=ExtResource( 5 )]
+[node name="LootChest" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1635.86, 501.39 )
 
-[node name="LootChest3" parent="." instance=ExtResource( 5 )]
+[node name="LootChest3" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1429.62, 233.295 )
 
-[node name="LootChest4" parent="." instance=ExtResource( 5 )]
+[node name="LootChest4" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1292.49, 242.086 )
 
-[node name="LootChest5" parent="." instance=ExtResource( 5 )]
+[node name="LootChest5" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1185.24, 347.571 )
 
-[node name="LootChest6" parent="." instance=ExtResource( 5 )]
+[node name="LootChest6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1350.5, 423.169 )
 
-[node name="LootChest2" parent="." instance=ExtResource( 5 )]
+[node name="LootChest2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1520.75, 314.698 )
+
+[node name="NPC" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1191.8, 114.738 )
+
+[node name="NPC2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1463.84, 107.336 )
+id = 1
 

@@ -1,0 +1,31 @@
+{
+	"Characters":[
+	{"id" : 0,
+	"name" : "Farmer"
+	},
+	{"id" : 1,
+	"name" : "Baker"
+	},
+	{"id" : 2,
+	"name" : "Shoemaker"
+	},
+	{"id" : 3,
+	"name" : "Undertaker"
+	},
+	{"id" : 4,
+	"name" : "Policeman"
+	},
+	{"id" : 5,
+	"name" : "Doctor",
+	"merchant" : [18,19,20]
+	},
+	{"id" : 6,
+	"name" : "Armourer",
+	"merchant" : [0,1,2,3,4,5]
+	},
+	{"id" : 7,
+	"name" : "Gunsmith",
+	"merchant" : [6,7,8,9,10,11]
+	},
+	]
+}

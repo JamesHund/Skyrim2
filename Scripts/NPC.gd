@@ -1,36 +1,27 @@
 extends KinematicBody2D
 
-var NPCdata = preload("res://Scripts//NPCdata.gd")
-#create an array of NPC data, npc data can be parsed from a file in _ready()
-const arr = ["Farmer","Baker","Shoemaker","Undertaker","Policeman","Gunsmith","Armorer","Doctor"]
-
-var ID
-var Name
+export(int) var id
+onready var merchant = false
+var npc_name
+var inventory
 var processintervals
 var velocity
 
 func _ready():
-	processintervals = 0.0
-	velocity = Vector2(randi()%3-1, randi()%3-1)
-	hide()
+	if id > NPCdata.npc_list.size():
+		printerr("NPC ID out of range")
+		return
+	npc_name = NPCdata.npc_list[id].get("name")
+	if NPCdata.npc_list[id].get("merchant") != null:
+		merchant = true
+		inventory  = NPCdata.npc_list[id].get("merchant")
+	$Sprites.animation = str(id)
 	
-func start(var _id, var pos):
-	ID = _id
-	Name = arr[ID]
-	$Sprites.animation = str(ID)
-	position = pos
-	print("NPC " + Name + " has been initialized")
-	show()
 
 func _process(delta):
-	processintervals += delta
-	if(processintervals >= 4):
-		randomize()
-		velocity = Vector2(randi()%3+1, randi()%3+1)
-		processintervals -= 4
-	move_and_slide(velocity.normalized()*100) #move_and_slide is a physics process, delta isnt needed
+	pass
 	
 func _exit_tree():
-	print("NPC " + Name + " has been deleted")
+	print("NPC " + npc_name + " has been deleted")
 	
 	
