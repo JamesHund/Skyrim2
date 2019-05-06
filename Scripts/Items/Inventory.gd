@@ -11,6 +11,7 @@ func _ready():
 	for x in range(0,6): #max area 128*128, can change
 		grid.append([])
 		grid[x].resize(4)
+	_create_and_add_item(6,1)
 	
 
 func _set_selected(var grid_pos):

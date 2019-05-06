@@ -16,7 +16,7 @@ onready var health = MAXHP
 onready var godmode  = false
 onready var interactables = []
 onready var weapons = [null,null]
-onready var selected_weapon = weapon1
+onready var selected_weapon = 0
 var armour
 
 
