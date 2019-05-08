@@ -15,11 +15,6 @@ _global_script_classes=[ {
 "path": "res://Scripts/Items/Armour.gd"
 }, {
 "base": "Node",
-"class": "GlobalVariables",
-"language": "GDScript",
-"path": "res://Scripts/GlobalVariables.gd"
-}, {
-"base": "Node",
 "class": "GridGenerator",
 "language": "GDScript",
 "path": "res://Scripts/GridGenerator.gd"
@@ -66,7 +61,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Armour": "res://Scripts/Items/Armour.gd",
-"GlobalVariables": "res://Scripts/GlobalVariables.gd",
 "GridGenerator": "res://Scripts/GridGenerator.gd",
 "Health": "res://Scripts/Items/Health.gd",
 "Item": "res://Scripts/Items/Item.gd",
@@ -88,7 +82,7 @@ config/icon="res://icon.png"
 
 ItemData="*res://Scripts/Items/ItemData.gd"
 Pathfinder="*res://Scenes/Pathfinding/Pathfinder.tscn"
-GlobalVariables="*res://Scripts/GlobalVariables.gd"
+Global="*res://Scripts/Global.gd"
 NPCdata="*res://Scripts/NPCdata.gd"
 
 [debug]
@@ -167,8 +161,7 @@ ui_dev_tools={
 }
 ui_switch_weapon={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
-, Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
  ]
 }
 

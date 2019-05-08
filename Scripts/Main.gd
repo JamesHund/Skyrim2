@@ -5,7 +5,6 @@ onready var projectile = preload("res://Scenes//Entities//Projectiles//Projectil
 onready var enemy = preload("res://Scenes//Entities//Characters//Enemy.tscn")
 onready var player = preload("res://Scenes//Entities//Characters//Player.tscn")
 onready var spawnarea = preload("res://Scenes//LevelParts//SpawnArea.tscn")
-onready var mainnode = preload("res://Scenes//MainNode.tscn")
 onready var NPC = preload("res://Scenes//Entities//Characters//NPC.tscn")
 onready var worlditem = preload("res://Scenes/Entities/WorldItem.tscn")
 
@@ -18,8 +17,12 @@ var lvl #stores level resource to be loaded
 var default_grid #stores grid of tilemap
 var tilemap_path
 
+func _enter_tree():
+	#runs before children nodes are initialized
+	Global.main_scene = self
+
 func _ready():
-	_initialize_level()
+	#runs after all children nodes have been initialized
 	_respawn()
 	_load_level("testworld", $Player.position)
 	
@@ -52,7 +55,6 @@ func _respawn():
 	new_player.set_name("Player")
 	player_is_alive = true
 	add_child(new_player)
-	GlobalVariables.player = $Player
 	$GUI._enable()
 	$Player.start(Vector2(1504, 512))
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
@@ -63,10 +65,6 @@ func _respawn():
 	$GUI/DevTools.connect("godmode", $Player, "_toggle_godmode")
 	
 #----------Initializing Level Parts-------------
-func _initialize_level():
-	var Level = mainnode.instance()
-	Level.set_name("Level")
-	add_child(Level)
 	
 func _initialize_teleporters():
 	var teleporters = get_tree().get_nodes_in_group("teleport")
@@ -170,16 +168,12 @@ func _on_RespawnTimer_timeout():
 	
 #-----------Covenience---------------
 
+func _get_player():
+	if player_is_alive:
+		return $Player
+
 func _get_Player_position():
 	if player_is_alive:
 		return $Player.position
 	else:
 		return null
-
-
-func _on_debugger_timeout():
-	#print(player_ref.get_ref())
-	pass
-	
-
-

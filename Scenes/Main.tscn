@@ -23,10 +23,9 @@ color = Color( 0, 0, 0, 1 )
 wait_time = 5.0
 one_shot = true
 
-[node name="debugger" type="Timer" parent="." groups=[
+[node name="Level" type="Node" parent="." groups=[
 "main",
 ]]
-autostart = true
 
 [node name="GUI" type="CanvasLayer" parent="." groups=[
 "main",
@@ -53,9 +52,7 @@ margin_right = 1.85059
 "main",
 ]]
 script = ExtResource( 8 )
-
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
-[connection signal="timeout" from="debugger" to="." method="_on_debugger_timeout"]
 [connection signal="resume" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_resume"]
 [connection signal="printgrid" from="GUI/DevTools" to="Inventory" method="_print_grid"]
 [connection signal="dropitem" from="Inventory" to="." method="_on_Inventory_dropitem"]

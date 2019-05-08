@@ -15,9 +15,9 @@ onready var type = "player"
 onready var health = MAXHP
 onready var godmode  = false
 onready var interactables = []
-onready var weapons = [null,null]
+onready var weapons = [null,null] #no way to encapsulate an array, _set_weapon should be used to set weapons[] values
 onready var selected_weapon = 0
-var armour
+var armour setget _set_armour #incapsulates armour, setting armour will call the _set_armour method
 
 
 func _ready():
@@ -46,15 +46,17 @@ func _process(delta):
 		direction = "left"
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_pressed("mouse_1"):
-		if fireready == true && selected_weapon != null:
+		if fireready == true && weapons[selected_weapon] != null:
 			emit_signal("shoot")
 			$FireRateTimer.start()
 			fireready = false
 	if Input.is_action_pressed("ui_interact"):
 		_interact()
-	if Input.is_action_pressed("ui_switch_weapon"):
-		selected_weapon = weapons[0]
-	
+	if Input.is_action_just_pressed("ui_switch_weapon"):
+		if selected_weapon == 0:
+			selected_weapon = 1
+		else:
+			selected_weapon = 0
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
 		$AnimatedSprite.animation = direction + "_walking"

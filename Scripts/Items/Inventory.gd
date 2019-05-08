@@ -3,7 +3,7 @@ enum {TYPE_ARMOUR,TYPE_WEAPON,TYPE_MONEY,TYPE_HEALTH,TYPE_QUEST}
 onready var grid = []
 #onready var item_data = ItemData.new().items #returns an array of all the items available in game
 var selected #Vector2 that indicates which item is currently being displayed
-onready var inventory_screen = get_parent().get_node("GUI/InventoryScreen")
+onready var inventory_screen = Global.main_scene.get_node("GUI/InventoryScreen")
 
 signal dropitem(item)
 
@@ -29,9 +29,8 @@ func _set_selected(var grid_pos):
 			info += "Automatic"
 		else:
 			info += "Semi-Automatic"
-		info += "\nFire-rate: "  + str(item.fire_rate) + "RPM\n"
-		info += "Accuracy: Within " + str(item.spread) + " degrees\n"
-		info += "Ammo capacity: " + str(item.base_capacity)
+		info += "\nFire-rate: "  + str(item.fire_rate) + "RPM\nAccuracy: Within " 
+		info += str(item.spread) + " degrees\nAmmo capacity: " + str(item.base_capacity)
 	elif item.type == TYPE_MONEY:
 		type = "Money"
 		info = "Can be used to pay for items from merchants"
@@ -90,8 +89,6 @@ func _remove_item(var grid_pos): #input a Vector2
 	_update_gui(grid_pos)
 	
 func _move_item(var source_slot, var dest_slot): #takes vector2s
-
-	
 	if dest_slot.x ==5:
 		if (dest_slot.y == 0 || dest_slot.y == 1):
 			if grid[source_slot.x][source_slot.y].type != TYPE_WEAPON:
@@ -155,6 +152,7 @@ func _update_gui(var slot): #takes in a Vector2 grid position
 		
 func _update_player_gear():
 	pass
+	
 func _add_world_item(var worlditem):
 	if _add_item(worlditem.item):
 		worlditem.hide()

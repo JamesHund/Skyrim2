@@ -27,7 +27,12 @@ func _process(delta): #handles input
 		else:
 			$DevTools.show()
 			
-			
+func _show_PlayerInfo():
+	$PlayerInfo.show()
+	
+func _hide_PlayerInfo():
+	$PlayerInfo.hide()
+
 func _disable():
 	set_process(false)
 	if active_screen != null:
