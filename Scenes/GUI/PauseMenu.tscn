@@ -7,12 +7,12 @@
 [ext_resource path="res://textures/UI/grey4.png" type="Texture" id=5]
 [ext_resource path="res://fonts/Exo2-SemiBold.otf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 40
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 36
+size = 50
 font_data = ExtResource( 6 )
 
 [node name="PauseMenu" type="MarginContainer" groups=[
@@ -57,7 +57,7 @@ margin_top = 20.0
 margin_right = 305.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 180, 60 )
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 3 )
 text = "  Paused"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -177,7 +177,6 @@ custom_fonts/normal_font = SubResource( 2 )
 text = "Help"
 
 [node name="Exit" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 332.0
 margin_right = 310.0
 margin_bottom = 396.0
@@ -203,7 +202,6 @@ text = "Exit"
 [node name="Button" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Exit"]
 margin_right = 310.0
 margin_bottom = 64.0
-
 [connection signal="visibility_changed" from="." to="." method="_on_PauseMenu_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Resume/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Exit/Button" to="." method="_on_Exit_pressed"]

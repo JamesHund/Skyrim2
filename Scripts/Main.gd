@@ -23,12 +23,16 @@ func _enter_tree():
 
 func _ready():
 	#runs after all children nodes have been initialized
-	_respawn()
-	_load_level("testworld", $Player.position)
+	$GUI._show_MainMenu()
 	
 func _process(delta):
 		pass
 #-------Level swapping and player death--------------
+
+func _new_game():
+	_respawn()
+	_load_level("testworld", $Player.position)
+	
 func _load_level(level, pos):
 	for i in get_children():
 		if !i.is_in_group("main"):

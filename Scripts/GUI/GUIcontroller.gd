@@ -32,6 +32,12 @@ func _show_PlayerInfo():
 	
 func _hide_PlayerInfo():
 	$PlayerInfo.hide()
+	
+func _show_MainMenu():
+	$MainMenu.show()
+	
+func _hide_MainMenu():
+	$MainMenu.hide()
 
 func _disable():
 	set_process(false)
@@ -46,5 +52,6 @@ func _on_PauseMenu_resume():
 	active_screen.hide()
 	active_screen = null
 	
-
-
+func _on_MainMenu_new_game():
+	Global.main_scene._new_game()
+	_hide_MainMenu()

@@ -1,6 +1,6 @@
 extends MarginContainer
 
-onready var inventory = get_tree().get_root().get_node("Main/Inventory")
+onready var inventory = Global.main_scene.get_node("Inventory")
 
 #store rectangles that determine regions of the inventory
 var items_region
