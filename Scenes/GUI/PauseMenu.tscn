@@ -7,12 +7,13 @@
 [ext_resource path="res://textures/UI/grey4.png" type="Texture" id=5]
 [ext_resource path="res://fonts/Exo2-SemiBold.otf" type="DynamicFontData" id=6]
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=1]
 size = 40
 font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 50
+resource_local_to_scene = true
+size = 35
 font_data = ExtResource( 6 )
 
 [node name="PauseMenu" type="MarginContainer" groups=[
@@ -57,7 +58,7 @@ margin_top = 20.0
 margin_right = 305.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 180, 60 )
-custom_fonts/normal_font = SubResource( 3 )
+custom_fonts/normal_font = SubResource( 1 )
 text = "  Paused"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -99,13 +100,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Resume"
+scroll_active = false
 
 [node name="Button" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Resume"]
 margin_right = 310.0
 margin_bottom = 63.0
 
 [node name="Save" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 83.0
 margin_right = 310.0
 margin_bottom = 146.0
@@ -127,9 +128,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Save"
+scroll_active = false
 
 [node name="Controls" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 166.0
 margin_right = 310.0
 margin_bottom = 229.0
@@ -151,9 +152,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Controls"
+scroll_active = false
 
 [node name="Help" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-editor/display_folded = true
 margin_top = 249.0
 margin_right = 310.0
 margin_bottom = 312.0
@@ -175,6 +176,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Help"
+scroll_active = false
 
 [node name="Exit" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 332.0
@@ -198,6 +200,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Exit"
+scroll_active = false
 
 [node name="Button" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Exit"]
 margin_right = 310.0

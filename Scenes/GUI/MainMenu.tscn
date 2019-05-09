@@ -99,7 +99,6 @@ size_flags_vertical = 3
 custom_constants/separation = 30
 
 [node name="NewGame" type="MarginContainer" parent="HBoxContainer/MarginContainer/TitleMenuContainer/MenuContainer"]
-editor/display_folded = true
 margin_right = 568.0
 margin_bottom = 103.0
 size_flags_vertical = 3
@@ -128,7 +127,6 @@ margin_right = 568.0
 margin_bottom = 103.0
 
 [node name="Continue" type="MarginContainer" parent="HBoxContainer/MarginContainer/TitleMenuContainer/MenuContainer"]
-editor/display_folded = true
 margin_top = 133.0
 margin_right = 568.0
 margin_bottom = 236.0
@@ -158,7 +156,6 @@ margin_right = 568.0
 margin_bottom = 103.0
 
 [node name="Controls" type="MarginContainer" parent="HBoxContainer/MarginContainer/TitleMenuContainer/MenuContainer"]
-editor/display_folded = true
 margin_top = 266.0
 margin_right = 568.0
 margin_bottom = 369.0
@@ -188,7 +185,6 @@ margin_right = 568.0
 margin_bottom = 103.0
 
 [node name="Help" type="MarginContainer" parent="HBoxContainer/MarginContainer/TitleMenuContainer/MenuContainer"]
-editor/display_folded = true
 margin_top = 399.0
 margin_right = 568.0
 margin_bottom = 502.0
