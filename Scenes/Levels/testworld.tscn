@@ -24,6 +24,7 @@ level = "SecondWorld"
 light_mask = 16385
 position = Vector2( 260.335, 617.274 )
 scale = Vector2( 6.74337, 6.32191 )
+limit = 8
 
 [node name="Door2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1634.6, 737.122 )
@@ -53,4 +54,3 @@ position = Vector2( 1191.8, 114.738 )
 [node name="NPC2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1463.84, 107.336 )
 id = 1
-

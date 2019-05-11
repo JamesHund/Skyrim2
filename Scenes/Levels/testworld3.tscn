@@ -17,14 +17,12 @@ tile_data = PoolIntArray( -786441, 1, 0, -786440, 1, 0, -786439, 1, 0, -786438, 
 [node name="SpawnArea" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2783.01, 985.66 )
 scale = Vector2( 16.8257, 6.97971 )
-limit = 0
-type = 0
+limit = 10
 
 [node name="SpawnArea2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 889.464, 1317.77 )
+position = Vector2( 895.043, 1317.77 )
 scale = Vector2( 5.98497, 4.61373 )
-limit = 0
-type = 0
+limit = 8
 
 [node name="Door" parent="." instance=ExtResource( 3 )]
 position = Vector2( 708.347, 61.4335 )
@@ -34,4 +32,3 @@ pos = Vector2( 1504, 512 )
 [node name="Door2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 871.501, 56.3616 )
 level = "SecondWorld"
-

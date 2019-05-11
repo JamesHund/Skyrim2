@@ -175,6 +175,7 @@ func _on_RespawnTimer_timeout():
 func _get_player():
 	if player_is_alive:
 		return $Player
+	return null
 
 func _get_Player_position():
 	if player_is_alive:

@@ -470,6 +470,6 @@ size_flags_vertical = 3
 texture = ExtResource( 8 )
 
 [node name="InventoryItem" parent="MainContainer/VBoxContainer/GridSeperator/Gear/35" instance=ExtResource( 9 )]
-
+[connection signal="visibility_changed" from="." to="." method="_on_Inventory_visibility_changed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/DropContainer/DropButton" to="." method="_on_DropButton_pressed"]
 [connection signal="pressed" from="MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer/SellButton" to="." method="_on_SellButton_pressed"]

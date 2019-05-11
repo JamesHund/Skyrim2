@@ -151,7 +151,20 @@ func _update_gui(var slot): #takes in a Vector2 grid position
 		
 		
 func _update_player_gear():
-	pass
+	var player_ref = Global.main_scene._get_player()
+	if player_ref != null:
+		if grid[5][0] != null:
+			player_ref._set_weapon(grid[5][0].id,0)
+		else:
+			player_ref._set_weapon(-1,0)
+		if grid[5][1] != null:
+			player_ref._set_weapon(grid[5][1].id,1)
+		else:
+			player_ref._set_weapon(-1,1)
+		if grid[5][2] != null:
+			player_ref._set_armour(grid[5][2].id)
+		else:
+			player_ref._set_armour(-1)
 	
 func _add_world_item(var worlditem):
 	if _add_item(worlditem.item):

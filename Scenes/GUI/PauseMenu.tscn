@@ -18,6 +18,7 @@ font_data = ExtResource( 6 )
 
 [node name="PauseMenu" type="MarginContainer" groups=[
 "main",
+"gui",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5

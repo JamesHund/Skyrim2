@@ -7,6 +7,7 @@ signal shoot
 signal health_update(new_health)
 signal playerdeath
 signal pickupitem(item)
+signal weapon_update(weapon_id,ammo_left)
 
 onready var velocity = Vector2()
 onready var direction = "front"
@@ -50,13 +51,16 @@ func _process(delta):
 			emit_signal("shoot")
 			$FireRateTimer.start()
 			fireready = false
-	if Input.is_action_pressed("ui_interact"):
+	if Input.is_action_just_pressed("ui_interact"):
 		_interact()
 	if Input.is_action_just_pressed("ui_switch_weapon"):
 		if selected_weapon == 0:
-			selected_weapon = 1
+			if weapons[1] != null:
+				selected_weapon = 1
+				emit_signal("weapon_update", weapons[1],2)
 		else:
-			selected_weapon = 0
+			if weapons[0] != null:
+				selected_weapon = 0
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
 		$AnimatedSprite.animation = direction + "_walking"

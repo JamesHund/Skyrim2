@@ -81,3 +81,10 @@ func _on_DropButton_pressed():
 
 func _on_SellButton_pressed():
 	pass # Replace with function body.
+
+
+func _on_Inventory_visibility_changed():
+	if is_visible_in_tree():
+		get_tree().set_pause(true)
+	else:
+		get_tree().set_pause(false)

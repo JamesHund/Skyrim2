@@ -34,9 +34,7 @@ script = ExtResource( 2 )
 
 [node name="PlayerInfo" parent="GUI" instance=ExtResource( 3 )]
 
-[node name="TeleporterCooldown" parent="GUI" groups=[
-"main",
-] instance=ExtResource( 4 )]
+[node name="TeleporterCooldown" parent="GUI" instance=ExtResource( 4 )]
 margin_left = 1.85059
 margin_right = 1.85059
 
@@ -46,14 +44,12 @@ margin_right = 1.85059
 
 [node name="DevTools" parent="GUI" instance=ExtResource( 7 )]
 
-[node name="MainMenu" parent="GUI" groups=[
-"main",
-"gui",
-] instance=ExtResource( 8 )]
+[node name="MainMenu" parent="GUI" instance=ExtResource( 8 )]
 
 [node name="Inventory" type="Node" parent="." groups=[
 "main",
 ]]
+pause_mode = 2
 script = ExtResource( 9 )
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 [connection signal="resume" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_resume"]
