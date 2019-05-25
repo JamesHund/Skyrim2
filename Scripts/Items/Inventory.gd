@@ -17,30 +17,8 @@ func _ready():
 func _set_selected(var grid_pos):
 	selected = grid_pos
 	var item = grid[grid_pos.x][grid_pos.y]
-	var type
-	var info
-	if item.type == TYPE_ARMOUR:
-		type = "Armour"
-		info = "Protection: " + str(item.protection) + " percent"
-	elif item.type == TYPE_WEAPON:
-		type = "Weapon"
-		info = "Damage per bullet: " + str(item.base_damage) + "\nFire-mode: "
-		if item.fire_mode:
-			info += "Automatic"
-		else:
-			info += "Semi-Automatic"
-		info += "\nFire-rate: "  + str(item.fire_rate) + "RPM\nAccuracy: Within " 
-		info += str(item.spread) + " degrees\nAmmo capacity: " + str(item.base_capacity)
-	elif item.type == TYPE_MONEY:
-		type = "Money"
-		info = "Can be used to pay for items from merchants"
-	elif item.type == TYPE_HEALTH:
-		type = "Healing"
-		info = "Health-points: " + str(item.hp) + "\nHeal-time: " + str(item.heal_time)
-	else:
-		type = "Quest Item"
-		info = "This item has been retrieved from a quest. Return it to its owner to complete the quest"
-	inventory_screen._set_item_info(item.item_name,type,info)
+	var info = ItemUtils._get_item_info_string(item)
+	inventory_screen._set_item_info(item.item_name,info[0],info[1])
 
 func _clear_selected():
 	selected = null

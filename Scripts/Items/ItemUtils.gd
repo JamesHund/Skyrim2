@@ -36,3 +36,30 @@ static func _get_item_sprite_rect(var id): #returns region of spritesheet occupi
 	var row = floor(id/6)*32
 	var column = int(id)%6*32
 	return Rect2(column,row,32,32)
+	
+static func _get_item_info_string(var item):
+	#returns item type and item stats as strings (in an array with the two elements)
+	var type
+	var info
+	if item.type == TYPE_ARMOUR:
+		type = "Armour"
+		info = "Protection: " + str(item.protection) + " percent"
+	elif item.type == TYPE_WEAPON:
+		type = "Weapon"
+		info = "Damage per bullet: " + str(item.base_damage) + "\nFire-mode: "
+		if item.fire_mode:
+			info += "Automatic"
+		else:
+			info += "Semi-Automatic"
+		info += "\nFire-rate: "  + str(item.fire_rate) + "RPM\nAccuracy: Within " 
+		info += str(item.spread) + " degrees\nAmmo capacity: " + str(item.base_capacity)
+	elif item.type == TYPE_MONEY:
+		type = "Money"
+		info = "Can be used to pay for items from merchants"
+	elif item.type == TYPE_HEALTH:
+		type = "Healing"
+		info = "Health-points: " + str(item.hp) + "\nHeal-time: " + str(item.heal_time)
+	else:
+		type = "Quest Item"
+		info = "This item has been retrieved from a quest. Return it to its owner to complete the quest"
+	return [type,info]
