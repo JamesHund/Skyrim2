@@ -67,6 +67,7 @@ func _respawn():
 	$Player._respawn_init()
 	$Player.connect("pickupitem", $Inventory, "_add_world_item")
 	$GUI/DevTools.connect("godmode", $Player, "_toggle_godmode")
+	$Inventory._update_player_gear()
 	
 #----------Initializing Level Parts-------------
 	

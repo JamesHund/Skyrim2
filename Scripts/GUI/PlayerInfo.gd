@@ -6,6 +6,10 @@ func _ready():
 	$VBoxContainer/BottomBar/WeaponContainer.hide()
 	
 func _set_health(var value):
+	if value < 0:
+		value = 0
+	else:
+		value = round(value)
 	$VBoxContainer/BottomBar/HealthContainer/HBoxContainer/CenterContainer/TextureProgress.set_value(value)
 	$VBoxContainer/BottomBar/HealthContainer/HBoxContainer/CenterContainer2/Health.set_text(str(value))
 
