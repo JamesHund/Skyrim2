@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/baker.png-fc5ab358728cebe80da98f5866dc09b1.stex"
+path="res://.import/baker.png-90c7e664701c4c0e561a99bd58352544.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/Characters/NPC's/baker.png"
-dest_files=[ "res://.import/baker.png-fc5ab358728cebe80da98f5866dc09b1.stex" ]
+source_file="res://textures/Characters/NPC_s/baker.png"
+dest_files=[ "res://.import/baker.png-90c7e664701c4c0e561a99bd58352544.stex" ]
 
 [params]
 
