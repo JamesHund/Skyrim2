@@ -18,7 +18,6 @@ func _ready():
 
 func _on_SpawnRateTimer_timeout():
 	if enemy_count <= limit:
-		print("spawn enemy")
 		emit_signal("spawn", position , Vector2($CollisionShape2D.get_shape().extents.x*scale.x,$CollisionShape2D.get_shape().extents.y*scale.y) , type)
 		enemy_count += 1
 	else:

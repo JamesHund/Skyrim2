@@ -107,9 +107,7 @@ func _on_Enemy_shoot(instance):
 		
 #-------------Spawning characters---------------
 func _spawn_character(type,pos):
-	print("spawn character")
 	if type==9: #Enemy
-		print("character is enemy")
 		var new_enemy = enemy.instance()
 		enemy_list.append(new_enemy)
 		$Level.add_child(new_enemy)

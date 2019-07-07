@@ -17,7 +17,9 @@ func _ready():
 		inventory  = NPCdata.npc_list[id].get("merchant")
 	$Sprites.animation = str(id)
 	
-
+func _interact():
+	print(npc_name, " interacted with")
+	
 func _process(delta):
 	pass
 	

@@ -18,7 +18,7 @@ onready var godmode  = false
 onready var interactables = []
 onready var weapons = [null,null] #no way to encapsulate an array, _set_weapon should be used to set weapons[] values
 onready var selected_weapon = 0
-var armour setget _set_armour #incapsulates armour, setting armour will call the _set_armour method
+var armour setget _set_armour #encapsulates armour, setting armour will call the _set_armour method
 
 
 func _ready():
@@ -93,6 +93,9 @@ func _interact():
 			closest_object_dist = dist
 	if closest_object.is_in_group("lootchest"):
 		closest_object._interact()
+	else:
+		closest_object.get_parent()._interact()
+	
 	
 func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
 	if id != -1:

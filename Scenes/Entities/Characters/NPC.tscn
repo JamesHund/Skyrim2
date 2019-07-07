@@ -4,8 +4,6 @@
 [ext_resource path="res://textures/Characters/NPC_s/farmer.png" type="Texture" id=2]
 [ext_resource path="res://textures/Characters/NPC_s/baker.png" type="Texture" id=3]
 
-
-
 [sub_resource type="CapsuleShape2D" id=1]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -34,3 +32,12 @@ position = Vector2( 1.93712, 0 )
 frames = SubResource( 2 )
 animation = "0"
 
+[node name="Area2D" type="Area2D" parent="." groups=[
+"NPC",
+"interactable",
+]]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.950632, 0.305132 )
+scale = Vector2( 1.16752, 1.57694 )
+shape = SubResource( 1 )
