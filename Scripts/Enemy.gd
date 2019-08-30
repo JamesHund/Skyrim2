@@ -4,7 +4,7 @@ signal shoot(instance)
 signal death(pos)
 #var type = "enemy"
 #export(float)var MAXHP
-onready var health = 15
+onready var health = 100
 onready var resistance = 100
 onready var fireready = true
 onready var processintervals = 0.0

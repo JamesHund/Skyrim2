@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(int) var SPEED
 export(float) var MAXHP
 
-signal shoot
+signal shoot(damage, speed, spread)
 signal health_update(new_health)
 signal playerdeath
 signal pickupitem(item)
@@ -48,16 +48,19 @@ func _process(delta):
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_pressed("mouse_1"):
 		if fireready == true && weapons[selected_weapon] != null:
-			emit_signal("shoot")
+			_show_weapon()
+			emit_signal("shoot", weapons[selected_weapon].base_damage,weapons[selected_weapon].projectile_speed,weapons[selected_weapon].spread)
 			$FireRateTimer.start()
 			fireready = false
 	if Input.is_action_just_pressed("ui_interact"):
 		_interact()
 	if Input.is_action_just_pressed("ui_switch_weapon"):
+		_update_weapon_sprite()
 		if selected_weapon == 0:
 			if weapons[1] != null:
 				selected_weapon = 1
 				emit_signal("weapon_update", weapons[1],2)
+				
 		else:
 			if weapons[0] != null:
 				selected_weapon = 0
@@ -95,7 +98,14 @@ func _interact():
 		closest_object._interact()
 	else:
 		closest_object.get_parent()._interact()
-	
+		
+func _show_weapon():
+	if !$Weapon.visible:
+		$Weapon.show()
+	$WeaponVisibleTimer.start()
+
+func _update_weapon_sprite():
+	$Weapon.set_region_rect(ItemUtils._get_item_sprite_rect(weapons[selected_weapon].id))
 	
 func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
 	if id != -1:
@@ -139,3 +149,7 @@ func _on_InteractRadius_area_exited(area):
 		var index = interactables.find(area)
 		if index != -1:
 			interactables.remove(index)
+
+
+func _on_WeaponVisibleTimer_timeout():
+	$Weapon.hide()

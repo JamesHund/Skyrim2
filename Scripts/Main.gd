@@ -94,16 +94,17 @@ func _initialize_loot_chests():
 		chest.connect("dropitem",self,"_on_loot_chest_opened")
 
 #----------------Projectiles---------------------
-func _on_Player_shoot():
+func _on_Player_shoot(damage, speed, spread):
+	print("player shoot in main")
 	var new_projectile = projectile.instance()
 	add_child(new_projectile)
-	new_projectile._initialize(get_global_mouse_position()-$Player.position, $Player)
+	new_projectile._initialize(get_global_mouse_position()-$Player.position, $Player, damage)
 
 func _on_Enemy_shoot(instance):
 	if player_is_alive:
 		var new_projectile = projectile.instance()
 		add_child(new_projectile)
-		new_projectile._initialize($Player.position-instance.position, instance)
+		new_projectile._initialize($Player.position-instance.position, instance, 5)
 		
 #-------------Spawning characters---------------
 func _spawn_character(type,pos):

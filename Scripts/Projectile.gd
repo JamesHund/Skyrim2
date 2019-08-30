@@ -3,15 +3,17 @@ extends Area2D
 var direction
 var source
 var group
+var damage
 export (int) var SPEED
 var speedtest
 
 func _ready():
 	pass
 	
-func _initialize(dir, src):
+func _initialize(dir, src, dmg):
 	position = src.position
 	source = src
+	damage = dmg
 	if src.is_in_group("players"):
 		group = "players"
 	else:
@@ -31,7 +33,7 @@ func _on_DecayTimer_timeout():
 func _on_Projectile_body_entered( body ):
 	if body.is_in_group("characters"):
 		if !body.is_in_group(group):
-			body.damage(5)
+			body.damage(damage)
 			if body.is_in_group("enemies"):
 				body._apply_impulse(direction.normalized()*SPEED)
 			hide()
