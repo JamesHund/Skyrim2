@@ -64,6 +64,7 @@ func _respawn():
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
 	$Player.connect( "shoot", self, "_on_Player_shoot")
 	$Player.connect( "health_update", $GUI/PlayerInfo, "_set_health")
+	$Player.connect( "weapon_update", $GUI/PlayerInfo, "_set_weapon")
 	$Player._respawn_init()
 	$Player.connect("pickupitem", $Inventory, "_add_world_item")
 	$GUI/DevTools.connect("godmode", $Player, "_toggle_godmode")
@@ -94,17 +95,17 @@ func _initialize_loot_chests():
 		chest.connect("dropitem",self,"_on_loot_chest_opened")
 
 #----------------Projectiles---------------------
-func _on_Player_shoot(damage, speed, spread):
-	print("player shoot in main")
-	var new_projectile = projectile.instance()
-	add_child(new_projectile)
-	new_projectile._initialize(get_global_mouse_position()-$Player.position, $Player, damage)
+func _on_Player_shoot(damage, speed, spread, projectile_count):
+	for i in range(projectile_count):
+		var new_projectile = projectile.instance()
+		add_child(new_projectile)
+		new_projectile._initialize(get_global_mouse_position()-$Player.position, $Player, damage, speed, spread)
 
 func _on_Enemy_shoot(instance):
 	if player_is_alive:
 		var new_projectile = projectile.instance()
 		add_child(new_projectile)
-		new_projectile._initialize($Player.position-instance.position, instance, 5)
+		new_projectile._initialize($Player.position-instance.position, instance, 5, 1000, 5)
 		
 #-------------Spawning characters---------------
 func _spawn_character(type,pos):
@@ -163,12 +164,9 @@ func _on_Player_playerdeath():
 func _on_Inventory_dropitem(var item):
 	_spawn_world_item_pickup(item, _get_Player_position(), 3)
 
-
 #Timers
 func _on_RespawnTimer_timeout():
 	_respawn()
-	
-
 	
 #-----------Covenience---------------
 

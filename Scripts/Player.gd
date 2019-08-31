@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(int) var SPEED
 export(float) var MAXHP
 
-signal shoot(damage, speed, spread)
+signal shoot(damage, speed, spread, projectile_count)
 signal health_update(new_health)
 signal playerdeath
 signal pickupitem(item)
@@ -47,23 +47,11 @@ func _process(delta):
 		direction = "left"
 		$AnimatedSprite.flip_h = false
 	if Input.is_action_pressed("mouse_1"):
-		if fireready == true && weapons[selected_weapon] != null:
-			_show_weapon()
-			emit_signal("shoot", weapons[selected_weapon].base_damage,weapons[selected_weapon].projectile_speed,weapons[selected_weapon].spread)
-			$FireRateTimer.start()
-			fireready = false
+		_shoot()
 	if Input.is_action_just_pressed("ui_interact"):
 		_interact()
 	if Input.is_action_just_pressed("ui_switch_weapon"):
-		_update_weapon_sprite()
-		if selected_weapon == 0:
-			if weapons[1] != null:
-				selected_weapon = 1
-				emit_signal("weapon_update", weapons[1],2)
-				
-		else:
-			if weapons[0] != null:
-				selected_weapon = 0
+		_switch_weapon()
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * SPEED
 		$AnimatedSprite.animation = direction + "_walking"
@@ -73,7 +61,26 @@ func _process(delta):
 		$AnimatedSprite.stop()
 	move_and_slide(velocity)
 
+func _shoot():
+	if fireready == true && weapons[selected_weapon] != null:
+			_show_weapon()
+			emit_signal("shoot", weapons[selected_weapon].base_damage,weapons[selected_weapon].projectile_speed,weapons[selected_weapon].spread,weapons[selected_weapon].projectile_count)
+			$FireRateTimer.start()
+			fireready = false
+
+func _switch_weapon():
+	if selected_weapon == 0:
+		if weapons[1] != null:
+			selected_weapon = 1
+			emit_signal("weapon_update", weapons[1].id,weapons[1].ammo_left)
+			_update_weapon_sprite()
+	else:
+		if weapons[0] != null:
+			selected_weapon = 0
+			emit_signal("weapon_update", weapons[0].id,weapons[0].ammo_left)
+			_update_weapon_sprite()
 	
+				
 func damage(var hit):
 	if !godmode:
 		health -= hit * (1 - _get_armour_protection()/100)
@@ -110,8 +117,15 @@ func _update_weapon_sprite():
 func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
 	if id != -1:
 		weapons[slot] = ItemData.items[id]
+		if selected_weapon == slot:
+			emit_signal("weapon_update", weapons[slot].id,weapons[slot].ammo_left)
+			_update_weapon_sprite()
 	else:
 		weapons[slot] = null
+		emit_signal("weapon_update", -1, -1)
+		if selected_weapon==slot:
+			_switch_weapon()
+	
 		
 func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
 	if id != -1:

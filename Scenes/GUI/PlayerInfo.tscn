@@ -19,8 +19,8 @@ extra_spacing_top = -10
 font_data = ExtResource( 3 )
 
 [node name="PlayerInfo" type="MarginContainer" groups=[
-"main",
 "gui",
+"main",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
