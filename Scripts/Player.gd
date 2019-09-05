@@ -21,6 +21,7 @@ onready var interactables = []
 onready var weapons = [null,null] #no way to encapsulate an array, _set_weapon should be used to set weapons[] values
 onready var selected_weapon = 0
 onready var reloading = false
+var fire_mode
 var armour setget _set_armour #encapsulates armour, setting armour will call the _set_armour method
 
 
@@ -49,8 +50,11 @@ func _process(delta):
 		velocity.x -= 1
 		direction = "left"
 		$AnimatedSprite.flip_h = false
-	if Input.is_action_pressed("mouse_1"):
-		_shoot()
+	if fire_mode:
+		if Input.is_action_pressed("mouse_1"):
+			_shoot()
+	elif Input.is_action_just_pressed("mouse_1"):
+			_shoot()
 	if Input.is_action_just_pressed("ui_interact"):
 		_interact()
 	if Input.is_action_just_pressed("ui_switch_weapon"):
@@ -82,13 +86,13 @@ func _switch_weapon():
 				selected_weapon = 1
 				emit_signal("weapon_update", weapons[1].id,weapons[1].ammo_left)
 				_update_weapon_sprite()
-				_update_firerate()
+				_update_weapon_properties()
 		else:
 			if weapons[0] != null:
 				selected_weapon = 0
 				emit_signal("weapon_update", weapons[0].id,weapons[0].ammo_left)
 				_update_weapon_sprite()
-				_update_firerate()
+				_update_weapon_properties()
 		
 	
 				
@@ -139,15 +143,16 @@ func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slo
 			_update_weapon_sprite()
 		elif (selected_weapon == 0 && weapons[0] ==null) || (selected_weapon == 1 && weapons[1] == null):
 			_switch_weapon()
-		_update_firerate()
+		_update_weapon_properties()
 	else:
 		weapons[slot] = null
 		if selected_weapon==slot:
 			emit_signal("weapon_update", -1, -1)
 			_switch_weapon()
 			
-func _update_firerate():
+func _update_weapon_properties():
 	$FireRateTimer.set_wait_time(60/weapons[selected_weapon].fire_rate)
+	fire_mode = weapons[selected_weapon].fire_mode
 	
 func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
 	if id != -1:
