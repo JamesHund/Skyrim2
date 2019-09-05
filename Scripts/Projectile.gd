@@ -20,7 +20,6 @@ func _initialize(dir, src, dmg, spd, sprd):
 		set_collision_mask_bit(3,true)
 		#set_collision_layer_bit(3,true)
 	else:
-		print("Enemy projectile")
 		group = "enemies"
 		set_collision_mask_bit(2,true)
 		#set_collision_layer_bit(4,true)

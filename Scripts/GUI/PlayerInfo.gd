@@ -27,7 +27,7 @@ func _set_weapon(var id, var ammo_left):
 		
 		
 func _update_ammo(var ammo_left):
-	$VBoxContainer/BottomBar/WeaponContainer/RichTextLabel.bbcode_text = (str(ammo_left) + "/" + str(ammo_capacity))
+	$VBoxContainer/BottomBar/WeaponContainer/RichTextLabel.bbcode_text = "[right]" + str(ammo_left) + "/" + str(ammo_capacity)
 	
 func _hide_ammo():
 	$VBoxContainer/BottomBar/WeaponContainer.hide()

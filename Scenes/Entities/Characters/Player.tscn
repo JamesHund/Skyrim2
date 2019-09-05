@@ -142,8 +142,13 @@ region_rect = Rect2( 0, 0, 32, 32 )
 [node name="WeaponVisibleTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
 [connection signal="area_entered" from="ItemRadius" to="." method="_on_ItemRadius_area_entered"]
 [connection signal="area_entered" from="InteractRadius" to="." method="_on_InteractRadius_area_entered"]
 [connection signal="area_exited" from="InteractRadius" to="." method="_on_InteractRadius_area_exited"]
 [connection signal="timeout" from="WeaponVisibleTimer" to="." method="_on_WeaponVisibleTimer_timeout"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]

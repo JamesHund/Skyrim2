@@ -21,6 +21,13 @@ func _init(var _id, var _item_name, var _base_damage,  var _fire_mode, var _fire
 	base_capacity = _base_capacity
 	ammo_left = base_capacity
 	
-func yeet():
-	return str(base_damage) + item_name
+func _fire():
+	if ammo_left > 0:
+		ammo_left -= 1
+		return true
+	else:
+		return false
+		
+func _reload():
+	ammo_left = base_capacity
 	

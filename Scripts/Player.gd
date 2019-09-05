@@ -8,6 +8,8 @@ signal health_update(new_health)
 signal playerdeath
 signal pickupitem(item)
 signal weapon_update(weapon_id,ammo_left)
+signal reload
+signal reload_finished
 
 onready var velocity = Vector2()
 onready var direction = "front"
@@ -18,6 +20,7 @@ onready var godmode  = false
 onready var interactables = []
 onready var weapons = [null,null] #no way to encapsulate an array, _set_weapon should be used to set weapons[] values
 onready var selected_weapon = 0
+onready var reloading = false
 var armour setget _set_armour #encapsulates armour, setting armour will call the _set_armour method
 
 
@@ -62,23 +65,31 @@ func _process(delta):
 	move_and_slide(velocity)
 
 func _shoot():
-	if fireready == true && weapons[selected_weapon] != null:
+	if fireready == true && weapons[selected_weapon] != null && !reloading:
+		if weapons[selected_weapon]._fire():
 			_show_weapon()
 			emit_signal("shoot", weapons[selected_weapon].base_damage,weapons[selected_weapon].projectile_speed,weapons[selected_weapon].spread,weapons[selected_weapon].projectile_count)
+			emit_signal("weapon_update", weapons[selected_weapon].id,weapons[selected_weapon].ammo_left)
 			$FireRateTimer.start()
 			fireready = false
+		else:
+			_reload()
 
 func _switch_weapon():
-	if selected_weapon == 0:
-		if weapons[1] != null:
-			selected_weapon = 1
-			emit_signal("weapon_update", weapons[1].id,weapons[1].ammo_left)
-			_update_weapon_sprite()
-	else:
-		if weapons[0] != null:
-			selected_weapon = 0
-			emit_signal("weapon_update", weapons[0].id,weapons[0].ammo_left)
-			_update_weapon_sprite()
+	if !reloading:
+		if selected_weapon == 0:
+			if weapons[1] != null:
+				selected_weapon = 1
+				emit_signal("weapon_update", weapons[1].id,weapons[1].ammo_left)
+				_update_weapon_sprite()
+				_update_firerate()
+		else:
+			if weapons[0] != null:
+				selected_weapon = 0
+				emit_signal("weapon_update", weapons[0].id,weapons[0].ammo_left)
+				_update_weapon_sprite()
+				_update_firerate()
+		
 	
 				
 func damage(var hit):
@@ -106,6 +117,12 @@ func _interact():
 	else:
 		closest_object.get_parent()._interact()
 		
+func _reload():
+	weapons[selected_weapon]._reload()
+	reloading = true
+	$ReloadTimer.start()
+	emit_signal("reload")
+	
 func _show_weapon():
 	if !$Weapon.visible:
 		$Weapon.show()
@@ -120,13 +137,18 @@ func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slo
 		if selected_weapon == slot:
 			emit_signal("weapon_update", weapons[slot].id,weapons[slot].ammo_left)
 			_update_weapon_sprite()
+		elif (selected_weapon == 0 && weapons[0] ==null) || (selected_weapon == 1 && weapons[1] == null):
+			_switch_weapon()
+		_update_firerate()
 	else:
 		weapons[slot] = null
-		emit_signal("weapon_update", -1, -1)
 		if selected_weapon==slot:
+			emit_signal("weapon_update", -1, -1)
 			_switch_weapon()
+			
+func _update_firerate():
+	$FireRateTimer.set_wait_time(60/weapons[selected_weapon].fire_rate)
 	
-		
 func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
 	if id != -1:
 		armour = ItemData.items[id]
@@ -167,3 +189,9 @@ func _on_InteractRadius_area_exited(area):
 
 func _on_WeaponVisibleTimer_timeout():
 	$Weapon.hide()
+
+func _on_ReloadTimer_timeout():
+	reloading = false
+	emit_signal("weapon_update", weapons[selected_weapon].id,weapons[selected_weapon].ammo_left)
+	emit_signal("reload_finished")
+	

@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://fonts/Exo2-Bold.otf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=1]
+size = 48
+outline_size = 2
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 1 )
+
+[node name="CenterContainer" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 600.0
+margin_top = 420.0
+margin_right = 1000.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 400, 60 )
+custom_fonts/normal_font = SubResource( 1 )
+text = "Reloading..."
+scroll_active = false

@@ -3,7 +3,7 @@ extends CanvasLayer
 var active_screen
 
 func _ready():
-	pass
+	$ReloadingText.hide()
 func _process(delta): #handles input
 	if Input.is_action_just_pressed("ui_inventory"):
 		if active_screen != $InventoryScreen:
@@ -55,3 +55,11 @@ func _on_PauseMenu_resume():
 func _on_MainMenu_new_game():
 	Global.main_scene._new_game()
 	_hide_MainMenu()
+	
+func _show_reload():
+	print("on")
+	$ReloadingText.show()
+	
+func _hide_reload():
+	print("off")
+	$ReloadingText.hide()
