@@ -13,11 +13,11 @@
 size = 50
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 7 )
 
@@ -148,8 +148,8 @@ custom_constants/margin_right = 15
 [node name="Stats" type="RichTextLabel" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/RightMargin"]
 margin_right = 603.0
 margin_bottom = 497.0
-custom_fonts/bold_font = SubResource( 3 )
-custom_fonts/normal_font = SubResource( 2 )
+custom_fonts/bold_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[right]Item Name
 Stats
@@ -171,11 +171,6 @@ rect_min_size = Vector2( 0, 60 )
 size_flags_horizontal = 3
 texture = ExtResource( 8 )
 
-[node name="BuyButton" type="TextureButton" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_scale = Vector2( 15.44, 1.44 )
-
 [node name="BuyLabel" type="RichTextLabel" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea"]
 margin_right = 40.0
 margin_bottom = 60.0
@@ -187,6 +182,11 @@ custom_fonts/normal_font = SubResource( 4 )
 bbcode_enabled = true
 bbcode_text = "[center]Buy"
 text = "Buy"
+
+[node name="BuyButton" type="TextureButton" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 15.44, 1.44 )
 [connection signal="visibility_changed" from="." to="." method="_on_MerchantScreen_visibility_changed"]
 [connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem1" to="." method="_set_stats"]
 [connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem2" to="." method="_set_stats"]

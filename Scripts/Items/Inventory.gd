@@ -143,7 +143,38 @@ func _update_player_gear():
 			player_ref._set_armour(grid[5][2].id)
 		else:
 			player_ref._set_armour(-1)
-	
+			
+func _use_money(var amount): #subtracts money from balance, if balance is sufficient returns true
+	if grid[5][3] != null:
+		if amount >= grid[5][3].stack_size:
+			grid[5][3].stacksize -= amount
+			if grid[5][3].stacksize == 0:
+				grid[5][3].queue_free()
+			_update_gui(Vector2(5,3))
+			return true
+		else:
+			return false
+	else:
+		return false
+
+func _gain_money(var amount):
+	if grid[5][3] != null:
+		grid[5][3].stack_size += amount
+		_update_gui(Vector2(5,3))
+			
+func _buy(var id): #takes in an item id adds it to the inventory and subtracts money if there is enough
+	print("buy in inv")
+	var amount = ItemData.item_costs[id]
+	print(amount)
+	print(grid[5][3].stack_size)
+	if grid[5][3] != null:
+		if amount <= grid[5][3].stack_size:
+			grid[5][3].stack_size -= amount
+			if grid[5][3].stack_size == 0:
+				grid[5][3].queue_free()
+			_create_and_add_item(id, 1)
+			_update_gui(Vector2(5,3))
+
 func _add_world_item(var worlditem):
 	if _add_item(worlditem.item):
 		worlditem.hide()
