@@ -49,5 +49,4 @@ scroll_active = false
 [node name="TextureButton" type="TextureButton" parent="."]
 margin_right = 603.0
 margin_bottom = 78.0
-
 [connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]

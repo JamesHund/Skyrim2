@@ -49,7 +49,7 @@ func _load_level(level, pos):
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0001), "timeout")
 	_initializeSpawnAreas()
-	_initialize_NPCpointers()
+	_initialize_NPCs()
 	_initialize_teleporters()
 	_initialize_loot_chests()
 	
@@ -79,11 +79,10 @@ func _initialize_teleporters():
 	for Teleporter in teleporters:
 		Teleporter.connect("teleport",self,"_on_Teleporter_teleport")
 
-func _initialize_NPCpointers():
-	var pointers = get_tree().get_nodes_in_group("NPCpointer")
-	for NPCpointer in pointers:
-		_spawn_character(NPCpointer.type, NPCpointer.position)
-		NPCpointer.queue_free()
+func _initialize_NPCs():
+	var NPCs = get_tree().get_nodes_in_group("NPC")
+	for NPC in NPCs:
+		NPC.connect("interacted",self,"_on_NPC_interacted")
 
 func _initializeSpawnAreas():
 	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
@@ -122,6 +121,7 @@ func _spawn_character(type,pos):
 		NPC_list.append(NPC.instance())
 		$Level.add_child(NPC_list[NPC_list.size()-1])
 		NPC_list[NPC_list.size()-1].start(type,pos)
+		NPC_list[NPC_list.size()-1].connect("interacted", self, "_on_NPC_interacted")
 		
 func _on_SpawnArea_spawn(pos, extents,type):
 	var x = rand_range(0, extents.x)
@@ -150,6 +150,11 @@ func _on_loot_chest_opened(var items, var pos):
 		var random_pos = pos + polar2cartesian(rand_range(2, 100), rand_range(0,360))
 		_spawn_world_item(item,random_pos)
 		
+#----------------Interaction---------------
+func _on_NPC_interacted(NPC):
+	if NPC.merchant:
+		$GUI._show_MerchantScreen(NPC)
+
 #----------------Signals-------------------
 
 func _on_Enemy_death(var pos):

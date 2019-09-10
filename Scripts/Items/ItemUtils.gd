@@ -37,6 +37,9 @@ static func _get_item_sprite_rect(var id): #returns region of spritesheet occupi
 	var column = int(id)%6*32
 	return Rect2(column,row,32,32)
 	
+static func _get_item_info_string_by_id(var id):
+	return _get_item_info_string(ItemData.items[id])
+	
 static func _get_item_info_string(var item):
 	#returns item type and item stats as strings (in an array with the two elements)
 	var type

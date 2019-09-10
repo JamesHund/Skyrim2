@@ -17,7 +17,7 @@
 	},
 	{"id" : 5,
 	"name" : "Doctor",
-	"merchant" : [18,19,20]
+	"merchant" : [18,19,20,18,19,20]
 	},
 	{"id" : 6,
 	"name" : "Armourer",

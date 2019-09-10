@@ -4,6 +4,7 @@ var id
 signal set_current(id)
 
 func _initialize(var _id):
+	id = _id
 	_set_sprite(id)
 	_set_item_name(id)
 	

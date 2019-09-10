@@ -38,6 +38,14 @@ func _show_MainMenu():
 	
 func _hide_MainMenu():
 	$MainMenu.hide()
+	
+func _show_MerchantScreen(var NPC):
+	$MerchantScreen._update_merchant(NPC)
+	if active_screen != null:
+		active_screen.hide()
+	active_screen = $MerchantScreen	
+	active_screen.show()
+	
 
 func _disable():
 	set_process(false)

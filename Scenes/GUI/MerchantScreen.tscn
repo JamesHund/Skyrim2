@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/GUI/MerchantScreen.gd" type="Script" id=1]
 [ext_resource path="res://textures/UI/grey3.png" type="Texture" id=2]
@@ -7,14 +7,23 @@
 [ext_resource path="res://Scenes/GUI/GUISubComponents/MerchantItem.tscn" type="PackedScene" id=5]
 [ext_resource path="res://textures/UI/grey2.png" type="Texture" id=6]
 [ext_resource path="res://fonts/Exo2-Medium.otf" type="DynamicFontData" id=7]
+[ext_resource path="res://textures/UI/grey4.png" type="Texture" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=3]
+size = 32
+font_data = ExtResource( 4 )
+
 [sub_resource type="DynamicFont" id=2]
-size = 48
+size = 32
 font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
+font_data = ExtResource( 4 )
 
 [node name="MerchantScreen" type="MarginContainer"]
 anchor_left = 0.5
@@ -49,7 +58,6 @@ margin_right = 1260.0
 margin_bottom = 700.0
 
 [node name="MerchantInfo" type="MarginContainer" parent="MainContainer/VBoxContainer"]
-editor/display_folded = true
 margin_right = 1240.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 0, 100 )
@@ -88,7 +96,7 @@ margin_bottom = 576.0
 size_flags_horizontal = 3
 custom_constants/separation = 15
 
-[node name="ListItem" parent="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer" instance=ExtResource( 5 )]
+[node name="ListItem1" parent="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer" instance=ExtResource( 5 )]
 margin_bottom = 81.0
 
 [node name="ListItem2" parent="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer" instance=ExtResource( 5 )]
@@ -122,17 +130,25 @@ custom_constants/margin_top = 15
 margin_top = 15.0
 margin_right = 618.0
 margin_bottom = 576.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = ExtResource( 6 )
 
-[node name="RightMargin" type="MarginContainer" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer"]
 margin_top = 15.0
 margin_right = 618.0
 margin_bottom = 576.0
+
+[node name="RightMargin" type="MarginContainer" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer"]
+margin_right = 618.0
+margin_bottom = 497.0
+size_flags_vertical = 3
 custom_constants/margin_right = 15
 
-[node name="Stats" type="RichTextLabel" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/RightMargin"]
+[node name="Stats" type="RichTextLabel" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/RightMargin"]
 margin_right = 603.0
-margin_bottom = 561.0
+margin_bottom = 497.0
+custom_fonts/bold_font = SubResource( 3 )
 custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[right]Item Name
@@ -146,3 +162,36 @@ Cost
 
 "
 scroll_active = false
+
+[node name="BuyArea" type="NinePatchRect" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer"]
+margin_top = 501.0
+margin_right = 618.0
+margin_bottom = 561.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_horizontal = 3
+texture = ExtResource( 8 )
+
+[node name="BuyButton" type="TextureButton" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea"]
+margin_right = 40.0
+margin_bottom = 40.0
+rect_scale = Vector2( 15.44, 1.44 )
+
+[node name="BuyLabel" type="RichTextLabel" parent="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea"]
+margin_right = 40.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 618, 60 )
+rect_scale = Vector2( 1.00715, 1.00596 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/normal_font = SubResource( 4 )
+bbcode_enabled = true
+bbcode_text = "[center]Buy"
+text = "Buy"
+[connection signal="visibility_changed" from="." to="." method="_on_MerchantScreen_visibility_changed"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem1" to="." method="_set_stats"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem2" to="." method="_set_stats"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem3" to="." method="_set_stats"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem4" to="." method="_set_stats"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem5" to="." method="_set_stats"]
+[connection signal="set_current" from="MainContainer/VBoxContainer/HBoxContainer/ListContainer/VBoxContainer/ListItem6" to="." method="_set_stats"]
+[connection signal="pressed" from="MainContainer/VBoxContainer/HBoxContainer/StatsContainer/VBoxContainer/BuyArea/BuyButton" to="." method="_on_BuyButton_pressed"]

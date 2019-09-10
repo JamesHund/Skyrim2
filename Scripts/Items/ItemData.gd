@@ -8,6 +8,7 @@ class_name ItemData, "res://Scripts/Items/ItemData.gd"
 #loot_table is also parsed from a json file and is used to randomnly spawn loot
 var items
 var loot_table
+var item_costs
 
 func _ready():
 	pass
@@ -76,7 +77,17 @@ func _init():
 		printerr("error parsing loot_table.json")
 		return 0
 	loot_table = result.get_result().get("Loot")
-	
+	#parsing third file
+	item_costs = []
+	file = File.new()
+	file.open("res://data/item_costs.json", File.READ)
+	content = file.get_as_text()
+	file.close()
+	result = JSON.parse(content)
+	if result.error != OK:
+		printerr("error parsing item_costs.json")
+		return 0
+	item_costs = result.get_result().get("item_costs")
 	
 	
 

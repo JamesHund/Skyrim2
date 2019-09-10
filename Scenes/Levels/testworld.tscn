@@ -55,3 +55,15 @@ position = Vector2( 1191.8, 114.738 )
 [node name="NPC2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1463.84, 107.336 )
 id = 1
+
+[node name="NPC3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1263.63, 682.639 )
+id = 7
+
+[node name="NPC4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1148.11, 586.071 )
+id = 6
+
+[node name="NPC5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1444.13, 586.973 )
+id = 5
