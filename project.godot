@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/NPCdata.gd"
 }, {
+"base": "Node",
+"class": "Quest",
+"language": "GDScript",
+"path": "res://Scripts/Quests/Quest.gd"
+}, {
 "base": "Item",
 "class": "QuestItem",
 "language": "GDScript",
@@ -67,6 +72,7 @@ _global_script_class_icons={
 "ItemData": "res://Scripts/Items/ItemData.gd",
 "ItemUtils": "res://Scripts/Items/ItemUtils.gd",
 "NPCdata": "res://Scripts/NPCdata.gd",
+"Quest": "res://Scripts/Quests/Quest.gd",
 "QuestItem": "res://Scripts/Items/QuestItem.gd",
 "Weapon": "res://Scripts/Items/Weapon.gd",
 "pNode": "res://Scripts/pNode.gd"
@@ -84,6 +90,7 @@ ItemData="*res://Scripts/Items/ItemData.gd"
 Pathfinder="*res://Scenes/Pathfinding/Pathfinder.tscn"
 Global="*res://Scripts/Global.gd"
 NPCdata="*res://Scripts/NPCdata.gd"
+QuestHandler="*res://Scripts/Quests/QuestHandler.gd"
 
 [debug]
 
