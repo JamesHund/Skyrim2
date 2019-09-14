@@ -177,6 +177,8 @@ func _buy(var id): #takes in an item id adds it to the inventory and subtracts m
 
 func _add_world_item(var worlditem):
 	if _add_item(worlditem.item):
+		if worlditem.item.type == TYPE_QUEST:
+			QuestHandler._quest_item_collected(worlditem.item)
 		worlditem.hide()
 		worlditem.queue_free()
 	

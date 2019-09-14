@@ -1,6 +1,7 @@
 extends Node
 
 var quest_gui
+var quests
 
 func _ready():
 	pass # Replace with function body.
@@ -8,7 +9,7 @@ func _ready():
 func _activate_quest():
 	pass
 	
-func _quest_item_collected():
+func _quest_item_collected(var item):
 	pass
 	
 func _complete_quest():

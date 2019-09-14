@@ -1,0 +1,47 @@
+{"Quests":
+[
+	{
+	"id": 0
+	"name":"The Cavern",
+	"reward" : 14,
+	"item" : 
+	"difficulty": 1,
+	"NPC": 0
+	"direction": "North-East"
+	}
+	{
+	"id": 1
+	"name":"The Cavern",
+	"reward" : 14,
+	"difficulty": 1,
+	"NPC": 0
+	"direction": "North-East"
+	}
+	{
+	"id": 2
+	"name":"The Cavern",
+	"reward" : 14,
+	"difficulty": 1,
+	"NPC": 0
+	"direction": "North-East"
+	}
+	{
+	"id": 3
+	"name":"The Cavern",
+	"reward" : 14,
+	"difficulty": 1,
+	"NPC": 0
+	"direction": "North-East"
+	}
+	{
+	"id": 4
+	"name":"The Cavern",
+	"reward" : 14,
+	"difficulty": 1,
+	"NPC": 0
+	"direction": "North-East"
+	}
+
+]
+
+}
