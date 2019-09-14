@@ -57,10 +57,11 @@ func _drop_selected():
 	if selected == null:
 		return
 	var item = grid[selected.x][selected.y]
-	emit_signal("dropitem",item)
-	grid[selected.x][selected.y] = null
-	_update_gui(selected)
-	_clear_selected()
+	if item.type != TYPE_QUEST:
+		emit_signal("dropitem",item)
+		grid[selected.x][selected.y] = null
+		_update_gui(selected)
+		_clear_selected()
 	
 func _remove_item(var grid_pos): #input a Vector2
 	grid[grid_pos.x][grid_pos.y] = null

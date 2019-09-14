@@ -117,23 +117,23 @@
 	"Quest" : [
 		{"id" : 21,
 		"item_name" : "Hoe",
-		"quest_id" : 1
+		"quest_id" : 0
 		},
 		{"id" : 22,
 		"item_name" : "Flour",
-		"quest_id" : 2
+		"quest_id" : 1
 		},
 		{"id" : 23,
 		"item_name" : "Awl",
-		"quest_id" : 3
+		"quest_id" : 2
 		},
 		{"id" : 24,
 		"item_name" : "Embalming Fluid",
-		"quest_id" : 4
+		"quest_id" : 3
 		},
 		{"id" : 25,
 		"item_name" : "Handcuffs",
-		"quest_id" : 5
+		"quest_id" : 4
 		}
 	],
 	"Money" : 
