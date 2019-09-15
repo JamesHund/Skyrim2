@@ -1,45 +1,49 @@
 {"Quests":
 [
 	{
-	"id": 0
-	"name":"The Cavern",
+	"id": 0,
+	"NPC": 0,
+	"location_name":"The Cavern",
+	"location_direction": "North-East",
+    "quest_item": 21,
 	"reward" : 14,
-	"item" : 
 	"difficulty": 1,
-	"NPC": 0
-	"direction": "North-East"
 	}
 	{
-	"id": 1
-	"name":"The Cavern",
-	"reward" : 14,
-	"difficulty": 1,
-	"NPC": 0
-	"direction": "North-East"
+	"id": 1,
+	"NPC": 1,
+	"location_name":"The Cave",
+	"location_direction": "South",
+    "quest_item": 22,
+	"reward" : 16,
+	"difficulty": 2,
 	}
 	{
-	"id": 2
-	"name":"The Cavern",
-	"reward" : 14,
-	"difficulty": 1,
-	"NPC": 0
-	"direction": "North-East"
+	"id": 2,
+	"NPC": 2,
+	"location_name":"The Mine",
+	"location_direction": "North-West",
+    "quest_item": 23,
+	"reward" : 5,
+	"difficulty": 3,
 	}
 	{
-	"id": 3
-	"name":"The Cavern",
-	"reward" : 14,
-	"difficulty": 1,
-	"NPC": 0
-	"direction": "North-East"
+	"id": 3,
+	"NPC": 3,
+	"location_name":"The Bunker",
+	"location_direction": "West",
+    "quest_item": 24,
+	"reward" : 17,
+	"difficulty": 4,
 	}
 	{
-	"id": 4
-	"name":"The Cavern",
-	"reward" : 14,
-	"difficulty": 1,
-	"NPC": 0
-	"direction": "North-East"
+	"id": 4,
+	"NPC": 4,
+	"location_name":"The Facility",
+	"location_direction": "South-East",
+    "quest_item": 25,
+	"reward" : 15,
+	"difficulty": 5,
 	}
 
 ]
