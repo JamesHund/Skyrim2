@@ -134,6 +134,7 @@ func _spawn_world_item(var item, var pos):
 	_spawn_world_item_id(item.id,item.stack_size,pos)
 	
 func _spawn_world_item_id(var id, var stacksize, var pos):
+	print("world item added")
 	var new_item = worlditem.instance()
 	$Level.add_child(new_item)
 	new_item._initialize(id,stacksize,pos,0.3)

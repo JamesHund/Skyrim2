@@ -1,11 +1,23 @@
 extends Area2D
 
 var item
+export (bool) var hand_placed = false
+export (int) var id
+export (int) var stacksize
+
 
 func _ready():
-	pass
+	if hand_placed:
+		monitorable=true
+		item = ItemUtils._create_item(id,stacksize)
+		if item.type != 4:
+			$DecayTimer.start()
+		$Sprite.set_region_rect(ItemUtils._get_item_sprite_rect(id))
+		show()
 	
-func _initialize(var id, var stacksize, var pos, var pickupcooldown):
+func _initialize(var _id, var _stacksize, var pos, var pickupcooldown):
+	id = _id
+	stacksize = _stacksize
 	item = ItemUtils._create_item(id,stacksize)
 	if item.type != 4:
 		$DecayTimer.start()

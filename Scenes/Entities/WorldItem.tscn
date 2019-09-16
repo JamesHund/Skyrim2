@@ -9,7 +9,7 @@ radius = 22.6137
 [node name="WorldItem" type="Area2D" groups=[
 "worlditem",
 ]]
-z_index = 1
+z_index = 2
 monitoring = false
 monitorable = false
 script = ExtResource( 1 )
@@ -29,6 +29,5 @@ one_shot = true
 [node name="PickupTimer" type="Timer" parent="."]
 wait_time = 0.3
 one_shot = true
-
 [connection signal="timeout" from="DecayTimer" to="." method="_on_DecayTimer_timeout"]
 [connection signal="timeout" from="PickupTimer" to="." method="_on_PickupTimer_timeout"]

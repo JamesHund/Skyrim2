@@ -29,6 +29,7 @@ func _quest_item_collected(var item):
 	quests[item.quest_id].quest_state = 2
 	
 func _complete_quest(var id):
+	Global.main_scene._spawn_world_item_id(quests[id].reward, 1, Global.main_scene._get_Player_position())
 	quests[id].quest_state = 3
 	active_quests.erase(quests[id])
 	
