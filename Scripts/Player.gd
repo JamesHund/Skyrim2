@@ -129,16 +129,14 @@ func _reload():
 	emit_signal("reload")
 	
 func _show_weapon():
+	var dir = (get_global_mouse_position() - Global.main_scene._get_Player_position())
+	$Weapon.rotation = cartesian2polar(dir.x,dir.y).y
+	if $Weapon.rotation_degrees >= -90 && $Weapon.rotation_degrees <= 90:
+		$Weapon.flip_v = false
+	else:
+		$Weapon.flip_v = true
 	if !$Weapon.visible:
 		$Weapon.show()
-		var dir = (get_global_mouse_position() - Global.main_scene._get_Player_position())
-		$Weapon.rotation = cartesian2polar(dir.x,dir.y).y
-		if rotation_degrees > 180:
-			$Weapon.flip_v = true
-			$Weapon.flip_h = false
-		else:
-			$Weapon.flip_v = false
-			$Weapon.flip_h = true
 	$WeaponVisibleTimer.start()
 
 func _update_weapon_sprite():
