@@ -8,7 +8,7 @@
     "quest_item": 21,
 	"reward" : 14,
 	"difficulty": 1,
-	}
+	},
 	{
 	"id": 1,
 	"NPC": 1,
@@ -17,7 +17,7 @@
     "quest_item": 22,
 	"reward" : 16,
 	"difficulty": 2,
-	}
+	},
 	{
 	"id": 2,
 	"NPC": 2,
@@ -26,7 +26,7 @@
     "quest_item": 23,
 	"reward" : 5,
 	"difficulty": 3,
-	}
+	},
 	{
 	"id": 3,
 	"NPC": 3,
@@ -35,7 +35,7 @@
     "quest_item": 24,
 	"reward" : 17,
 	"difficulty": 4,
-	}
+	},
 	{
 	"id": 4,
 	"NPC": 4,
@@ -45,7 +45,6 @@
 	"reward" : 15,
 	"difficulty": 5,
 	}
-
 ]
 
 }

@@ -6,14 +6,7 @@ func _ready():
 	$ReloadingText.hide()
 func _process(delta): #handles input
 	if Input.is_action_just_pressed("ui_inventory"):
-		if active_screen != $InventoryScreen:
-			if active_screen != null:
-				active_screen.hide()
-			active_screen = $InventoryScreen
-			active_screen.show()
-		else:
-			active_screen.hide()
-			active_screen = null
+		_change_active_screen($InventoryScreen)
 	if Input.is_action_just_pressed("ui_cancel"):
 		if active_screen != null:
 			active_screen.hide()
@@ -21,12 +14,24 @@ func _process(delta): #handles input
 		else:
 			active_screen = $PauseMenu
 			active_screen.show()
+	if Input.is_action_just_pressed("ui_quest_menu"):
+		_change_active_screen($QuestMenu)
 	if Input.is_action_just_pressed("ui_dev_tools"):
 		if $DevTools.is_visible():
 			$DevTools.hide()
 		else:
 			$DevTools.show()
 			
+func _change_active_screen(var screen):
+	if active_screen != screen:
+		if active_screen != null:
+			active_screen.hide()
+		active_screen = screen
+		active_screen.show()
+	else:
+		active_screen.hide()
+		active_screen = null
+	
 func _show_PlayerInfo():
 	$PlayerInfo.show()
 	

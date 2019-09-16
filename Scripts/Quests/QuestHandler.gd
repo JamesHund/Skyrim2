@@ -1,11 +1,22 @@
 extends Node
 
 var quest_gui
-var quests
+var quests = []
 var active_quests = []
 
 func _ready():
-	pass # Replace with function body.
+	var file = File.new()
+	file.open("res://data/quest_data.json", File.READ)
+	var result = JSON.parse(file.get_as_text())
+	file.close()
+	if result.error != OK:
+		printerr("error parsing quest_data.json")
+		return
+	else:
+		print("quest_data has been parsed correctly")
+	var quest_arr = result.get_result().get("Quests")
+	for quest in quest_arr:
+		quests.append(Quest.new(quest.get("id"),quest.get("NPC"),quest.get("location_name"),quest.get("location_direction"),quest.get("quest_item"),quest.get("reward"),quest.get("difficulty"),0))
 
 func _activate_quest(var id): #makes a quest active if there is a free quest slot, returns true if slot is free
 	if active_quests.size() <= 3:
