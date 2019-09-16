@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/GUI/GUIcontroller.gd" type="Script" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://Scenes/GUI/MerchantScreen.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/GUI/QuestMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/GUI/ReloadingText.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Scripts/Items/Inventory.gd" type="Script" id=12]
+[ext_resource path="res://Scenes/GUI/QuestDialogue.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/Items/Inventory.gd" type="Script" id=13]
 
 [node name="Main" type="Node2D" groups=[
 "main",
@@ -59,11 +60,13 @@ anchor_bottom = 0.0
 margin_right = 1600.0
 margin_bottom = 900.0
 
+[node name="QuestDialogue" parent="GUI" instance=ExtResource( 12 )]
+
 [node name="Inventory" type="Node" parent="." groups=[
 "main",
 ]]
 pause_mode = 2
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 [connection signal="resume" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_resume"]
 [connection signal="printgrid" from="GUI/DevTools" to="Inventory" method="_print_grid"]

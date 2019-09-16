@@ -52,9 +52,6 @@ func _load_level(level, pos):
 	_initialize_NPCs()
 	_initialize_teleporters()
 	_initialize_loot_chests()
-	QuestHandler._activate_quest(2)
-	QuestHandler._activate_quest(4)
-	QuestHandler._activate_quest(1)
 	
 
 func _respawn():
@@ -157,6 +154,8 @@ func _on_loot_chest_opened(var items, var pos):
 func _on_NPC_interacted(NPC):
 	if NPC.merchant:
 		$GUI._show_MerchantScreen(NPC)
+	else:
+		$GUI._show_QuestDialogue(NPC)
 
 #----------------Signals-------------------
 

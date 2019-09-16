@@ -51,6 +51,13 @@ func _show_MerchantScreen(var NPC):
 	active_screen = $MerchantScreen	
 	active_screen.show()
 	
+func _show_QuestDialogue(var NPC):
+	$QuestDialogue._set_quest(NPC.id)
+	if active_screen != null:
+		active_screen.hide()
+	active_screen = $QuestDialogue
+	active_screen.show()
+	
 
 func _disable():
 	set_process(false)
