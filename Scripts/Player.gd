@@ -28,6 +28,7 @@ var armour setget _set_armour #encapsulates armour, setting armour will call the
 func _ready():
 	$FireRateTimer.set_wait_time(0.1)
 	$Camera2D.make_current()
+	$Weapon.flip_h = true
 
 func _respawn_init():
 	emit_signal("health_update",health)
@@ -130,6 +131,14 @@ func _reload():
 func _show_weapon():
 	if !$Weapon.visible:
 		$Weapon.show()
+		var dir = (get_global_mouse_position() - Global.main_scene._get_Player_position())
+		$Weapon.rotation = cartesian2polar(dir.x,dir.y).y
+		if rotation_degrees > 180:
+			$Weapon.flip_v = true
+			$Weapon.flip_h = false
+		else:
+			$Weapon.flip_v = false
+			$Weapon.flip_h = true
 	$WeaponVisibleTimer.start()
 
 func _update_weapon_sprite():

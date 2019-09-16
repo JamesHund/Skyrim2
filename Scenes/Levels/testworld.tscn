@@ -19,7 +19,8 @@ tile_data = PoolIntArray( -1179593, 0, 0, -1179592, 0, 0, -1114060, 0, 0, -11140
 
 [node name="Door" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1372.75, 736.207 )
-level = "SecondWorld"
+level = "testworld3"
+pos = Vector2( 0, 0 )
 
 [node name="SpawnArea" parent="." instance=ExtResource( 3 )]
 light_mask = 16385
@@ -70,3 +71,4 @@ id = 5
 
 [node name="CaveDoor" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1758.86, -208.479 )
+level = "Cave"

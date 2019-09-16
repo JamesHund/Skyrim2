@@ -167,6 +167,7 @@ func _on_Teleporter_teleport(level, pos):
 	_load_level(level,pos)
 
 func _on_Player_playerdeath():
+	_load_level("testworld", $Player.position)
 	$GUI._disable()
 	player_is_alive = false
 	$RespawnTimer.start()
