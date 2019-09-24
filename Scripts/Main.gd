@@ -32,6 +32,12 @@ func _process(delta):
 func _new_game():
 	_respawn()
 	_load_level("testworld", $Player.position)
+	$Inventory._create_and_add_item(6,1)
+	
+func _continue_game():
+	SaveHandler._load_from_save()
+	_respawn()
+	_load_level("testworld", $Player.position)
 	
 func _load_level(level, pos):
 	for i in get_children():
@@ -106,7 +112,7 @@ func _on_Enemy_shoot(instance):
 	if player_is_alive:
 		var new_projectile = projectile.instance()
 		add_child(new_projectile)
-		new_projectile._initialize($Player.position-instance.position, instance, 5, 1000, 5)
+		new_projectile._initialize($Player.position-instance.position, instance, 2, 1000, 5)
 		
 #-------------Spawning characters---------------
 func _spawn_character(type,pos):
@@ -191,3 +197,7 @@ func _get_Player_position():
 		return $Player.position
 	else:
 		return null
+
+
+func _on_MainMenu_continue_game():
+	_continue_game()

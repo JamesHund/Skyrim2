@@ -7,9 +7,9 @@ static func _gen_array_from_tilemap(var tilemap):
 	var used_cells = tilemap.get_used_cells()
 	
 	var grid = []
-	for x in range(128): #max area 128*128, can change
+	for x in range(256): #max area 128*128, can change
 		grid.append([])
-		grid[x].resize(128)
+		grid[x].resize(256)
 		
 	var k = 0
 	for cell in used_cells:

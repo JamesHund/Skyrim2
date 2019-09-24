@@ -20,6 +20,8 @@ func _set_quest(var id):
 		_set_quest_text("Thank you for finding it for me! Here is your reward!")
 		$VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect.show()
 		$VBoxContainer/MarginContainer/HBoxContainer/NinePatchRect/RichTextLabel.set_text("   Reward")
+	else:
+		_set_quest_text("Thank you for finding it for me!")
 	$VBoxContainer/NinePatchRect/RichTextLabel.set_text("   Questgiver: " + NPCdata.npc_list[QuestHandler.quests[id].NPC].get("name"))
 		
 func _generate_quest_text():

@@ -76,6 +76,11 @@ func _on_MainMenu_new_game():
 	Global.main_scene._new_game()
 	_hide_MainMenu()
 	
+func _on_MainMenu_continue_game():
+	Global.main_scene._continue_game()
+	_hide_MainMenu()
+
+	
 func _show_reload():
 	print("on")
 	$ReloadingText.show()
@@ -83,3 +88,5 @@ func _show_reload():
 func _hide_reload():
 	print("off")
 	$ReloadingText.hide()
+
+

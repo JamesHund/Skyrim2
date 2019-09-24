@@ -91,6 +91,7 @@ Pathfinder="*res://Scenes/Pathfinding/Pathfinder.tscn"
 Global="*res://Scripts/Global.gd"
 NPCdata="*res://Scripts/NPCdata.gd"
 QuestHandler="*res://Scripts/Quests/QuestHandler.gd"
+SaveHandler="*res://Scripts/SaveHandler.gd"
 
 [debug]
 

@@ -58,6 +58,7 @@ func _exit_tree():
 	emit_signal("death",position)
 	
 func _update_path():
+	print("update path")
 	var enemy_tilemap_location = tilemap_ref.world_to_map(position)
 	var player_tilemap_location = tilemap_ref.world_to_map(get_tree().get_root().get_node("Main/Player").position)
 	var start_node = grid[enemy_tilemap_location.x][enemy_tilemap_location.y]
@@ -106,6 +107,7 @@ func _get_distance(var nodeA, var nodeB) -> int:
 	return distY*14 + 10*(distX-distY)
 	
 func _retrace_path(var start_node, var end_node):
+	print("retrace path")
 	var path = []
 	var current_node = end_node
 	while current_node != start_node:

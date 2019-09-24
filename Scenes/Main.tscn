@@ -70,5 +70,6 @@ script = ExtResource( 13 )
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 [connection signal="resume" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_resume"]
 [connection signal="printgrid" from="GUI/DevTools" to="Inventory" method="_print_grid"]
+[connection signal="continue_game" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_continue_game"]
 [connection signal="new_game" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_new_game"]
 [connection signal="dropitem" from="Inventory" to="." method="_on_Inventory_dropitem"]
