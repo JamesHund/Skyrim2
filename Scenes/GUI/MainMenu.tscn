@@ -44,8 +44,8 @@ frame_7/texture = ExtResource( 14 )
 frame_7/delay_sec = 0.0
 
 [node name="MainMenu" type="MarginContainer" groups=[
-"gui",
 "main",
+"gui",
 ]]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,6 +69,7 @@ custom_constants/margin_left = 30
 custom_constants/margin_bottom = 30
 
 [node name="TitleMenuContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
+editor/display_folded = true
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 598.0

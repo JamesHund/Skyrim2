@@ -1,8 +1,5 @@
 extends Node
 
-func _ready():
-	pass # Replace with function body.
-
 func _save():
 	#converting items from inventory to array for storage
 	var inv = Global.main_scene.get_node("Inventory")

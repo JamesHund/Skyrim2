@@ -7,14 +7,12 @@ func _ready():
 	hide()
 
 func _show_cooldown(var timer):
-	#if timer.get_time_left()>0:
 	total_time = timer.get_wait_time()
 	$IntervalTimer.start()
 	show()
 	$VisibleTimer.set_wait_time(timer.get_time_left())
 	$VisibleTimer.start()
 	bar.set_value($VisibleTimer.get_time_left()/total_time*100)
-	#print("countdown" +
 
 func _hide_cooldown():
 	hide()

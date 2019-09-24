@@ -10,8 +10,6 @@ var items
 var loot_table
 var item_costs
 
-func _ready():
-	pass
 	
 func _init():
 	print("began parsing of items")

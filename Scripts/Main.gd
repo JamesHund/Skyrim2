@@ -53,7 +53,7 @@ func _load_level(level, pos):
 	$Player.position = pos
 	$Player._clear_interactables()
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
-	yield(get_tree().create_timer(0.0001), "timeout")
+	yield(get_tree().create_timer(0.0002), "timeout")
 	_initializeSpawnAreas()
 	_initialize_NPCs()
 	_initialize_teleporters()

@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/door.gd" type="Script" id=1]
 [ext_resource path="res://textures/Tiles/door.png" type="Texture" id=2]
 
-[node name="Door" type="Node2D" groups=[
+[node name="Teleporter" type="Node2D" groups=[
 "teleport",
 ]]
 script = ExtResource( 1 )
@@ -21,7 +21,6 @@ texture = ExtResource( 2 )
 [node name="CooldownTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
 [connection signal="timeout" from="CooldownTimer" to="." method="_on_EnteredTimer_timeout"]

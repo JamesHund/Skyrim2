@@ -21,14 +21,7 @@ polygon = PoolVector2Array( -16, -16, 16, -16, 16, 16, -16, 16 )
 process_mode = 0
 autostart = true
 
-[node name="RecalculateNode" type="Timer" parent="."]
-process_mode = 0
-wait_time = 3.0
-autostart = true
-
 [node name="KnockbackTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Navigation2D" type="Navigation2D" parent="."]
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_FireRateTimer_timeout"]
 [connection signal="timeout" from="KnockbackTimer" to="." method="_on_KnockbackTimer_timeout"]

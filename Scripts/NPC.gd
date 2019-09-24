@@ -6,8 +6,6 @@ export(int) var id
 onready var merchant = false
 var npc_name
 var inventory
-var processintervals
-var velocity
 
 func _ready():
 	_start(id,position)
@@ -28,11 +26,5 @@ func _start(var id, var pos):
 func _interact():
 	print(npc_name, " interacted with")
 	emit_signal("interacted",self)
-	
-func _process(delta):
-	pass
-	
-func _exit_tree():
-	print("NPC " + npc_name + " has been deleted")
 	
 	

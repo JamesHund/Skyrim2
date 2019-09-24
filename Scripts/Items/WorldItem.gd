@@ -34,8 +34,6 @@ func _initialize(var _id, var _stacksize, var pos, var pickupcooldown):
 func _on_DecayTimer_timeout():
 	hide()
 	queue_free()
-	
-
 
 
 func _on_PickupTimer_timeout():

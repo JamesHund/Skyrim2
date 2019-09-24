@@ -1,6 +1,5 @@
 extends Node
 
-var quest_gui
 var quests = []
 var active_quests = []
 
