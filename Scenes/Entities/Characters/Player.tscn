@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://textures/Characters/Main Character/left.png" type="Texture" id=2]
-[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=3]
-[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=4]
+[ext_resource path="res://textures/Characters/Main Character/back.png" type="Texture" id=3]
+[ext_resource path="res://textures/Characters/Main Character/front.png" type="Texture" id=4]
 [ext_resource path="res://textures/Characters/Main Character/back_walking1.png" type="Texture" id=5]
 [ext_resource path="res://textures/Characters/Main Character/back_walking2.png" type="Texture" id=6]
 [ext_resource path="res://textures/Characters/Main Character/back_walking3.png" type="Texture" id=7]
@@ -42,12 +42,12 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
-"name": "front",
+"name": "back",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ) ],
 "loop": true,
-"name": "back",
+"name": "front",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
@@ -78,8 +78,8 @@ radius = 83.7818
 
 [node name="Player" type="KinematicBody2D" groups=[
 "characters",
-"players",
 "main",
+"players",
 ]]
 z_index = 3
 input_pickable = true
@@ -108,7 +108,6 @@ drag_margin_v_enabled = false
 [node name="SpawnRadius" type="Area2D" parent="." groups=[
 "spawnradius",
 ]]
-editor/display_folded = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnRadius" groups=[
@@ -119,14 +118,12 @@ scale = Vector2( 1.655, 1.68455 )
 shape = SubResource( 3 )
 
 [node name="ItemRadius" type="Area2D" parent="."]
-editor/display_folded = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ItemRadius"]
 position = Vector2( 0, -4.75 )
 shape = SubResource( 4 )
 
 [node name="InteractRadius" type="Area2D" parent="."]
-editor/display_folded = true
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractRadius"]

@@ -166,7 +166,7 @@ func _set_armour(var id): #same as above method except for players armour (-1 = 
 		armour = ItemData.items[id]
 	else:
 		armour = null
-func start(pos):
+func _start(pos):
 	position = pos
 	show()
 	

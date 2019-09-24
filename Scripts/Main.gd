@@ -14,8 +14,8 @@ onready var enemy_list = []
 onready var NPC_list = []
 onready var item_list = []
 var lvl #stores level resource to be loaded
-var default_grid #stores grid of tilemap
-var tilemap_path
+#var default_grid #stores grid of tilemap
+#var tilemap_path
 
 func _enter_tree():
 	#runs before children nodes are initialized
@@ -48,8 +48,8 @@ func _load_level(level, pos):
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	var new_level = lvl.instance()
 	$Level.call_deferred("add_child",new_level)
-	default_grid = GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
-	tilemap_path = new_level.get_node("TileMap")
+	#default_grid = GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
+	#tilemap_path = new_level.get_node("TileMap")
 	$Player.position = pos
 	$Player._clear_interactables()
 	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
@@ -66,7 +66,7 @@ func _respawn():
 	player_is_alive = true
 	add_child(new_player)
 	$GUI._enable()
-	$Player.start(Vector2(1504, 512))
+	$Player._start(Vector2(1504, 512))
 	$Player.connect( "playerdeath", self , "_on_Player_playerdeath")
 	$Player.connect( "shoot", self, "_on_Player_shoot")
 	$Player.connect( "health_update", $GUI/PlayerInfo, "_set_health")
@@ -122,11 +122,11 @@ func _spawn_character(type,pos):
 		$Level.add_child(new_enemy)
 		new_enemy.connect( "shoot", self, "_on_Enemy_shoot")
 		new_enemy.connect("death",self, "_on_Enemy_death")
-		new_enemy.start(pos)
+		new_enemy._start(pos)
 	elif type<9:
 		NPC_list.append(NPC.instance())
 		$Level.add_child(NPC_list[NPC_list.size()-1])
-		NPC_list[NPC_list.size()-1].start(type,pos)
+		NPC_list[NPC_list.size()-1]._start(type,pos)
 		NPC_list[NPC_list.size()-1].connect("interacted", self, "_on_NPC_interacted")
 		
 func _on_SpawnArea_spawn(pos, extents,type):

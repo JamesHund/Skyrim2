@@ -11,16 +11,6 @@
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
-"name": "7",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "5",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
 "name": "4",
 "speed": 5.0
 }, {
@@ -41,12 +31,22 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
+"name": "5",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
 "name": "2",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "6",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "7",
 "speed": 5.0
 } ]
 
