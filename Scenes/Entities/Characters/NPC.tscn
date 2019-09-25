@@ -1,9 +1,15 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/NPC.gd" type="Script" id=1]
-[ext_resource path="res://textures/Characters/NPC_s/farmer.png" type="Texture" id=2]
-[ext_resource path="res://textures/Characters/NPC_s/baker.png" type="Texture" id=3]
-[ext_resource path="res://textures/UI/grey2.png" type="Texture" id=4]
+[ext_resource path="res://textures/Characters/NPC_s/policeman.png" type="Texture" id=2]
+[ext_resource path="res://textures/Characters/NPC_s/farmer.png" type="Texture" id=3]
+[ext_resource path="res://textures/Characters/NPC_s/baker.png" type="Texture" id=4]
+[ext_resource path="res://textures/Characters/NPC_s/undertaker.png" type="Texture" id=5]
+[ext_resource path="res://textures/Characters/NPC_s/doctor.png" type="Texture" id=6]
+[ext_resource path="res://textures/Characters/NPC_s/shoemaker.png" type="Texture" id=7]
+[ext_resource path="res://textures/Characters/NPC_s/Armourer.png" type="Texture" id=8]
+[ext_resource path="res://textures/Characters/NPC_s/gunsmith.png" type="Texture" id=9]
+[ext_resource path="res://textures/UI/grey2.png" type="Texture" id=10]
 
 [sub_resource type="CapsuleShape2D" id=1]
 
@@ -14,37 +20,37 @@ animations = [ {
 "name": "4",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 3 ) ],
 "loop": false,
 "name": "0",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "1",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "3",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 6 ) ],
 "loop": true,
 "name": "5",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "2",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
 "name": "6",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": true,
 "name": "7",
 "speed": 5.0
@@ -77,7 +83,7 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( -3.83402, -46.9291 )
 scale = Vector2( 0.267034, 0.0758546 )
-texture = ExtResource( 4 )
+texture = ExtResource( 10 )
 
 [node name="NameLabel" type="RichTextLabel" parent="."]
 margin_left = -38.0
