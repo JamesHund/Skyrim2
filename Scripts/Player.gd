@@ -10,6 +10,7 @@ signal pickupitem(item)
 signal weapon_update(weapon_id,ammo_left)
 signal reload
 signal reload_finished
+signal heal(timer)
 
 onready var velocity = Vector2()
 onready var direction = "front"
@@ -21,6 +22,8 @@ onready var interactables = []
 onready var weapons = [null,null] #no way to encapsulate an array, _set_weapon should be used to set weapons[] values
 onready var selected_weapon = 0
 onready var reloading = false
+onready var healing = false
+var heal_amount
 var fire_mode
 var armour setget _set_armour #encapsulates armour, setting armour will call the _set_armour method
 
@@ -37,6 +40,7 @@ func _respawn_init():
 func _process(delta):
 	#input
 	velocity = Vector2()
+	#movement
 	if Input.is_action_pressed("ui_down"):
 		velocity.y += 1
 		direction = "front"
@@ -51,6 +55,15 @@ func _process(delta):
 		velocity.x -= 1
 		direction = "left"
 		$AnimatedSprite.flip_h = false
+	if velocity.length() > 0:
+		velocity = velocity.normalized() * SPEED
+		$AnimatedSprite.animation = direction + "_walking"
+		$AnimatedSprite.play()
+	else:
+		$AnimatedSprite.animation = direction
+		$AnimatedSprite.stop()
+	move_and_slide(velocity)
+	#weapons
 	if fire_mode:
 		if Input.is_action_pressed("mouse_1"):
 			_shoot()
@@ -60,17 +73,22 @@ func _process(delta):
 		_interact()
 	if Input.is_action_just_pressed("ui_switch_weapon"):
 		_switch_weapon()
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * SPEED
-		$AnimatedSprite.animation = direction + "_walking"
-		$AnimatedSprite.play()
-	else:
-		$AnimatedSprite.animation = direction
-		$AnimatedSprite.stop()
-	move_and_slide(velocity)
+	
+	#healing
+	if !healing && !reloading:
+		if Input.is_action_pressed("heal_bandage"):
+			if Global.main_scene.get_node("Inventory")._find_and_consume_item(18):
+				_heal(18)
+		if Input.is_action_pressed("heal_syringe"):
+			if Global.main_scene.get_node("Inventory")._find_and_consume_item(19):
+				_heal(19)
+		if Input.is_action_pressed("heal_medkit"):
+			if Global.main_scene.get_node("Inventory")._find_and_consume_item(20):
+				_heal(20)
+	
 
 func _shoot():
-	if fireready == true && weapons[selected_weapon] != null && !reloading:
+	if fireready == true && weapons[selected_weapon] != null && !reloading && !healing:
 		if weapons[selected_weapon]._fire():
 			_show_weapon()
 			emit_signal("shoot", weapons[selected_weapon].base_damage,weapons[selected_weapon].projectile_speed,weapons[selected_weapon].spread,weapons[selected_weapon].projectile_count)
@@ -94,9 +112,14 @@ func _switch_weapon():
 				emit_signal("weapon_update", weapons[0].id,weapons[0].ammo_left)
 				_update_weapon_sprite()
 				_update_weapon_properties()
-		
-	
-				
+
+func _heal(var id):
+	healing = true
+	$HealingTimer.wait_time = ItemData.items[id].heal_time
+	$HealingTimer.start()
+	emit_signal("heal", $HealingTimer)
+	heal_amount = ItemData.items[id].hp
+
 func damage(var hit):
 	if !godmode:
 		health -= hit * (1 - _get_armour_protection()/100)
@@ -206,4 +229,10 @@ func _on_ReloadTimer_timeout():
 	reloading = false
 	emit_signal("weapon_update", weapons[selected_weapon].id,weapons[selected_weapon].ammo_left)
 	emit_signal("reload_finished")
-	
+
+func _on_HealingTimer_timeout():
+	health += heal_amount
+	if health > 100:
+		health = 100
+	healing = false
+	emit_signal("health_update",health)

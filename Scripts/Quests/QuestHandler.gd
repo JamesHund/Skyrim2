@@ -26,11 +26,14 @@ func _activate_quest(var id): #makes a quest active if there is a free quest slo
 	
 func _quest_item_collected(var item):
 	quests[item.quest_id].quest_state = 2
+	_check_if_active(item.quest_id)
 	
 func _quest_item_collected_by_quest_id(var id):
 	quests[id].quest_state = 2
+	_check_if_active(quests[id])
 	
 func _complete_quest(var id): # this method sets quest state to complete and spawns reward at player position
+	Global.main_scene.get_node("Inventory")._find_and_consume_item(quests[id].quest_item)
 	Global.main_scene._spawn_world_item_id(quests[id].reward, 1, Global.main_scene._get_Player_position())
 	_set_quest_complete(id)
 	active_quests.erase(quests[id])
@@ -42,4 +45,8 @@ func _item_is_collected(var id): #returns true if quest item has been collected
 	if quests[id].quest_state >= 2:
 		return true
 	return false
+	
+func _check_if_active(var id): #checks if quest is still active to restore active quests after saving
+	if (active_quests.find(quests[id]) == -1):
+		active_quests.append(quests[id])
 	

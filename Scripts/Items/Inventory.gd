@@ -60,10 +60,26 @@ func _drop_selected():
 		grid[selected.x][selected.y] = null
 		_update_gui(selected)
 		_clear_selected()
+
+func _find_item(var id): #returns the first position of the item with that id as a Vector2()
+	for y in range(0,4):
+		for x in range(0,6):
+			if grid[x][y] != null:
+				if grid[x][y].id == id:
+					return Vector2(x,y)
 	
-func _remove_item(var grid_pos): #input a Vector2
-	grid[grid_pos.x][grid_pos.y] = null
-	_update_gui(grid_pos)
+func _consume_item(var grid_pos): #input a Vector2
+	if grid[grid_pos.x][grid_pos.y] != null:
+		grid[grid_pos.x][grid_pos.y].stack_size -=1
+		if grid[grid_pos.x][grid_pos.y].stack_size == 0:
+			grid[grid_pos.x][grid_pos.y] = null
+		_update_gui(grid_pos)
+		return true
+	else:
+		return false
+		
+func _find_and_consume_item(var id):
+	return _consume_item(_find_item(id))
 	
 func _move_item(var source_slot, var dest_slot): #takes vector2s
 	if dest_slot.x ==5:

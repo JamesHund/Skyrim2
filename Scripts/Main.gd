@@ -76,6 +76,7 @@ func _respawn():
 	$GUI/DevTools.connect("godmode", $Player, "_toggle_godmode")
 	$Player.connect("reload", $GUI, "_show_reload")
 	$Player.connect("reload_finished", $GUI, "_hide_reload")
+	$Player.connect("heal", $GUI, "_show_healing")
 	$Inventory._update_player_gear()
 	
 #----------Initializing Level Parts-------------

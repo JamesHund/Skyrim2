@@ -69,7 +69,6 @@ custom_constants/margin_left = 30
 custom_constants/margin_bottom = 30
 
 [node name="TitleMenuContainer" type="VBoxContainer" parent="HBoxContainer/MarginContainer"]
-editor/display_folded = true
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 598.0

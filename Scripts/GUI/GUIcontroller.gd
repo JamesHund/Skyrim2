@@ -4,6 +4,9 @@ var active_screen
 
 func _ready():
 	$ReloadingText.hide()
+	$HealingText.hide()
+	$ControlsScreen.hide()
+	
 func _process(delta): #handles input
 	if Input.is_action_just_pressed("ui_inventory"):
 		_change_active_screen($InventoryScreen)
@@ -44,6 +47,9 @@ func _show_MainMenu():
 func _hide_MainMenu():
 	$MainMenu.hide()
 	
+func _show_ControlsScreen():
+	_change_active_screen($ControlsScreen)
+	
 func _show_MerchantScreen(var NPC):
 	$MerchantScreen._update_merchant(NPC)
 	if active_screen != null:
@@ -82,11 +88,23 @@ func _on_MainMenu_continue_game():
 
 	
 func _show_reload():
-	print("on")
 	$ReloadingText.show()
 	
 func _hide_reload():
-	print("off")
 	$ReloadingText.hide()
+	
+func _show_healing(var timer):
+	$HealingText.show()
+	yield(timer, "timeout")
+	$HealingText.hide()
+
+func _on_PauseMenu_controls():
+	_show_ControlsScreen()
 
 
+func _on_PauseMenu_help():
+	pass # Replace with function body.
+
+
+func _on_MainMenu_controls():
+	_show_ControlsScreen()

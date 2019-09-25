@@ -1,6 +1,8 @@
 extends MarginContainer
 
 signal resume
+signal controls
+signal help
 
 func _ready():
 	hide()
@@ -25,3 +27,11 @@ func _on_Exit_pressed():
 
 func _on_SaveButton_pressed():
 	SaveHandler._save()
+
+
+func _on_ControlsButton_pressed():
+	emit_signal("controls")
+
+
+func _on_HelpButton_pressed():
+	emit_signal("help")

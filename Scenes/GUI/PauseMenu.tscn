@@ -159,6 +159,10 @@ custom_fonts/normal_font = SubResource( 2 )
 text = "Controls"
 scroll_active = false
 
+[node name="ControlsButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Controls"]
+margin_right = 312.0
+margin_bottom = 63.0
+
 [node name="Help" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 249.0
 margin_right = 310.0
@@ -182,6 +186,10 @@ size_flags_vertical = 3
 custom_fonts/normal_font = SubResource( 2 )
 text = "Help"
 scroll_active = false
+
+[node name="HelpButton" type="TextureButton" parent="VBoxContainer/MarginContainer/VBoxContainer/Help"]
+margin_right = 310.0
+margin_bottom = 64.0
 
 [node name="Exit" type="NinePatchRect" parent="VBoxContainer/MarginContainer/VBoxContainer"]
 margin_top = 332.0
@@ -213,4 +221,6 @@ margin_bottom = 64.0
 [connection signal="visibility_changed" from="." to="." method="_on_PauseMenu_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Resume/Button" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Save/SaveButton" to="." method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Controls/ControlsButton" to="." method="_on_ControlsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Help/HelpButton" to="." method="_on_HelpButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/VBoxContainer/Exit/Button" to="." method="_on_Exit_pressed"]
