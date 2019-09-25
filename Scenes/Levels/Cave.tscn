@@ -77,7 +77,7 @@ level = "testworld"
 pos = Vector2( 1750, -50 )
 
 [node name="SpawnArea" parent="." instance=ExtResource( 6 )]
-position = Vector2( 290.78, 285.611 )
+position = Vector2( -6.86108, 421.935 )
 scale = Vector2( 4.70404, 4.27647 )
 rate = 4.0
-limit = 8
+limit = 4

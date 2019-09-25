@@ -3,8 +3,8 @@
 	{
 	"id": 0,
 	"NPC": 0,
-	"location_name":"The Cavern",
-	"location_direction": "North-East",
+	"location_name":"The Cave",
+	"location_direction": "North",
     "quest_item": 21,
 	"reward" : 14,
 	"difficulty": 1,
@@ -12,7 +12,7 @@
 	{
 	"id": 1,
 	"NPC": 1,
-	"location_name":"The Cave",
+	"location_name":"The Cavern",
 	"location_direction": "South",
     "quest_item": 22,
 	"reward" : 16,

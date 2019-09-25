@@ -81,14 +81,14 @@ scale = Vector2( 1.16752, 1.57694 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -3.83402, -46.9291 )
-scale = Vector2( 0.267034, 0.0758546 )
+position = Vector2( 3.15644, -46.9291 )
+scale = Vector2( 0.321647, 0.0758546 )
 texture = ExtResource( 10 )
 
 [node name="NameLabel" type="RichTextLabel" parent="."]
 margin_left = -38.0
 margin_top = -54.0
-margin_right = 30.0
+margin_right = 45.0
 margin_bottom = -37.0
 text = "   Farmer"
 scroll_active = false
