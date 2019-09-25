@@ -7,7 +7,7 @@
 	"location_direction": "North",
     "quest_item": 21,
 	"reward" : 14,
-	"difficulty": 1,
+	"difficulty": 0,
 	},
 	{
 	"id": 1,
@@ -16,7 +16,7 @@
 	"location_direction": "South",
     "quest_item": 22,
 	"reward" : 16,
-	"difficulty": 2,
+	"difficulty": 1,
 	},
 	{
 	"id": 2,
@@ -25,7 +25,7 @@
 	"location_direction": "North-West",
     "quest_item": 23,
 	"reward" : 5,
-	"difficulty": 3,
+	"difficulty": 2,
 	},
 	{
 	"id": 3,
@@ -34,7 +34,7 @@
 	"location_direction": "West",
     "quest_item": 24,
 	"reward" : 17,
-	"difficulty": 4,
+	"difficulty": 3,
 	},
 	{
 	"id": 4,
@@ -43,7 +43,7 @@
 	"location_direction": "South-East",
     "quest_item": 25,
 	"reward" : 15,
-	"difficulty": 5,
+	"difficulty": 4,
 	}
 ]
 
