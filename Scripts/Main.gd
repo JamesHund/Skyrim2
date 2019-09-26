@@ -33,6 +33,7 @@ func _new_game():
 	_respawn()
 	_load_level("testworld", $Player.position)
 	$Inventory._create_and_add_item(6,1)
+	SaveHandler._save()
 	
 func _continue_game():
 	SaveHandler._load_from_save()

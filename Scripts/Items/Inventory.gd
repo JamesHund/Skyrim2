@@ -85,22 +85,22 @@ func _move_item(var source_slot, var dest_slot): #takes vector2s
 	if dest_slot.x ==5:
 		if (dest_slot.y == 0 || dest_slot.y == 1):
 			if grid[source_slot.x][source_slot.y].type != TYPE_WEAPON:
-				return
+				return false
 		elif dest_slot.y == 2:
 			if grid[source_slot.x][source_slot.y].type != TYPE_ARMOUR:
-				return
+				return false
 		elif grid[source_slot.x][source_slot.y].type != TYPE_MONEY:
-			return
+			return false
 	elif source_slot.x == 5:
 		if grid[dest_slot.x][dest_slot.y] != null:
 			if (source_slot.y == 0 || source_slot.y == 1):
 				if grid[dest_slot.x][dest_slot.y].type != TYPE_WEAPON:
-					return
+					return false
 			elif source_slot.y == 2:
 				if grid[dest_slot.x][dest_slot.y].type != TYPE_ARMOUR:
-					return
+					return false
 			elif grid[dest_slot.x][dest_slot.y].type != TYPE_MONEY:
-				return
+				return false
 
 	if source_slot != dest_slot:
 		var sx = source_slot.x
@@ -123,6 +123,7 @@ func _move_item(var source_slot, var dest_slot): #takes vector2s
 		
 		_update_gui(source_slot)
 		_update_gui(dest_slot)
+		return true
 	
 func _stack(var source, var dest): #takes Item instances
 	if dest.stack_size < dest.max_stack_size:
@@ -176,7 +177,17 @@ func _gain_money(var amount):
 	if grid[5][3] != null:
 		grid[5][3].stack_size += amount
 		_update_gui(Vector2(5,3))
+	else:
+		_create_and_add_item(26,amount)
 			
+func _sell_selected():
+	if selected != null && grid[selected.x][selected.y] != null:
+		_gain_money(ItemData.item_costs[grid[selected.x][selected.y].id])
+		_consume_item(selected)
+		_update_gui(selected)
+		if grid[selected.x][selected.y] == null:
+			_clear_selected()
+
 func _buy(var id): #takes in an item id adds it to the inventory and subtracts money if there is enough
 	print("buy in inv")
 	var amount = ItemData.item_costs[id]

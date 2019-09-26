@@ -17,7 +17,7 @@ onready var gear_h_seperation = get_node("MainContainer/VBoxContainer/GridSepera
 
 func _ready():
 	hide()
-	_sell_button_set_visible(false)
+	_sell_button_set_visible(true)
 	_connect_inventory_items()
 	var items_region_node = $MainContainer/VBoxContainer/GridSeperator/Items
 	var gear_region_node = $MainContainer/VBoxContainer/GridSeperator/Gear
@@ -52,14 +52,17 @@ func _on_InventoryItem_released(pos, grid):
 		var y = floor((pos_relative_to_item_region.y+item_h_seperation/2)/(slot_size_item.x+item_h_seperation))
 		if grid != Vector2(x,y):
 			inventory._move_item(grid,Vector2(x,y))
+			#inventory._set_selected(Vector2(x,y))
 		inventory._set_selected(Vector2(x,y))
+		
 		
 	elif gear_region.has_point(pos):
 		var pos_relative_to_gear_region = pos-gear_region.position
 		var x = 5
 		var y = floor((pos_relative_to_gear_region.y+gear_h_seperation/2)/(slot_size_gear.x+gear_h_seperation))
 		if grid != Vector2(x,y):
-			inventory._move_item(grid,Vector2(x,y))
+			if inventory._move_item(grid,Vector2(x,y)):
+				inventory._set_selected(Vector2(x,y))
 		else:
 			inventory._set_selected(Vector2(x,y))
 
@@ -80,7 +83,7 @@ func _on_DropButton_pressed():
 
 
 func _on_SellButton_pressed():
-	pass # Replace with function body.
+	inventory._sell_selected()
 
 
 func _on_Inventory_visibility_changed():
