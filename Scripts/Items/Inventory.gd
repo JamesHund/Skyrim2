@@ -81,7 +81,8 @@ func _consume_item(var grid_pos): #input a Vector2
 func _find_and_consume_item(var id):
 	return _consume_item(_find_item(id))
 	
-func _move_item(var source_slot, var dest_slot): #takes vector2s
+func _move_item(var source_slot, var dest_slot): #takes vector2s, returns true if move was successful
+	#checking gear slots to see if items are compatible
 	if dest_slot.x ==5:
 		if (dest_slot.y == 0 || dest_slot.y == 1):
 			if grid[source_slot.x][source_slot.y].type != TYPE_WEAPON:

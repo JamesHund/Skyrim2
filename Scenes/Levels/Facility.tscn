@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://textures/Tiles/wall.png" type="Texture" id=1]
 [ext_resource path="res://textures/Tiles/floortype.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/LevelParts/Teleporter.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Entities/LootChest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/LevelParts/SpawnArea.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Entities/WorldItem.tscn" type="PackedScene" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -184,3 +185,9 @@ position = Vector2( 1660.89, 104.516 )
 scale = Vector2( 1.55638, 3.91116 )
 rate = 4.0
 limit = 2
+
+[node name="WorldItem" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1590.03, 686.222 )
+hand_placed = true
+id = 23
+stacksize = 1

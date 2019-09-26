@@ -78,6 +78,7 @@ pos = Vector2( 0, 0 )
 [node name="MineDoor" parent="." instance=ExtResource( 4 )]
 position = Vector2( 481.717, -363.925 )
 level = "Mine"
+pos = Vector2( 0, 0 )
 
 [node name="FacilityDoor" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2336.12, 1234.11 )
