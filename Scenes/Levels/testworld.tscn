@@ -87,4 +87,4 @@ pos = Vector2( 0, 0 )
 
 [node name="BunkerDoor" parent="." instance=ExtResource( 4 )]
 position = Vector2( 399.969, 560.661 )
-level = " Bunker"
+level = "Bunker"
