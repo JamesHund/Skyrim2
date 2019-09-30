@@ -7,9 +7,9 @@
 [ext_resource path="res://Scenes/GUI/InventoryScreen.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/GUI/PauseMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/GUI/DevTools.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Scenes/GUI/MainMenu.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Scenes/GUI/MerchantScreen.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Scenes/GUI/QuestMenu.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/GUI/MerchantScreen.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/GUI/QuestMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/GUI/MainMenu.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scenes/GUI/ReloadingText.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/GUI/QuestDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/GUI/HealingText.tscn" type="PackedScene" id=13]
@@ -50,11 +50,11 @@ margin_right = 1.85059
 
 [node name="DevTools" parent="GUI" instance=ExtResource( 7 )]
 
-[node name="MainMenu" parent="GUI" instance=ExtResource( 8 )]
+[node name="MerchantScreen" parent="GUI" instance=ExtResource( 8 )]
 
-[node name="MerchantScreen" parent="GUI" instance=ExtResource( 9 )]
+[node name="QuestMenu" parent="GUI" instance=ExtResource( 9 )]
 
-[node name="QuestMenu" parent="GUI" instance=ExtResource( 10 )]
+[node name="MainMenu" parent="GUI" instance=ExtResource( 10 )]
 
 [node name="ReloadingText" parent="GUI" instance=ExtResource( 11 )]
 anchor_right = 0.0

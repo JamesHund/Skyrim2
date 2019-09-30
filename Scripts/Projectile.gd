@@ -6,7 +6,7 @@ var group
 var damage
 var speed
 
-func _initialize(dir, src, dmg, spd, sprd):
+func _initialize(dir, src, dmg, spd,sprd):
 	position = src.position
 	source = src
 	damage = dmg
