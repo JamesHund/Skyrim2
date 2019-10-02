@@ -70,42 +70,146 @@ margin_bottom = 826.0
 custom_fonts/bold_font = SubResource( 2 )
 custom_fonts/normal_font = SubResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[b]Test[/b]
-This is a test
+bbcode_text = "[b]Basic gameplay[/b]
+-The objective of this game is to complete all the quests
+-As the player you can:
+	-Pickup items
+	-Shoot weapons
+	-Upgrade gear
+	-Buy gear
+	-Interact with Non-Player-Characters(NPC’s)
+	-Collect loot from lootboxes
+	-Complete quests and collect rewards
+-If you die during a quest you are returned to the spawn area and have to start the quest over
 
-[b]Test[/b]
-This is a test
+[b]Quests[/b]
+-You can accept a quest by talking to an NPC who is a quest giver [‘E’ key]
+-The NPC will give you information about the quest before you can accept it
+-You can have a maximum of 3 active quests at one time
+-If you forgot about a quest you have active, you can view all active quests in the Quest Log [‘J’ key]
+-To complete a quest you must collect an item from the quest location and return it to the quest giver
+-The quest giver will give you a reward upon completion
 
-[b]Test[/b]
-This is a test
+[b]Saving your progress[/b]
+-You can save your progress at any time by pressing the save button in the Pause Menu [‘Esc’ key]
+-Your quest progress and your inventory contents will be saved but you will be returned to spawn and your progress within a specific quest location will be lost
+-To continue from the last point you saved at you must click the continue button in the Main Menu (clicking New Game will wipe your save data)
 
-[b]Test[/b]
-This is a test
+[b]Items and Inventory[/b]
+-You can pick up items in the game by moving the player over them which will be added to your inventory
+-The inventory screen can be accessed by clicking ‘TAB’
+-You can move items around your inventory by clicking and dragging
+-Healing items and money can stack multiple items in a single slot
+-You can see more information about an item by clicking on it
+-You can drop items by pressing drop and sell items by pressing sell
+-To equip weapons you can drag weapon items into the top two slots of the gear section on the right of the inventory
+-To equip armour you drag an armour item into the third slot from the top
+-Money will automatically accumulate in the bottom slot of the gear section
 
-[b]Test[/b]
-This is a test
+[b]Armour[/b]
+-Armour provides protection from enemy projectiles by reducing the damage they inflict on the player
 
-[b]Test[/b]
-This is a test
+[b]Weapons[/b]
+-You can equip a maximum of two weapons which can be switched during gameplay [‘X’ key]
+-Each weapon has different stats which can be seen by selecting in the inventory
+-There are four weapon types
+	-Pistol
+	-Shotgun
+	-Machine Gun
+	-Sniper
+-To fire a weapon you have to left click
+-The machine gun is automatic so you can hold down left click to fire
+-When you run out of ammunition in a clip left clicking will reload the weapon
+-You can’t shoot, heal or switch weapon while reloading
+-Each weapon type has three tiers of it available each tier improving the stats of that weapon
+-Tier 3 weapons can only be collected by completing quests
 
-ok"
-text = "Test
-This is a test
+[b]Health items[/b]
+-There are 3 health items: Bandages, Syringes and First Aid Kit
+-You can heal with an item to restore health with a corresponding key:
+	-’F’ key -> First aid kit
+	-’G’ key -> Bandage
+	-’H’ key -> Syringe
+-You can only heal with an item if it is in your inventory
+-Healing will temporarily prevent you from shooting or healing with other items
 
-Test
-This is a test
+[b]Buying items[/b]
+-Some NPC’s are merchants and interacting with them will bring up the merchant screen [‘E’ key]
+-You can buy items by selecting them and clicking buy
+	-You need to have enough gold in your inventory to buy the item
 
-Test
-This is a test
+[b]Lootboxes[/b]
+-Lootboxes will give a random set of items if you open them [‘E’ key]
+"
+text = "Basic gameplay
+-The objective of this game is to complete all the quests
+-As the player you can:
+	-Pickup items
+	-Shoot weapons
+	-Upgrade gear
+	-Buy gear
+	-Interact with Non-Player-Characters(NPC’s)
+	-Collect loot from lootboxes
+	-Complete quests and collect rewards
+-If you die during a quest you are returned to the spawn area and have to start the quest over
 
-Test
-This is a test
+Quests
+-You can accept a quest by talking to an NPC who is a quest giver [‘E’ key]
+-The NPC will give you information about the quest before you can accept it
+-You can have a maximum of 3 active quests at one time
+-If you forgot about a quest you have active, you can view all active quests in the Quest Log [‘J’ key]
+-To complete a quest you must collect an item from the quest location and return it to the quest giver
+-The quest giver will give you a reward upon completion
 
-Test
-This is a test
+Saving your progress
+-You can save your progress at any time by pressing the save button in the Pause Menu [‘Esc’ key]
+-Your quest progress and your inventory contents will be saved but you will be returned to spawn and your progress within a specific quest location will be lost
+-To continue from the last point you saved at you must click the continue button in the Main Menu (clicking New Game will wipe your save data)
 
-Test
-This is a test
+Items and Inventory
+-You can pick up items in the game by moving the player over them which will be added to your inventory
+-The inventory screen can be accessed by clicking ‘TAB’
+-You can move items around your inventory by clicking and dragging
+-Healing items and money can stack multiple items in a single slot
+-You can see more information about an item by clicking on it
+-You can drop items by pressing drop and sell items by pressing sell
+-To equip weapons you can drag weapon items into the top two slots of the gear section on the right of the inventory
+-To equip armour you drag an armour item into the third slot from the top
+-Money will automatically accumulate in the bottom slot of the gear section
 
-ok"
+Armour
+-Armour provides protection from enemy projectiles by reducing the damage they inflict on the player
+
+Weapons
+-You can equip a maximum of two weapons which can be switched during gameplay [‘X’ key]
+-Each weapon has different stats which can be seen by selecting in the inventory
+-There are four weapon types
+	-Pistol
+	-Shotgun
+	-Machine Gun
+	-Sniper
+-To fire a weapon you have to left click
+-The machine gun is automatic so you can hold down left click to fire
+-When you run out of ammunition in a clip left clicking will reload the weapon
+-You can’t shoot, heal or switch weapon while reloading
+-Each weapon type has three tiers of it available each tier improving the stats of that weapon
+-Tier 3 weapons can only be collected by completing quests
+
+Health items
+-There are 3 health items: Bandages, Syringes and First Aid Kit
+-You can heal with an item to restore health with a corresponding key:
+	-’F’ key -> First aid kit
+	-’G’ key -> Bandage
+	-’H’ key -> Syringe
+-You can only heal with an item if it is in your inventory
+-Healing will temporarily prevent you from shooting or healing with other items
+
+Buying items
+-Some NPC’s are merchants and interacting with them will bring up the merchant screen [‘E’ key]
+-You can buy items by selecting them and clicking buy
+	-You need to have enough gold in your inventory to buy the item
+
+Lootboxes
+-Lootboxes will give a random set of items if you open them [‘E’ key]
+"
 [connection signal="visibility_changed" from="." to="." method="_on_Control_visibility_changed"]
