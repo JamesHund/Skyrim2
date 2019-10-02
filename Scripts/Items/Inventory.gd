@@ -69,7 +69,7 @@ func _find_item(var id): #returns the first position of the item with that id as
 					return Vector2(x,y)
 	
 func _consume_item(var grid_pos): #input a Vector2
-	if grid[grid_pos.x][grid_pos.y] != null:
+	if grid_pos != null:
 		grid[grid_pos.x][grid_pos.y].stack_size -=1
 		if grid[grid_pos.x][grid_pos.y].stack_size == 0:
 			grid[grid_pos.x][grid_pos.y] = null
