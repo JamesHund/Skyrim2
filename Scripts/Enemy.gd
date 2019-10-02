@@ -24,7 +24,7 @@ func _start(pos):
 
 func _ready():
 	randomize()
-	$FireRateTimer.set_wait_time(0.3)
+	$FireRateTimer.set_wait_time(0.5)
 	velocity = Vector2(randi()%3-1, randi()%3-1)
 
 func _process(delta):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/GUI/GUIcontroller.gd" type="Script" id=2]
@@ -14,7 +14,8 @@
 [ext_resource path="res://Scenes/GUI/QuestDialogue.tscn" type="PackedScene" id=12]
 [ext_resource path="res://Scenes/GUI/HealingText.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/GUI/Controls.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Scripts/Items/Inventory.gd" type="Script" id=15]
+[ext_resource path="res://Scenes/GUI/Help.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scripts/Items/Inventory.gd" type="Script" id=16]
 
 [node name="Main" type="Node2D" groups=[
 "main",
@@ -68,11 +69,13 @@ margin_bottom = 900.0
 
 [node name="ControlsScreen" parent="GUI" instance=ExtResource( 14 )]
 
+[node name="HelpScreen" parent="GUI" instance=ExtResource( 15 )]
+
 [node name="Inventory" type="Node" parent="." groups=[
 "main",
 ]]
 pause_mode = 2
-script = ExtResource( 15 )
+script = ExtResource( 16 )
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
 [connection signal="controls" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_controls"]
 [connection signal="help" from="GUI/PauseMenu" to="GUI" method="_on_PauseMenu_help"]
@@ -80,5 +83,6 @@ script = ExtResource( 15 )
 [connection signal="printgrid" from="GUI/DevTools" to="Inventory" method="_print_grid"]
 [connection signal="continue_game" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_continue_game"]
 [connection signal="controls" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_controls"]
+[connection signal="help" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_help"]
 [connection signal="new_game" from="GUI/MainMenu" to="GUI" method="_on_MainMenu_new_game"]
 [connection signal="dropitem" from="Inventory" to="." method="_on_Inventory_dropitem"]

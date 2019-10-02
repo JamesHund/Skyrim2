@@ -31,11 +31,10 @@ margin_bottom = 80.0
 [node name="StackSize" type="RichTextLabel" parent="."]
 margin_left = 75.0
 margin_top = 75.0
-margin_right = 99.0
+margin_right = 117.0
 margin_bottom = 99.0
 custom_fonts/normal_font = SubResource( 1 )
 text = "64"
-
 [connection signal="timeout" from="MouseFollowTimer" to="." method="_on_MouseFollowTimer_timeout"]
 [connection signal="button_down" from="TextureButton" to="." method="_on_TextureButton_button_down"]
 [connection signal="button_up" from="TextureButton" to="." method="_on_TextureButton_button_up"]

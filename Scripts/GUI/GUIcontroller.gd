@@ -6,6 +6,7 @@ func _ready():
 	$ReloadingText.hide()
 	$HealingText.hide()
 	$ControlsScreen.hide()
+	$HelpScreen.hide()
 	
 func _process(delta): #handles input
 	if Input.is_action_just_pressed("ui_inventory"):
@@ -49,6 +50,9 @@ func _hide_MainMenu():
 	
 func _show_ControlsScreen():
 	_change_active_screen($ControlsScreen)
+	
+func _show_HelpScreen():
+	_change_active_screen($HelpScreen)
 	
 func _show_MerchantScreen(var NPC):
 	$MerchantScreen._update_merchant(NPC)
@@ -101,10 +105,11 @@ func _show_healing(var timer):
 func _on_PauseMenu_controls():
 	_show_ControlsScreen()
 
-
 func _on_PauseMenu_help():
-	pass # Replace with function body.
-
+	_show_HelpScreen()
 
 func _on_MainMenu_controls():
 	_show_ControlsScreen()
+
+func _on_MainMenu_help():
+	_show_HelpScreen()
