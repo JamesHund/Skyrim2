@@ -11,6 +11,7 @@ var quest_item
 var reward #id of item given as reward
 var difficulty #Scale of 1-5 , 1 being the easiest
 
+#initializes fields
 func _init(var _id,var _NPC,var _location_name,var _location_direction,var _quest_item,var _reward,var _difficulty, var _quest_state):
 	id = _id
 	NPC = _NPC

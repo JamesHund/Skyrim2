@@ -10,7 +10,9 @@ var items
 var loot_table
 var item_costs
 
-	
+#items.json is parsed into a set of items and appended to 'items'
+#loot_table.json is parsed into a dictionary and assigned to 'loot_table'
+#item_costs.json is parsed into an array of integers and assigned to 'item_costs'
 func _init():
 	print("began parsing of items")
 	items = []

@@ -3,9 +3,9 @@ extends Object
 class_name ItemUtils, "res://Scripts/Items/ItemUtils.gd"
 enum {TYPE_ARMOUR,TYPE_WEAPON,TYPE_MONEY,TYPE_HEALTH,TYPE_QUEST}
 
-func _ready():
-	pass
+#Utility class which contains functions pertaining to items
 
+#creates an item of id and stack_size and returns it
 static func _create_item(var id, var stack_size): 
 	var item_data = ItemData.items
 	var item_ref = item_data[id] #reference to template item in item_data array
@@ -32,19 +32,22 @@ static func _create_item(var id, var stack_size):
 		item = QuestItem.new(item_ref.id,item_ref.item_name,item_ref.quest_id)
 	return item
 
-static func _get_item_sprite_rect(var id): #returns region of spritesheet occupied by item with id
+#returns a Rect2 which defines the region on of spritesheet occupied by item with id
+static func _get_item_sprite_rect(var id):
 	var row = floor(id/6)*32
 	var column = int(id)%6*32
 	return Rect2(column,row,32,32)
-	
+
+#returns name of item of id
 static func _get_item_name(var id):
 	return ItemData.items[id].item_name
-	
+
+#returns item type and item stats as strings (in an array with the two elements) taking an id as a parameter
 static func _get_item_info_string_by_id(var id):
 	return _get_item_info_string(ItemData.items[id])
-	
+
+#returns item type and item stats as strings (in an array with the two elements) taking item as a parameter
 static func _get_item_info_string(var item):
-	#returns item type and item stats as strings (in an array with the two elements)
 	var type
 	var info
 	if item.type == TYPE_ARMOUR:

@@ -44,8 +44,9 @@ func _set_item_info(var name, var type, var info):
 	$MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/ItemType.set_text(type)
 	$MainContainer/VBoxContainer/ItemInfo/HBoxContainer/StatsContainer/ItemStats.set_text(info)
 
-#called
+#called when Inventory item is released, checks if it is dropped over a slot in the inventory and attempts a move
 func _on_InventoryItem_released(pos, grid):
+	#Items region
 	if items_region.has_point(pos):
 		var pos_relative_to_item_region = pos - items_region.position 
 		var x = floor((pos_relative_to_item_region.x+item_v_seperation/2)/(slot_size_item.x+item_v_seperation))
@@ -54,7 +55,6 @@ func _on_InventoryItem_released(pos, grid):
 			inventory._move_item(grid,Vector2(x,y))
 			#inventory._set_selected(Vector2(x,y))
 		inventory._set_selected(Vector2(x,y))
-		
 		
 	elif gear_region.has_point(pos):
 		var pos_relative_to_gear_region = pos-gear_region.position
@@ -69,6 +69,7 @@ func _on_InventoryItem_released(pos, grid):
 	#Calculate grid pos of destination based on pos
 	#Call inventory move_item with both grid pos
 
+#takes in a boolean and sets sell button's visibilty based on the boolean
 func _sell_button_set_visible(var visibilty):
 	var sell_container = $MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/SellDropContainer/SellContainer
 	if visibilty:
@@ -78,14 +79,15 @@ func _sell_button_set_visible(var visibilty):
 		for child in sell_container.get_children():
 			child.hide()
 
+#called when drop button is pressed and calls _drop_selected() in inventory
 func _on_DropButton_pressed():
 	inventory._drop_selected()
 
-
+#called when drop button is pressed and calls _drop_selected() in inventory
 func _on_SellButton_pressed():
 	inventory._sell_selected()
 
-
+#called when inventory's visibilty is changed, if visible pause else unpause
 func _on_Inventory_visibility_changed():
 	if is_visible_in_tree():
 		get_tree().set_pause(true)
