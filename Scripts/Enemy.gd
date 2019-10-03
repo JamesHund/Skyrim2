@@ -18,24 +18,28 @@ var knockback_vector
 #onready var gridsize = 128
 #var current_path
 
+#sets position to pos and makes enemy visible
 func _start(pos):
 	position = pos
 	show()
 
+#Called when entering scene, initializes firerate timer
 func _ready():
 	randomize()
 	$FireRateTimer.set_wait_time(0.5)
 	velocity = Vector2(randi()%3-1, randi()%3-1)
-
+	
+#Runs every processcycle, moves enemies and attempts to shoot
 func _process(delta):
 	processintervals += delta
 	if(processintervals >= 2):
+		#randomizes movement vector
 		randomize()
 		#_update_path()
 		processintervals -= 2
 		velocity = Vector2(randi()%3-1, randi()%3-1)
 	if !knockback:
-		move_and_slide(velocity.normalized()*100*delta)
+		move_and_slide(velocity.normalized()*4000*delta)
 	else:
 		move_and_slide((knockback_vector)+velocity.normalized()*1000*delta)
 		knockback_vector *= 0.9*delta
@@ -44,16 +48,18 @@ func _process(delta):
 		$FireRateTimer.start()
 		fireready = false
 
+#damages enemy for value of hit
 func damage(var hit):
 	health -= hit * resistance/100
 	if health <= 0:
 		hide()
 		queue_free()
 		
-
+#runs when firerate timer runs out and fireready
 func _on_FireRateTimer_timeout():
 	fireready = true
 	
+#emits death signal when enemy dies
 func _exit_tree():
 	emit_signal("death",position)
 	
@@ -133,13 +139,14 @@ func _exit_tree():
 #	#print(neighbours.size())
 #	return neighbours
 	
+#propels enemy in a direction as specified by vector
 func _apply_impulse(var vector):
 	knockback = true
-	knockback_vector = vector
+	knockback_vector = vector.normalized()*100
 	$KnockbackTimer.start()
 	
 	
-
+#runs when knockback timer is complete and sets knockback to false
 func _on_KnockbackTimer_timeout():
 	knockback = false
 

@@ -14,7 +14,8 @@ onready var item_h_seperation = get_node("MainContainer/VBoxContainer/GridSepera
 onready var gear_v_seperation = get_node("MainContainer/VBoxContainer/GridSeperator/Gear").get("custom_constants/vseparation")
 onready var gear_h_seperation = get_node("MainContainer/VBoxContainer/GridSeperator/Gear").get("custom_constants/hseparation")
 
-
+#called when InventoryScreen added to sceneTree
+#initializes region variables and clears item info pane
 func _ready():
 	hide()
 	_sell_button_set_visible(true)
@@ -25,26 +26,25 @@ func _ready():
 	gear_region = Rect2(gear_region_node.get_global_position(),gear_region_node.get_size())
 	_set_item_info("","","")
 	
-
-func _process(delta):
-	pass
-	
-
-func _change_sprite(var grid_pos, var id, var stacksize): #takes vector2 and id
+#changes sprite of InventoryItem at Vector2 grid_pos to item of id
+func _change_sprite(var grid_pos, var id, var stacksize): #takes vector2 and ints
 	if grid_pos.x == 5:
 		get_node("MainContainer/VBoxContainer/GridSeperator/Gear/" + str(grid_pos.y) + "5/InventoryItem")._set_sprite(id,stacksize)
 	else:
 		get_node("MainContainer/VBoxContainer/GridSeperator/Items/" + str(grid_pos.y) + str(grid_pos.x) + "/InventoryItem")._set_sprite(id,stacksize)
-		
+
+#connects all InventoryItem's "released" signals to the _on_InventoryItem_released method
 func _connect_inventory_items():
 	for node in get_tree().get_nodes_in_group("inventoryitem"):
 		node.connect("released",get_node(""), "_on_InventoryItem_released") 
 
+#sets item info panel to display name, type and info Strings
 func _set_item_info(var name, var type, var info):
 	$MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/ItemName.set_text(name)
 	$MainContainer/VBoxContainer/ItemInfo/HBoxContainer/VBoxContainer/ItemType.set_text(type)
 	$MainContainer/VBoxContainer/ItemInfo/HBoxContainer/StatsContainer/ItemStats.set_text(info)
 
+#called
 func _on_InventoryItem_released(pos, grid):
 	if items_region.has_point(pos):
 		var pos_relative_to_item_region = pos - items_region.position 

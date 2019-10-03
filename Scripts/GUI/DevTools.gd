@@ -1,5 +1,7 @@
 extends MarginContainer
 
+#class for debugging GUI
+
 signal godmode(mode)
 signal printgrid
 

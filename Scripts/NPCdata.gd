@@ -4,6 +4,7 @@ class_name NPCdata, "res://Scripts/NPCdata.gd"
 
 var npc_list
 
+#runs when class is loaded, parses npc_data.json to npc_list
 func _ready():
 	var file = File.new()
 	file.open("res://data/npc_data.json", File.READ)

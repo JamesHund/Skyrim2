@@ -117,12 +117,19 @@ func _initialize_loot_chests():
 		chest.connect("dropitem",self,"_on_loot_chest_opened")
 
 #----------------Projectiles---------------------
+#This method is called when the player emits the shoot signal
+#It takes damage, speed, spread and projectile count and
+#instantiates a new projectile from the player's origin in 
+#the direction of the mouse cursor
 func _on_Player_shoot(damage, speed, spread, projectile_count):
 	for i in range(projectile_count):
 		var new_projectile = projectile.instance()
 		add_child(new_projectile)
 		new_projectile._initialize(get_global_mouse_position()-$Player.position, $Player, damage, speed, spread)
-
+		
+#This is called when the enemy emits the shoot signal it takes
+#in an enemy instance, and instantiates a new projectile from
+#the enemy's position in the direction of the player
 func _on_Enemy_shoot(instance):
 	if player_is_alive:
 		var new_projectile = projectile.instance()
@@ -130,6 +137,10 @@ func _on_Enemy_shoot(instance):
 		new_projectile._initialize($Player.position-instance.position, instance, 2, 1000, 5)
 		
 #-------------Spawning characters---------------
+
+#This method spawns either an enemy or an NPC depending on type
+#passed at position pos. It also connects their signals to signals in
+#the main class.
 func _spawn_character(type,pos):
 	if type==9: #Enemy
 		var new_enemy = enemy.instance()
@@ -143,7 +154,11 @@ func _spawn_character(type,pos):
 		$Level.add_child(NPC_list[NPC_list.size()-1])
 		NPC_list[NPC_list.size()-1]._start(type,pos)
 		NPC_list[NPC_list.size()-1].connect("interacted", self, "_on_NPC_interacted")
-		
+
+#This method is run when a SpawnArea emits a spawn signal.
+#It takes in the position of the spawn area, the spawn areas extents
+#and the type of character to spawn. It will spawn the character in a
+#random position within the spawn area's extents
 func _on_SpawnArea_spawn(pos, extents,type):
 	var x = rand_range(0, extents.x)
 	var y = rand_range(0, extents.y)
@@ -151,9 +166,8 @@ func _on_SpawnArea_spawn(pos, extents,type):
 	_spawn_character(type,spawnpos)	
 		
 #-------------Items------------------------
-func _spawn_world_item(var item, var pos):
-	_spawn_world_item_id(item.id,item.stack_size,pos)
 	
+#Instantiates a world item with id and stacksize passed in at position pos.
 func _spawn_world_item_id(var id, var stacksize, var pos):
 	print("world item added")
 	var new_item = worlditem.instance()
@@ -161,18 +175,29 @@ func _spawn_world_item_id(var id, var stacksize, var pos):
 	new_item._initialize(id,stacksize,pos,0.3)
 	item_list.append(new_item)
 	
-func _spawn_world_item_pickup(var item, var pos, var pickupcooldown): #spawn world item with custom pickupcooldown
+#Same as the above method but takes in an item instead of id and stacksize
+func _spawn_world_item(var item, var pos):
+	_spawn_world_item_id(item.id,item.stack_size,pos)
+
+#spawn world item with custom pickupcooldown
+func _spawn_world_item_pickup(var item, var pos, var pickupcooldown): 
 	var new_item = worlditem.instance()
 	$Level.add_child(new_item)
 	new_item._initialize(item.id,item.stack_size,pos,pickupcooldown)
 	item_list.append(new_item)
-	
+
+#This method is called when a LootChest emits the opened signal
+#It takes in a list of items and spawns them at a random offset from pos
 func _on_loot_chest_opened(var items, var pos):
 	for item in items:
 		var random_pos = pos + polar2cartesian(rand_range(2, 100), rand_range(0,360))
 		_spawn_world_item(item,random_pos)
 		
 #----------------Interaction---------------
+
+#This method is called when an NPC is interacted with, taking in an NPC
+#instance as a parameter. It checks whether the NPC is a quest giver or a
+#merchant and opens the relevant GUI screen.
 func _on_NPC_interacted(NPC):
 	if NPC.merchant:
 		$GUI._show_MerchantScreen(NPC)
@@ -181,38 +206,48 @@ func _on_NPC_interacted(NPC):
 
 #----------------Signals-------------------
 
+#This method is called when an enemy dies, spawning a coin at pos.
 func _on_Enemy_death(var pos):
 	_spawn_world_item_id(26, 1, pos)
 
+#This method is called when a teleporter emits the teleport signal, calling
+#the loadworld method with the level and pos defined in the teleporter object
 func _on_Teleporter_teleport(level, pos):
 	_load_level(level,pos)
 
+#This method called when the player dies, loading the default level, temporarily
+#disabling the GUI and starting the respawn timer
 func _on_Player_playerdeath():
 	_load_level("testworld", $Player.position)
 	$GUI._disable()
 	player_is_alive = false
 	$RespawnTimer.start()
-	
+
+#This method is called when Inventory emits the dropitem signal, spawning a world
+#item from 'item' parameter at the player's position with a pickup cooldown
 func _on_Inventory_dropitem(var item):
 	_spawn_world_item_pickup(item, _get_Player_position(), 3)
 
 #Timers
+#Called when RespawnTimer runs out, respawning player
 func _on_RespawnTimer_timeout():
 	_respawn()
 	
 #-----------Covenience---------------
 
+#Returns the player object if player is alive else returning null
 func _get_player():
 	if player_is_alive:
 		return $Player
 	return null
 
+#Returns the player position as a Vector2 if player is alive else returning null
 func _get_Player_position():
 	if player_is_alive:
 		return $Player.position
 	else:
 		return null
 
-
+#Calls _continue_game when Continue Game is clicked in main menu
 func _on_MainMenu_continue_game():
 	_continue_game()

@@ -27,16 +27,17 @@ var heal_amount
 var fire_mode
 var armour setget _set_armour #encapsulates armour, setting armour will call the _set_armour method
 
-
+#runs when player enters scene, sets camera to current
 func _ready():
 	$FireRateTimer.set_wait_time(0.1)
 	$Camera2D.make_current()
 	$Weapon.flip_h = true
 
+#emits health_update signal
 func _respawn_init():
 	emit_signal("health_update",health)
 		
-
+#runs every process cycle, detects player input and calls the appropriate method
 func _process(delta):
 	#input
 	velocity = Vector2()
@@ -86,7 +87,7 @@ func _process(delta):
 			if Global.main_scene.get_node("Inventory")._find_and_consume_item(20):
 				_heal(20)
 	
-
+#attempts to shoot the player's currently selected weapon if not reloading or healing
 func _shoot():
 	if fireready == true && weapons[selected_weapon] != null && !reloading && !healing:
 		if weapons[selected_weapon]._fire():
@@ -98,6 +99,7 @@ func _shoot():
 		else:
 			_reload()
 
+#will switch weapon if the non-active weapon slot is occupied
 func _switch_weapon():
 	if !reloading:
 		if selected_weapon == 0:
@@ -113,6 +115,9 @@ func _switch_weapon():
 				_update_weapon_sprite()
 				_update_weapon_properties()
 
+#starts the healing process:
+#sets healing to true, the active healing item is set
+#starts healing timer and shows healing text on screen
 func _heal(var id):
 	healing = true
 	$HealingTimer.wait_time = ItemData.items[id].heal_time
@@ -120,6 +125,8 @@ func _heal(var id):
 	emit_signal("heal", $HealingTimer)
 	heal_amount = ItemData.items[id].hp
 
+#damages the player for value of hit taking into account armour protection
+#and kills the player if health falls below 0
 func damage(var hit):
 	if !godmode:
 		health -= hit * (1 - _get_armour_protection()/100)
@@ -128,7 +135,8 @@ func damage(var hit):
 			hide()
 			queue_free()
 		emit_signal("health_update",health)
-		
+
+#scans through objects within interactables array, finds closest to player and runs the interact method on it
 func _interact():
 	var closest_object
 	var closest_object_dist = 10000
@@ -144,13 +152,15 @@ func _interact():
 		closest_object._interact()
 	else:
 		closest_object.get_parent()._interact()
-		
+
+#reloads the currently selected weapon and shows reloading GUI
 func _reload():
 	weapons[selected_weapon]._reload()
 	reloading = true
 	$ReloadTimer.start()
 	emit_signal("reload")
-	
+
+#shows weapon and rotates it the direction of the mouse
 func _show_weapon():
 	var dir = (get_global_mouse_position() - Global.main_scene._get_Player_position())
 	$Weapon.rotation = cartesian2polar(dir.x,dir.y).y
@@ -162,10 +172,12 @@ func _show_weapon():
 		$Weapon.show()
 	$WeaponVisibleTimer.start()
 
+#updates weapon sprite to match that of the selected weapon
 func _update_weapon_sprite():
 	$Weapon.set_region_rect(ItemUtils._get_item_sprite_rect(weapons[selected_weapon].id))
-	
-func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
+
+#sets a weapon of weapon id in specified slot 0 or 1 (-1 = no weapon)
+func _set_weapon(var id, var slot): 
 	if id != -1:
 		weapons[slot] = ItemData.items[id]
 		if selected_weapon == slot:
@@ -179,57 +191,70 @@ func _set_weapon(var id, var slot): #sets a weapon of weapon id in specified slo
 		if selected_weapon==slot:
 			emit_signal("weapon_update", -1, -1)
 			_switch_weapon()
-			
-func _update_weapon_properties():
-	$FireRateTimer.set_wait_time(60/weapons[selected_weapon].fire_rate)
-	fire_mode = weapons[selected_weapon].fire_mode
-	
-func _set_armour(var id): #same as above method except for players armour (-1 = no armour)
+
+#same as above method except for players armour (-1 = no armour)
+func _set_armour(var id):
 	if id != -1:
 		armour = ItemData.items[id]
 	else:
 		armour = null
+		
+#updates fire rate and fire mode variables
+func _update_weapon_properties():
+	$FireRateTimer.set_wait_time(60/weapons[selected_weapon].fire_rate)
+	fire_mode = weapons[selected_weapon].fire_mode
+
+#sets position to pos and makes player visible
 func _start(pos):
 	position = pos
 	show()
-	
+
+#returns equipped armour protection and returns 0 if no armour equipped
 func _get_armour_protection():
 	if armour != null:
 		return armour.protection
 	return 0
-	
+
+#runs when FireRateTimer is finished and sets fireready to true
 func _on_FireRateTimer_timeout():
 	fireready = true
-	
+
+#sets godmode to mode (for debugging)
 func _toggle_godmode(var mode):
 	godmode = mode
 
+#clears interactables array
 func _clear_interactables():
 	interactables = []
 
+#runs when ItemRadius is entered and emits signal pickupitem if area is a world item
 func _on_ItemRadius_area_entered(area):
 	if area.is_in_group("worlditem"):
 		emit_signal("pickupitem",area)
 
+#runs when InteractRadius is entered and adds area to interactables if it is interactable
 func _on_InteractRadius_area_entered(area):
 	if area.is_in_group("interactable"):
 		interactables.append(area)
 		
+#runs when InteractRadius is exited and removes area from interactables if it is interactable
 func _on_InteractRadius_area_exited(area):
 	if area.is_in_group("interactable"):
 		var index = interactables.find(area)
 		if index != -1:
 			interactables.remove(index)
 
-
+#hides weapon when WeaponVisibleTimer finishes
 func _on_WeaponVisibleTimer_timeout():
 	$Weapon.hide()
 
+#sets reloading to falsem emits signals weapon_update and reload_finished
 func _on_ReloadTimer_timeout():
 	reloading = false
 	emit_signal("weapon_update", weapons[selected_weapon].id,weapons[selected_weapon].ammo_left)
 	emit_signal("reload_finished")
 
+#when HealingTimer runs out heals for heal_amount
 func _on_HealingTimer_timeout():
 	health += heal_amount
 	if health > 100:

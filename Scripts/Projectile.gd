@@ -6,6 +6,7 @@ var group
 var damage
 var speed
 
+#initializes variables, sets collision mask based on source and rotates object
 func _initialize(dir, src, dmg, spd,sprd):
 	position = src.position
 	source = src
@@ -21,6 +22,7 @@ func _initialize(dir, src, dmg, spd,sprd):
 	rotation = cartesian2polar(dir.x,dir.y).y
 	$DecayTimer.start()
 
+#runs every physics frame and detects and handles collision
 func _physics_process(delta):
 	var collision = move_and_collide(direction*speed*delta)
 	if collision:

@@ -7,9 +7,11 @@ onready var merchant = false
 var npc_name
 var inventory
 
+#runs when NPC enters tree, starts npc
 func _ready():
 	_start(id,position)
 	
+#starts NPC at position, assigns sprite, label and sets inventory if NPC merchant
 func _start(var id, var pos):
 	position = pos
 	if id > NPCdata.npc_list.size():
@@ -22,7 +24,7 @@ func _start(var id, var pos):
 		inventory  = NPCdata.npc_list[id].get("merchant")
 	$Sprites.animation = str(id)
 	
-	
+#emits interacted signal
 func _interact():
 	print(npc_name, " interacted with")
 	emit_signal("interacted",self)

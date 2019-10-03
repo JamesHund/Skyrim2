@@ -1,5 +1,7 @@
 extends Node
 
+#converts inventory contents and quest states to arrays of integers
+#which are parsed to json and written to save.json
 func _save():
 	#converting items from inventory to array for storage
 	var inv = Global.main_scene.get_node("Inventory")
@@ -27,7 +29,8 @@ func _save():
 	var all_data = {"ids" : ids,"stacks" : stacks, "quests" : quests}
 	file.store_line(JSON.print(all_data))
 	file.close()
-	
+
+#loads data from save.json and updates inventory contents and quest_states in QuestHandler
 func _load_from_save():
 	var inv = Global.main_scene.get_node("Inventory")
 	var file = File.new()
