@@ -29,17 +29,26 @@ func _process(delta):
 		pass
 #-------Level swapping and player death--------------
 
+#This method is called when a new game is created, spawning the player, 
+#loading the default level, giving the player a starting weapon and
+#wiping the save file
 func _new_game():
 	_respawn()
 	_load_level("testworld", $Player.position)
 	$Inventory._create_and_add_item(6,1)
 	SaveHandler._save()
 	
+#This method is called when a game is continued spawning the player, 
+#loading the default level, and restoring inventory and quest contents
+#from save file
 func _continue_game():
 	SaveHandler._load_from_save()
 	_respawn()
 	_load_level("testworld", $Player.position)
 	
+#This method removes any objects from the scene that are level specific
+#It instances the level from a tscn file, sends the player to position pos
+#And initializes all level components: NPC's, SpawnArea's, Chests and teleporters
 func _load_level(level, pos):
 	for i in get_children():
 		if !i.is_in_group("main"):
@@ -49,18 +58,18 @@ func _load_level(level, pos):
 	lvl = load ("res://Scenes/Levels/" + level + ".tscn")
 	var new_level = lvl.instance()
 	$Level.call_deferred("add_child",new_level)
-	#default_grid = GridGenerator._gen_array_from_tilemap(new_level.get_node("TileMap"))
-	#tilemap_path = new_level.get_node("TileMap")
 	$Player.position = pos
 	$Player._clear_interactables()
-	#TEMPORARY - Creates a small delay to allow for nodes to be deleted---
+	#Creates a small delay to allow for nodes to be deleted---
 	yield(get_tree().create_timer(0.0002), "timeout")
 	_initializeSpawnAreas()
 	_initialize_NPCs()
 	_initialize_teleporters()
 	_initialize_loot_chests()
 	
-
+#Instances a new player object and connects all player signals to
+#Their relevant methods in other classes
+#It also updates the player's gear to match that of the inventory
 func _respawn():
 	var new_player = player.instance()
 	new_player.set_name("Player")
@@ -81,23 +90,27 @@ func _respawn():
 	$Inventory._update_player_gear()
 	
 #----------Initializing Level Parts-------------
-	
+
+#Connects all teleporter signals to their relevant methods in the main class
 func _initialize_teleporters():
 	var teleporters = get_tree().get_nodes_in_group("teleport")
 	for Teleporter in teleporters:
 		Teleporter.connect("teleport",self,"_on_Teleporter_teleport")
 
+#Connects all NPC signals to their relevant methods in the main class
 func _initialize_NPCs():
 	var NPCs = get_tree().get_nodes_in_group("NPC")
 	for NPC in NPCs:
 		NPC.connect("interacted",self,"_on_NPC_interacted")
 
+#Connects all SpawnArea signals to their relevant methods in the main class
 func _initializeSpawnAreas():
 	var spawnareas = get_tree().get_nodes_in_group("spawnarea")
 	for SpawnArea in spawnareas:
 		SpawnArea.connect("spawn",self,"_on_SpawnArea_spawn")
 		print("connected spawnarea")
-		
+
+#Connects all LootChest signals to their relevant methods in the main class
 func _initialize_loot_chests():
 	var chests = get_tree().get_nodes_in_group("lootchest")
 	for chest in chests:
