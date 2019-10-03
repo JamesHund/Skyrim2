@@ -8,7 +8,7 @@ var type
 var stack_size
 var max_stack_size
 
-#initializes variables
+#initializes fields
 func _init(var _id, var _item_name, var _type, var _stack_size, var _max_stack_size):
 	id = int(_id)
 	item_name = _item_name

@@ -17,16 +17,14 @@ var lvl #stores level resource to be loaded
 #var default_grid #stores grid of tilemap
 #var tilemap_path
 
+#runs before children nodes are initialized and initializes main_scene reference
 func _enter_tree():
-	#runs before children nodes are initialized
 	Global.main_scene = self
-
+	
+#runs when entering SceneTree, shows main menu
 func _ready():
-	#runs after all children nodes have been initialized
 	$GUI._show_MainMenu()
 	
-func _process(delta):
-		pass
 #-------Level swapping and player death--------------
 
 #This method is called when a new game is created, spawning the player, 
@@ -139,7 +137,7 @@ func _on_Enemy_shoot(instance):
 #-------------Spawning characters---------------
 
 #This method spawns either an enemy or an NPC depending on type
-#passed at position pos. It also connects their signals to signals in
+#passed at position pos. It also connects their signals to methods in
 #the main class.
 func _spawn_character(type,pos):
 	if type==9: #Enemy
@@ -206,7 +204,7 @@ func _on_NPC_interacted(NPC):
 
 #----------------Signals-------------------
 
-#This method is called when an enemy dies, spawning a coin at pos.
+#This method is called when an enemy dies, spawning a coin at position pos.
 func _on_Enemy_death(var pos):
 	_spawn_world_item_id(26, 1, pos)
 

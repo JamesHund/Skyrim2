@@ -11,7 +11,7 @@ var projectile_speed
 var base_capacity
 var ammo_left
 
-#initializes variables
+#initializes fields
 func _init(var _id, var _item_name, var _base_damage,  var _fire_mode, var _fire_rate, var _projectile_count, var _spread, var _projectile_speed, var _base_capacity).(_id,_item_name,1, 1, 1):
 	base_damage = _base_damage
 	fire_mode = _fire_mode

@@ -211,7 +211,7 @@ func _sell_selected():
 		if grid[selected.x][selected.y] == null:
 			_clear_selected()
 
- #takes in an item id adds it to the inventory and subtracts money if there is enough
+#takes in an item id adds it to the inventory and subtracts money if there is enough
 func _buy(var id):
 	print("buy in inv")
 	var amount = ItemData.item_costs[id]

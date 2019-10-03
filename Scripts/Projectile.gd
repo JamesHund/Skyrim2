@@ -37,6 +37,7 @@ func _physics_process(delta):
 			hide()
 			queue_free()
 
+#deletes projectile
 func _on_DecayTimer_timeout():
 	hide()
 	queue_free()

@@ -37,7 +37,7 @@ func _ready():
 func _respawn_init():
 	emit_signal("health_update",health)
 		
-#runs every process cycle, detects player input and calls the appropriate method
+#runs every process cycle, detects player input and calls the appropriate method that corresponds to input
 func _process(delta):
 	#input
 	velocity = Vector2()
@@ -248,7 +248,7 @@ func _on_InteractRadius_area_exited(area):
 func _on_WeaponVisibleTimer_timeout():
 	$Weapon.hide()
 
-#sets reloading to falsem emits signals weapon_update and reload_finished
+#sets reloading to false and emits signals weapon_update and reload_finished
 func _on_ReloadTimer_timeout():
 	reloading = false
 	emit_signal("weapon_update", weapons[selected_weapon].id,weapons[selected_weapon].ammo_left)

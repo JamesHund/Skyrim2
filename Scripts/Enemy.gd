@@ -29,7 +29,7 @@ func _ready():
 	$FireRateTimer.set_wait_time(0.5)
 	velocity = Vector2(randi()%3-1, randi()%3-1)
 	
-#Runs every processcycle, moves enemies and attempts to shoot
+#Runs every process cycle, moves enemies and attempts to shoot
 func _process(delta):
 	processintervals += delta
 	if(processintervals >= 2):

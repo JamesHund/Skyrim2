@@ -1,11 +1,12 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scenes/GUI/QuestMenu.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GUI/QuestMenu.gd" type="Script" id=1]
 [ext_resource path="res://textures/UI/grey3.png" type="Texture" id=2]
 [ext_resource path="res://textures/UI/grey1.png" type="Texture" id=3]
 [ext_resource path="res://fonts/Exo2-ExtraBold.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scenes/GUI/GUISubComponents/QuestBox.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fonts/Exo2-SemiBold.otf" type="DynamicFontData" id=6]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 40

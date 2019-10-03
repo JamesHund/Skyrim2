@@ -1,10 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Scenes/GUI/Controls.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/GUI/Controls.gd" type="Script" id=1]
 [ext_resource path="res://textures/UI/grey1.png" type="Texture" id=2]
 [ext_resource path="res://textures/UI/grey4.png" type="Texture" id=3]
 [ext_resource path="res://fonts/Exo2-ExtraBold.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://textures/UI/Controls.png" type="Texture" id=5]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 54
